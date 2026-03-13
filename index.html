@@ -1,0 +1,1529 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>VCG Markets — Brand Guidelines</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+*, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+html { scroll-behavior: smooth; font-size: 16px; }
+body { font-family: 'Inter', sans-serif; background: #f2f2f2; color: #232629; line-height: 1.5; }
+
+/* ── NAV ── */
+.sidebar { position: fixed; top: 0; left: 0; width: 260px; height: 100vh; background: #ffffff; border-right: 1px solid #e9eaea; z-index: 100; display: flex; flex-direction: column; transition: transform .3s ease; }
+.sidebar-logo { padding: 28px 24px 20px; border-bottom: 1px solid #e9eaea; }
+.sidebar-logo svg { width: 100px; height: auto; }
+.sidebar-nav { flex: 1; overflow-y: auto; padding: 16px 0; }
+.sidebar-nav a { display: block; padding: 9px 24px; font-size: 14px; font-weight: 500; color: #65676a; text-decoration: none; letter-spacing: -0.3px; transition: background .15s, color .15s; }
+.sidebar-nav a:hover, .sidebar-nav a.active { color: #3265e5; background: #3265e51f; }
+.sidebar-nav a.active { font-weight: 600; }
+.hamburger { display: none; position: fixed; top: 16px; left: 16px; z-index: 200; width: 44px; height: 44px; border-radius: 8px; background: #ffffff; border: 1px solid #e9eaea; cursor: pointer; align-items: center; justify-content: center; box-shadow: 0 1px 4px rgba(0,0,0,.05); }
+.hamburger span { display: block; width: 20px; height: 2px; background: #232629; margin: 3px auto; transition: .3s; }
+.overlay { display: none; position: fixed; inset: 0; background: #00000066; z-index: 99; }
+
+/* ── MAIN ── */
+.main { margin-left: 260px; }
+.section { padding: 80px 48px; }
+.section:nth-child(even) { background: #ffffff; }
+.card { background: #ffffff; border-radius: 12px; box-shadow: 0px 1px 4px 0px rgba(0,0,0,0.05); padding: 32px; margin-bottom: 24px; }
+.section-title { font-size: 32px; line-height: 38px; font-weight: 700; letter-spacing: -0.3px; color: #000000; margin-bottom: 12px; }
+.section-subtitle { font-size: 18px; line-height: 24px; font-weight: 600; letter-spacing: -0.3px; color: #65676a; margin-bottom: 40px; }
+.subsection-title { font-size: 18px; line-height: 24px; font-weight: 600; letter-spacing: -0.3px; margin-bottom: 16px; }
+p { font-size: 16px; line-height: 1.6; color: #232629; margin-bottom: 16px; }
+.label { font-size: 12px; font-weight: 600; line-height: 16px; text-transform: uppercase; letter-spacing: 0.5px; color: #88898c; margin-bottom: 8px; }
+
+/* ── HERO ── */
+.hero { min-height: 100vh; display: flex; flex-direction: column; align-items: center; justify-content: center; background: linear-gradient(135deg, #3265e5 0%, #2554c9 100%); text-align: center; padding: 48px; position: relative; overflow: hidden; }
+.hero::before { content: ''; position: absolute; inset: 0; background: radial-gradient(circle at 30% 40%, rgba(136,169,255,0.25) 0%, transparent 60%), radial-gradient(circle at 70% 60%, rgba(37,84,201,0.3) 0%, transparent 60%); }
+.hero-content { position: relative; z-index: 1; }
+.hero-logo { width: 280px; height: auto; margin-bottom: 40px; }
+.hero h1 { font-size: 32px; font-weight: 700; color: #ffffff; letter-spacing: -0.3px; line-height: 38px; margin-bottom: 12px; }
+.hero p { color: #ffffffcc; font-size: 18px; font-weight: 500; }
+
+/* ── GRIDS ── */
+.grid-2 { display: grid; grid-template-columns: 1fr 1fr; gap: 24px; }
+.grid-3 { display: grid; grid-template-columns: repeat(3, 1fr); gap: 24px; }
+.grid-4 { display: grid; grid-template-columns: repeat(4, 1fr); gap: 24px; }
+.grid-6 { display: grid; grid-template-columns: repeat(6, 1fr); gap: 16px; }
+
+/* ── COLOR SWATCHES ── */
+.swatch { border-radius: 12px; overflow: hidden; box-shadow: 0 1px 4px rgba(0,0,0,.05); cursor: pointer; transition: transform .15s; }
+.swatch:hover { transform: translateY(-2px); }
+.swatch-color { height: 100px; position: relative; }
+.swatch-color.small { height: 64px; }
+.swatch-info { background: #fff; padding: 12px 14px; }
+.swatch-name { font-size: 13px; font-weight: 600; color: #232629; margin-bottom: 2px; }
+.swatch-hex { font-size: 12px; font-weight: 500; color: #88898c; font-family: 'Inter', monospace; }
+.swatch-border { border: 1px solid #e9eaea; }
+.copy-toast { position: fixed; bottom: 32px; left: 50%; transform: translateX(-50%) translateY(100px); background: #232629; color: #fff; padding: 10px 24px; border-radius: 8px; font-size: 14px; font-weight: 600; z-index: 999; transition: transform .25s ease; pointer-events: none; }
+.copy-toast.show { transform: translateX(-50%) translateY(0); }
+
+/* ── LOGO SHOWCASE ── */
+.logo-showcase { display: flex; align-items: center; justify-content: center; padding: 60px; border-radius: 12px; min-height: 200px; }
+.logo-showcase svg, .logo-showcase img { max-width: 220px; height: auto; }
+
+/* ── DO / DON'T ── */
+.dos-donts { display: grid; grid-template-columns: 1fr 1fr; gap: 24px; }
+.do-item, .dont-item { border-radius: 12px; overflow: hidden; box-shadow: 0 1px 4px rgba(0,0,0,.05); }
+.do-item .badge, .dont-item .badge { display: inline-flex; align-items: center; gap: 6px; padding: 6px 12px; font-size: 13px; font-weight: 600; border-radius: 6px; margin-bottom: 8px; }
+.do-item .badge { background: #10b80a1f; color: #1e7229; }
+.dont-item .badge { background: #f831491f; color: #f83149; }
+.do-item .badge::before { content: ''; display: inline-block; width: 16px; height: 16px; background: #1e7229; mask: url("data:image/svg+xml,%3Csvg viewBox='0 0 16 16' fill='none' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M13.3 4.3a1 1 0 010 1.4l-6 6a1 1 0 01-1.4 0l-3-3a1 1 0 011.4-1.4L6.6 9.6l5.3-5.3a1 1 0 011.4 0z' fill='currentColor'/%3E%3C/svg%3E") center/contain no-repeat; -webkit-mask: url("data:image/svg+xml,%3Csvg viewBox='0 0 16 16' fill='none' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M13.3 4.3a1 1 0 010 1.4l-6 6a1 1 0 01-1.4 0l-3-3a1 1 0 011.4-1.4L6.6 9.6l5.3-5.3a1 1 0 011.4 0z' fill='currentColor'/%3E%3C/svg%3E") center/contain no-repeat; }
+.dont-item .badge::before { content: ''; display: inline-block; width: 16px; height: 16px; background: #f83149; mask: url("data:image/svg+xml,%3Csvg viewBox='0 0 16 16' fill='none' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M4.3 4.3a1 1 0 011.4 0L8 6.6l2.3-2.3a1 1 0 011.4 1.4L9.4 8l2.3 2.3a1 1 0 01-1.4 1.4L8 9.4l-2.3 2.3a1 1 0 01-1.4-1.4L6.6 8 4.3 5.7a1 1 0 010-1.4z' fill='currentColor'/%3E%3C/svg%3E") center/contain no-repeat; -webkit-mask: url("data:image/svg+xml,%3Csvg viewBox='0 0 16 16' fill='none' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M4.3 4.3a1 1 0 011.4 0L8 6.6l2.3-2.3a1 1 0 011.4 1.4L9.4 8l2.3 2.3a1 1 0 01-1.4 1.4L8 9.4l-2.3 2.3a1 1 0 01-1.4-1.4L6.6 8 4.3 5.7a1 1 0 010-1.4z' fill='currentColor'/%3E%3C/svg%3E") center/contain no-repeat; }
+.dd-visual { display: flex; align-items: center; justify-content: center; min-height: 140px; border-radius: 12px 12px 0 0; }
+.dd-text { padding: 16px 20px; background: #fff; }
+
+/* ── BUTTONS ── */
+.btn { display: inline-flex; align-items: center; justify-content: center; font-family: 'Inter', sans-serif; font-weight: 600; font-size: 14px; letter-spacing: -0.3px; border: none; cursor: pointer; text-decoration: none; transition: opacity .15s; }
+.btn:hover { opacity: .88; }
+.btn-lg { height: 48px; padding: 12px 24px; border-radius: 8px; }
+.btn-md { height: 32px; padding: 7px 12px; border-radius: 6px; font-size: 13px; }
+.btn-primary { background: #3265e5; color: #fff; }
+.btn-secondary { background: #eff0f2; color: #232629; }
+.btn-warning { background: #f83149; color: #fff; }
+.btn-disabled { background: #f4f4f4; color: #bdbebf; pointer-events: none; }
+.btn-outline { background: transparent; border: 1px solid #d3d4d4; color: #232629; }
+.btn-download { background: #3265e5; color: #fff; font-size: 13px; font-weight: 600; height: 36px; padding: 0 16px; border-radius: 8px; display: inline-flex; align-items: center; gap: 6px; text-decoration: none; border: none; cursor: pointer; }
+.btn-download:hover { opacity: .88; }
+
+/* ── GRADIENT BARS ── */
+.gradient-bar { height: 80px; border-radius: 12px; margin-bottom: 8px; }
+
+/* ── TYPOGRAPHY SPECIMENS ── */
+.type-specimen { padding: 20px 0; border-bottom: 1px solid #e9eaea; }
+.type-specimen:last-child { border-bottom: none; }
+.type-meta { display: flex; gap: 16px; flex-wrap: wrap; margin-top: 6px; }
+.type-meta span { font-size: 12px; font-weight: 500; color: #88898c; background: #f2f2f2; padding: 3px 8px; border-radius: 4px; }
+
+/* ── ICON/IMAGE GRID ── */
+.icon-card { display: flex; flex-direction: column; align-items: center; gap: 12px; padding: 24px 16px; background: #fff; border-radius: 12px; box-shadow: 0 1px 4px rgba(0,0,0,.05); }
+.icon-card img { width: 56px; height: 56px; object-fit: contain; }
+.icon-card span { font-size: 13px; font-weight: 600; color: #232629; }
+
+.photo-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(220px, 1fr)); gap: 16px; }
+.photo-card { border-radius: 12px; overflow: hidden; box-shadow: 0 1px 4px rgba(0,0,0,.05); background: #fff; }
+.photo-card img { width: 100%; height: 200px; object-fit: cover; display: block; }
+.photo-card .photo-label { padding: 10px 14px; font-size: 12px; font-weight: 600; color: #88898c; }
+
+.illust-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(180px, 1fr)); gap: 16px; }
+.illust-card { border-radius: 12px; overflow: hidden; box-shadow: 0 1px 4px rgba(0,0,0,.05); background: #fff; display: flex; align-items: center; justify-content: center; min-height: 160px; padding: 16px; }
+.illust-card img { max-width: 100%; max-height: 140px; object-fit: contain; }
+
+.product-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(280px, 1fr)); gap: 24px; }
+.product-card { border-radius: 12px; overflow: hidden; box-shadow: 0 1px 4px rgba(0,0,0,.05); background: #fff; }
+.product-card img { width: 100%; display: block; }
+.product-card .product-label { padding: 14px 16px; font-size: 13px; font-weight: 600; color: #232629; }
+
+/* ── NOISE CARD ── */
+.noise-card { border-radius: 12px; overflow: hidden; box-shadow: 0 1px 4px rgba(0,0,0,.05); background: #fff; }
+.noise-preview { height: 120px; background-size: cover; background-position: center; }
+.noise-info { padding: 16px; }
+.noise-info h4 { font-size: 14px; font-weight: 600; margin-bottom: 4px; }
+.noise-info p { font-size: 13px; color: #65676a; margin-bottom: 0; }
+
+/* ── VIDEO ── */
+.video-wrapper { border-radius: 12px; overflow: hidden; box-shadow: 0 1px 4px rgba(0,0,0,.05); max-width: 800px; }
+.video-wrapper video { width: 100%; display: block; }
+
+/* ── CLEAR SPACE DIAGRAM ── */
+.clearspace-demo { display: flex; align-items: center; justify-content: center; position: relative; padding: 80px; background: #f8f8f8; border-radius: 12px; }
+.clearspace-demo .cs-box { border: 2px dashed #3265e5; padding: 40px; position: relative; }
+.clearspace-demo .cs-label { position: absolute; font-size: 11px; font-weight: 600; color: #3265e5; }
+.clearspace-demo .cs-label.top { top: -20px; left: 50%; transform: translateX(-50%); }
+.clearspace-demo .cs-label.bottom { bottom: -20px; left: 50%; transform: translateX(-50%); }
+.clearspace-demo .cs-label.left { left: -24px; top: 50%; transform: translateY(-50%) rotate(-90deg); }
+.clearspace-demo .cs-label.right { right: -24px; top: 50%; transform: translateY(-50%) rotate(90deg); }
+
+/* ── COMPONENT PREVIEWS ── */
+.component-row { display: flex; gap: 16px; align-items: center; flex-wrap: wrap; margin-bottom: 24px; }
+.radius-demo { display: flex; gap: 24px; flex-wrap: wrap; }
+.radius-box { display: flex; flex-direction: column; align-items: center; gap: 8px; }
+.radius-box div { width: 80px; height: 80px; background: #3265e5; }
+.radius-box span { font-size: 12px; font-weight: 600; color: #65676a; }
+.card-demo { background: #fff; border-radius: 12px; box-shadow: 0px 1px 4px 0px rgba(0,0,0,0.05); padding: 24px; max-width: 320px; }
+.card-demo h4 { font-size: 16px; font-weight: 700; margin-bottom: 8px; }
+.card-demo p { font-size: 14px; color: #65676a; margin-bottom: 0; }
+
+/* ── SPACING ── */
+.spacing-row { display: flex; align-items: center; gap: 16px; margin-bottom: 12px; }
+.spacing-bar { height: 24px; background: #3265e51f; border-radius: 4px; border: 1px solid #3265e5; }
+.spacing-label { font-size: 13px; font-weight: 600; color: #232629; min-width: 60px; }
+.spacing-val { font-size: 12px; color: #88898c; font-weight: 500; }
+
+/* ── VOICE SCALE ── */
+.voice-scale { margin-bottom: 20px; }
+.voice-scale-row { display: flex; align-items: center; gap: 12px; margin-bottom: 12px; }
+.voice-scale-label { font-size: 13px; font-weight: 600; color: #65676a; min-width: 80px; text-align: right; }
+.voice-scale-label-right { font-size: 13px; font-weight: 600; color: #65676a; min-width: 80px; }
+.voice-scale-bar { flex: 1; height: 8px; background: #e9eaea; border-radius: 4px; position: relative; }
+.voice-scale-marker { position: absolute; top: 50%; transform: translate(-50%, -50%); width: 20px; height: 20px; background: #3265e5; border-radius: 50%; border: 3px solid #fff; box-shadow: 0 1px 4px rgba(0,0,0,.2); }
+.voice-personality { display: flex; flex-wrap: wrap; gap: 12px; margin-bottom: 24px; }
+.voice-trait { padding: 10px 18px; border-radius: 8px; background: #3265e51f; font-size: 14px; font-weight: 600; color: #3265e5; }
+
+/* ── TERMINOLOGY TABLE ── */
+.term-table { width: 100%; border-collapse: collapse; }
+.term-table th { text-align: left; font-size: 12px; font-weight: 600; text-transform: uppercase; letter-spacing: 0.5px; color: #88898c; padding: 10px 16px; border-bottom: 2px solid #e9eaea; }
+.term-table td { font-size: 14px; padding: 12px 16px; border-bottom: 1px solid #e9eaea; color: #232629; }
+.term-table tr:last-child td { border-bottom: none; }
+.term-use { font-weight: 600; color: #1e7229; }
+.term-avoid { font-weight: 600; color: #f83149; }
+
+/* ── PUSH NOTIFICATIONS ── */
+.notif-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px; }
+.notif-card { background: #f2f2f2; border-radius: 16px; padding: 14px 16px; display: flex; gap: 12px; align-items: flex-start; box-shadow: 0 1px 4px rgba(0,0,0,.08); }
+.notif-icon { width: 40px; height: 40px; border-radius: 10px; background: #3265e5; flex-shrink: 0; display: flex; align-items: center; justify-content: center; }
+.notif-icon svg { width: 22px; height: 22px; }
+.notif-content { flex: 1; }
+.notif-type { font-size: 11px; font-weight: 600; color: #88898c; text-transform: uppercase; letter-spacing: 0.3px; margin-bottom: 2px; }
+.notif-body { font-size: 14px; font-weight: 500; color: #232629; line-height: 1.4; }
+.notif-time { font-size: 11px; color: #a7a8aa; margin-top: 4px; }
+
+/* ── EMAIL CARDS ── */
+.email-card { background: #ffffff; border-radius: 12px; box-shadow: 0 1px 4px rgba(0,0,0,.05); overflow: hidden; border: 1px solid #e9eaea; }
+.email-header { padding: 20px 24px; border-bottom: 1px solid #e9eaea; }
+.email-subject { font-size: 16px; font-weight: 700; color: #232629; margin-bottom: 4px; }
+.email-preview { font-size: 14px; color: #88898c; }
+.email-body { padding: 24px; }
+.email-body p { font-size: 14px; line-height: 1.6; color: #232629; margin-bottom: 16px; }
+.email-cta { display: inline-block; background: #3265e5; color: #fff; font-size: 14px; font-weight: 600; padding: 12px 24px; border-radius: 8px; text-decoration: none; }
+
+/* ── LANDING PAGE WIREFRAMES ── */
+.wireframe-card { background: #ffffff; border-radius: 12px; box-shadow: 0 1px 4px rgba(0,0,0,.05); overflow: hidden; }
+.wireframe-visual { height: 160px; background: linear-gradient(135deg, #3265e5 0%, #2554c9 100%); display: flex; flex-direction: column; align-items: center; justify-content: center; padding: 24px; text-align: center; }
+.wireframe-visual h3 { font-size: 20px; font-weight: 700; color: #fff; margin-bottom: 6px; }
+.wireframe-visual p { font-size: 13px; color: #ffffffcc; margin-bottom: 12px; }
+.wireframe-visual .wf-cta { background: #fff; color: #3265e5; font-size: 12px; font-weight: 600; padding: 8px 16px; border-radius: 6px; }
+.wireframe-info { padding: 20px 24px; }
+.wireframe-info h4 { font-size: 14px; font-weight: 600; color: #232629; margin-bottom: 4px; }
+.wireframe-info p { font-size: 13px; color: #65676a; margin-bottom: 0; }
+
+/* ── FUNNEL ── */
+.funnel-flow { display: flex; align-items: stretch; gap: 0; overflow-x: auto; padding-bottom: 8px; }
+.funnel-step { flex: 1; min-width: 140px; background: #fff; border-radius: 12px; padding: 20px 16px; box-shadow: 0 1px 4px rgba(0,0,0,.05); text-align: center; position: relative; }
+.funnel-step:not(:last-child)::after { content: ''; position: absolute; right: -14px; top: 50%; transform: translateY(-50%); width: 0; height: 0; border-top: 10px solid transparent; border-bottom: 10px solid transparent; border-left: 14px solid #3265e5; z-index: 1; }
+.funnel-step:not(:last-child) { margin-right: 14px; }
+.funnel-num { width: 32px; height: 32px; background: #3265e5; color: #fff; border-radius: 50%; display: inline-flex; align-items: center; justify-content: center; font-size: 14px; font-weight: 700; margin-bottom: 10px; }
+.funnel-name { font-size: 13px; font-weight: 700; color: #232629; margin-bottom: 6px; }
+.funnel-mindset { font-size: 11px; color: #88898c; font-style: italic; margin-bottom: 6px; }
+.funnel-msg { font-size: 12px; color: #65676a; margin-bottom: 6px; }
+.funnel-cta { font-size: 11px; font-weight: 600; color: #3265e5; }
+
+/* ── CAMPAIGN CARDS ── */
+.campaign-card { background: #ffffff; border-radius: 12px; box-shadow: 0 1px 4px rgba(0,0,0,.05); padding: 32px; border-left: 4px solid #3265e5; }
+.campaign-card.alt { border-left-color: #9372f8; }
+.campaign-card h3 { font-size: 18px; font-weight: 700; color: #232629; margin-bottom: 4px; }
+.campaign-card .campaign-theme { font-size: 14px; color: #65676a; margin-bottom: 16px; }
+.campaign-hooks { display: flex; flex-wrap: wrap; gap: 8px; margin-bottom: 16px; }
+.campaign-hook { background: #f2f2f2; padding: 6px 12px; border-radius: 6px; font-size: 13px; font-weight: 500; color: #232629; }
+.campaign-meta { display: flex; flex-wrap: wrap; gap: 24px; }
+.campaign-meta-item .label { margin-bottom: 4px; }
+.campaign-meta-item p { font-size: 13px; margin-bottom: 0; color: #232629; }
+
+/* ── NARRATIVE FLOW ── */
+.narrative-flow { display: flex; align-items: center; gap: 0; justify-content: center; margin: 24px 0; }
+.narrative-step { background: #3265e5; color: #fff; padding: 12px 24px; border-radius: 8px; font-size: 14px; font-weight: 600; }
+.narrative-step.purple { background: #9372f8; }
+.narrative-arrow { font-size: 24px; color: #a7a8aa; margin: 0 8px; }
+
+/* ── SALES ── */
+.principle-list { list-style: none; counter-reset: principles; padding: 0; }
+.principle-list li { counter-increment: principles; display: flex; align-items: flex-start; gap: 12px; padding: 12px 0; border-bottom: 1px solid #e9eaea; font-size: 14px; color: #232629; }
+.principle-list li:last-child { border-bottom: none; }
+.principle-list li::before { content: counter(principles); display: flex; align-items: center; justify-content: center; width: 28px; height: 28px; background: #3265e5; color: #fff; border-radius: 50%; font-size: 13px; font-weight: 700; flex-shrink: 0; }
+.phrase-card { background: #f2f2f2; border-radius: 8px; padding: 14px 18px; font-size: 14px; color: #232629; margin-bottom: 8px; }
+.phrase-card.avoid { background: #f831491f; color: #f83149; }
+
+/* ── RESPONSIVE ── */
+@media (max-width: 1024px) {
+  .sidebar { transform: translateX(-100%); }
+  .sidebar.open { transform: translateX(0); }
+  .overlay.open { display: block; }
+  .hamburger { display: flex; }
+  .main { margin-left: 0; }
+  .section { padding: 60px 24px; }
+  .grid-2, .grid-3, .grid-4 { grid-template-columns: 1fr 1fr; }
+  .grid-6 { grid-template-columns: repeat(3, 1fr); }
+  .dos-donts { grid-template-columns: 1fr; }
+  .notif-grid { grid-template-columns: 1fr 1fr; }
+  .funnel-flow { flex-wrap: wrap; gap: 16px; }
+  .funnel-step:not(:last-child)::after { display: none; }
+  .funnel-step:not(:last-child) { margin-right: 0; }
+}
+@media (max-width: 640px) {
+  .grid-2, .grid-3, .grid-4 { grid-template-columns: 1fr; }
+  .grid-6 { grid-template-columns: repeat(2, 1fr); }
+  .hero-logo { width: 180px; }
+  .section { padding: 48px 16px; }
+  .notif-grid { grid-template-columns: 1fr; }
+  .narrative-flow { flex-wrap: wrap; justify-content: center; }
+}
+</style>
+</head>
+<body>
+
+<!-- Toast -->
+<div class="copy-toast" id="toast">Copied!</div>
+
+<!-- Hamburger -->
+<button class="hamburger" id="hamburger" aria-label="Toggle navigation"><span></span><span></span><span></span></button>
+<div class="overlay" id="overlay"></div>
+
+<!-- Sidebar -->
+<aside class="sidebar" id="sidebar">
+  <div class="sidebar-logo">
+    <svg width="100" height="64" viewBox="0 0 216 139" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M83.3145 5.48919C91.1294 1.48264 99.9128-0.390823 108.733 0.0678469C117.552 0.526606 126.08 3.30084 133.412 8.09508C128.217 12.562 123.941 17.9495 120.812 23.9709C116.653 21.5211 111.918 20.1519 107.06 19.9942C102.201 19.8366 97.3835 20.8962 93.0664 23.0708C88.7493 25.2454 85.078 28.4621 82.4041 32.4138C79.7303 36.3655 78.1432 40.9193 77.7952 45.6391C77.4473 50.359 78.3497 55.0881 80.4166 59.3711C82.4835 63.6538 85.6461 67.3481 89.5999 70.1004C93.5538 72.8527 98.1672 74.5714 102.999 75.0906C107.83 75.6097 112.717 74.9118 117.193 73.0653C118.275 72.6182 119.33 72.1073 120.348 71.5348C121.666 74.1571 123.184 76.6799 124.887 79.0827C127.279 82.4665 132.547 87.6561 132.606 87.7146C125.179 92.3675 116.596 94.9782 107.769 95.2677C98.9417 95.5572 90.1982 93.5158 82.4659 89.3603C74.7337 85.2047 68.3004 79.0896 63.8485 71.6636C59.3967 64.2374 57.0914 55.7761 57.1783 47.1782C57.2653 38.5803 59.7421 30.1646 64.3432 22.8251C68.9444 15.486 75.4999 9.49566 83.3145 5.48919Z" fill="#232629"/><path d="M67.7651 95.2935H42.7077L0 2.11717H24.5421L67.7651 95.2935Z" fill="#232629"/><path d="M143.221 7.32551C152.222 1.72209 162.847-0.77841 173.437 0.212141C184.027 1.20279 193.989 5.63027 201.768 12.8035L188.119 27.4838C183.763 23.4181 178.203 20.8419 172.256 20.1333C166.31 19.4249 160.289 20.6218 155.082 23.5483C149.875 26.4748 145.756 30.9763 143.329 36.3905C140.902 41.8049 140.297 47.847 141.603 53.6268C142.908 59.4061 146.055 64.6184 150.58 68.4977C155.105 72.3772 160.771 74.7196 166.742 75.1782C172.714 75.6367 178.678 74.1874 183.755 71.0452C188.832 67.903 192.755 63.2329 194.947 57.722H216C213.751 68.0013 208.124 77.2564 199.999 84.0437C191.873 90.831 181.705 94.7696 171.078 95.2454C160.452 95.7212 149.965 92.7069 141.252 86.6736C132.539 80.6404 126.09 71.9271 122.91 61.8911C119.73 51.855 119.998 41.0606 123.672 31.1908C127.346 21.3209 134.219 12.929 143.221 7.32551Z" fill="#232629"/><path d="M195.357 38.1169C197.267 43.1882 197.831 50.7098 194.88 57.1758H160.941C162.253 53.9488 162.94 50.5232 162.967 47.0648C162.99 44.01 162.419 40.9762 161.285 38.1169H195.357Z" fill="#232629"/><path d="M183.724 116.094C185.299 116.094 186.678 116.368 187.863 116.917C189.054 117.458 189.989 118.214 190.668 119.181C191.346 120.141 191.697 121.249 191.719 122.498H187.852C187.751 121.552 187.323 120.814 186.573 120.287C185.829 119.76 184.861 119.495 183.669 119.495C182.832 119.495 182.113 119.622 181.514 119.875C180.915 120.128 180.455 120.473 180.138 120.906C179.821 121.339 179.657 121.833 179.65 122.388C179.65 122.85 179.755 123.253 179.964 123.592C180.181 123.931 180.474 124.22 180.842 124.458C181.21 124.689 181.619 124.885 182.067 125.044C182.514 125.203 182.966 125.336 183.42 125.444L185.501 125.965C186.338 126.16 187.145 126.423 187.918 126.755C188.697 127.087 189.394 127.507 190.008 128.012C190.629 128.518 191.121 129.129 191.482 129.843C191.843 130.558 192.023 131.397 192.023 132.357C192.023 133.656 191.691 134.801 191.027 135.79C190.362 136.772 189.401 137.543 188.144 138.099C186.895 138.648 185.381 138.922 183.604 138.922C181.879 138.922 180.38 138.656 179.109 138.121C177.845 137.587 176.855 136.805 176.14 135.78C175.433 134.755 175.049 133.505 174.991 132.032H178.946C179.003 132.804 179.242 133.447 179.66 133.959C180.079 134.472 180.625 134.856 181.295 135.108C181.974 135.361 182.734 135.488 183.572 135.488C184.445 135.488 185.211 135.358 185.868 135.098C186.532 134.831 187.054 134.463 187.43 133.994C187.805 133.517 187.996 132.959 188.003 132.324C187.996 131.747 187.827 131.268 187.495 130.893C187.163 130.511 186.695 130.194 186.097 129.941C185.505 129.681 184.811 129.449 184.016 129.247L181.491 128.596C179.664 128.127 178.219 127.416 177.157 126.463C176.104 125.502 175.577 124.227 175.577 122.639C175.577 121.332 175.929 120.185 176.637 119.203C177.352 118.221 178.324 117.459 179.552 116.917C180.78 116.368 182.172 116.094 183.724 116.094Z" fill="#232629"/><path d="M37.8927 132.477H38.1521L44.7381 116.397H49.6579V138.587H45.8014V123.343H45.5953L39.4628 138.522H36.5803L30.4478 123.311H30.2417V138.587H26.3852V116.397H31.305L37.8927 132.477Z" fill="#232629"/><path fill-rule="evenodd" clip-rule="evenodd" d="M76.4674 138.587H72.1781L70.34 133.114H61.9985L60.1621 138.587H55.8728L63.6836 116.397H68.6446L76.4674 138.587ZM63.0807 129.885H69.2544L66.2517 120.947H66.0782L63.0807 129.885Z" fill="#232629"/><path fill-rule="evenodd" clip-rule="evenodd" d="M90.9913 116.397C92.6954 116.397 94.1269 116.693 95.2823 117.285C96.4445 117.877 97.3218 118.709 97.914 119.777C98.5131 120.838 98.8138 122.078 98.8141 123.493C98.8141 124.915 98.5116 126.153 97.9054 127.2C97.306 128.239 96.4193 129.044 95.2497 129.615C95.1127 129.681 94.9698 129.741 94.8254 129.799L99.6266 138.587H95.1415L90.78 130.46H86.69V138.587H82.6703V116.397H90.9913ZM86.69 127.122H90.3952C91.3919 127.122 92.2092 126.986 92.8448 126.712C93.4799 126.43 93.9501 126.021 94.2534 125.487C94.5634 124.946 94.7189 124.279 94.7189 123.493C94.7186 122.706 94.5636 122.033 94.2534 121.478C93.9428 120.915 93.4679 120.488 92.8328 120.2C92.1973 119.904 91.3764 119.757 90.3729 119.757H86.69V127.122Z" fill="#232629"/><path d="M111.5 126.593H111.773L120.429 116.397H125.337L116.756 126.355L125.412 138.587H120.58L113.96 129.074L111.5 131.977V138.587H107.482V116.397H111.5V126.593Z" fill="#232629"/><path d="M146.685 119.767H136.272V125.791H145.938V129.16H136.272V135.218H146.771V138.587H132.254V116.397H146.685V119.767Z" fill="#232629"/><path d="M169.946 119.767H163.089V138.587H159.102V119.767H152.243V116.397H169.946V119.767Z" fill="#232629"/></svg>
+  </div>
+  <nav class="sidebar-nav" id="sidebarNav">
+    <a href="#hero">Cover</a>
+    <a href="#logo">Logo</a>
+    <a href="#colors">Color Palette</a>
+    <a href="#gradients">Gradients</a>
+    <a href="#typography">Typography</a>
+    <a href="#icons">Icons</a>
+    <a href="#illustrations">Illustrations</a>
+    <a href="#noise">Noise Textures</a>
+    <a href="#photography">Photography</a>
+    <a href="#productshots">Product Shots</a>
+    <a href="#video">Video</a>
+    <a href="#components">UI Components</a>
+    <a href="#spacing">Spacing &amp; Layout</a>
+    <a href="#voice">Tone of Voice</a>
+    <a href="#terminology">Terminology</a>
+    <a href="#push">Push Notifications</a>
+    <a href="#emails">Email Examples</a>
+    <a href="#landingpages">Landing Pages</a>
+    <a href="#onboarding">Onboarding Funnel</a>
+    <a href="#campaigns">Marketing Campaigns</a>
+    <a href="#sales">Sales Guidelines</a>
+  </nav>
+</aside>
+
+<!-- ════════════════════════════ MAIN ════════════════════════════ -->
+<div class="main">
+
+<!-- 1. HERO -->
+<section class="hero" id="hero">
+  <div class="hero-content">
+    <svg class="hero-logo" viewBox="0 0 216 139" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M83.3145 5.48919C91.1294 1.48264 99.9128-0.390823 108.733 0.0678469C117.552 0.526606 126.08 3.30084 133.412 8.09508C128.217 12.562 123.941 17.9495 120.812 23.9709C116.653 21.5211 111.918 20.1519 107.06 19.9942C102.201 19.8366 97.3835 20.8962 93.0664 23.0708C88.7493 25.2454 85.078 28.4621 82.4041 32.4138C79.7303 36.3655 78.1432 40.9193 77.7952 45.6391C77.4473 50.359 78.3497 55.0881 80.4166 59.3711C82.4835 63.6538 85.6461 67.3481 89.5999 70.1004C93.5538 72.8527 98.1672 74.5714 102.999 75.0906C107.83 75.6097 112.717 74.9118 117.193 73.0653C118.275 72.6182 119.33 72.1073 120.348 71.5348C121.666 74.1571 123.184 76.6799 124.887 79.0827C127.279 82.4665 132.547 87.6561 132.606 87.7146C125.179 92.3675 116.596 94.9782 107.769 95.2677C98.9417 95.5572 90.1982 93.5158 82.4659 89.3603C74.7337 85.2047 68.3004 79.0896 63.8485 71.6636C59.3967 64.2374 57.0914 55.7761 57.1783 47.1782C57.2653 38.5803 59.7421 30.1646 64.3432 22.8251C68.9444 15.486 75.4999 9.49566 83.3145 5.48919Z" fill="white"/><path d="M67.7651 95.2935H42.7077L0 2.11717H24.5421L67.7651 95.2935Z" fill="white"/><path d="M143.221 7.32551C152.222 1.72209 162.847-0.77841 173.437 0.212141C184.027 1.20279 193.989 5.63027 201.768 12.8035L188.119 27.4838C183.763 23.4181 178.203 20.8419 172.256 20.1333C166.31 19.4249 160.289 20.6218 155.082 23.5483C149.875 26.4748 145.756 30.9763 143.329 36.3905C140.902 41.8049 140.297 47.847 141.603 53.6268C142.908 59.4061 146.055 64.6184 150.58 68.4977C155.105 72.3772 160.771 74.7196 166.742 75.1782C172.714 75.6367 178.678 74.1874 183.755 71.0452C188.832 67.903 192.755 63.2329 194.947 57.722H216C213.751 68.0013 208.124 77.2564 199.999 84.0437C191.873 90.831 181.705 94.7696 171.078 95.2454C160.452 95.7212 149.965 92.7069 141.252 86.6736C132.539 80.6404 126.09 71.9271 122.91 61.8911C119.73 51.855 119.998 41.0606 123.672 31.1908C127.346 21.3209 134.219 12.929 143.221 7.32551Z" fill="white"/><path d="M195.357 38.1169C197.267 43.1882 197.831 50.7098 194.88 57.1758H160.941C162.253 53.9488 162.94 50.5232 162.967 47.0648C162.99 44.01 162.419 40.9762 161.285 38.1169H195.357Z" fill="white"/><path d="M183.724 116.094C185.299 116.094 186.678 116.368 187.863 116.917C189.054 117.458 189.989 118.214 190.668 119.181C191.346 120.141 191.697 121.249 191.719 122.498H187.852C187.751 121.552 187.323 120.814 186.573 120.287C185.829 119.76 184.861 119.495 183.669 119.495C182.832 119.495 182.113 119.622 181.514 119.875C180.915 120.128 180.455 120.473 180.138 120.906C179.821 121.339 179.657 121.833 179.65 122.388C179.65 122.85 179.755 123.253 179.964 123.592C180.181 123.931 180.474 124.22 180.842 124.458C181.21 124.689 181.619 124.885 182.067 125.044C182.514 125.203 182.966 125.336 183.42 125.444L185.501 125.965C186.338 126.16 187.145 126.423 187.918 126.755C188.697 127.087 189.394 127.507 190.008 128.012C190.629 128.518 191.121 129.129 191.482 129.843C191.843 130.558 192.023 131.397 192.023 132.357C192.023 133.656 191.691 134.801 191.027 135.79C190.362 136.772 189.401 137.543 188.144 138.099C186.895 138.648 185.381 138.922 183.604 138.922C181.879 138.922 180.38 138.656 179.109 138.121C177.845 137.587 176.855 136.805 176.14 135.78C175.433 134.755 175.049 133.505 174.991 132.032H178.946C179.003 132.804 179.242 133.447 179.66 133.959C180.079 134.472 180.625 134.856 181.295 135.108C181.974 135.361 182.734 135.488 183.572 135.488C184.445 135.488 185.211 135.358 185.868 135.098C186.532 134.831 187.054 134.463 187.43 133.994C187.805 133.517 187.996 132.959 188.003 132.324C187.996 131.747 187.827 131.268 187.495 130.893C187.163 130.511 186.695 130.194 186.097 129.941C185.505 129.681 184.811 129.449 184.016 129.247L181.491 128.596C179.664 128.127 178.219 127.416 177.157 126.463C176.104 125.502 175.577 124.227 175.577 122.639C175.577 121.332 175.929 120.185 176.637 119.203C177.352 118.221 178.324 117.459 179.552 116.917C180.78 116.368 182.172 116.094 183.724 116.094Z" fill="white"/><path d="M37.8927 132.477H38.1521L44.7381 116.397H49.6579V138.587H45.8014V123.343H45.5953L39.4628 138.522H36.5803L30.4478 123.311H30.2417V138.587H26.3852V116.397H31.305L37.8927 132.477Z" fill="white"/><path fill-rule="evenodd" clip-rule="evenodd" d="M76.4674 138.587H72.1781L70.34 133.114H61.9985L60.1621 138.587H55.8728L63.6836 116.397H68.6446L76.4674 138.587ZM63.0807 129.885H69.2544L66.2517 120.947H66.0782L63.0807 129.885Z" fill="white"/><path fill-rule="evenodd" clip-rule="evenodd" d="M90.9913 116.397C92.6954 116.397 94.1269 116.693 95.2823 117.285C96.4445 117.877 97.3218 118.709 97.914 119.777C98.5131 120.838 98.8138 122.078 98.8141 123.493C98.8141 124.915 98.5116 126.153 97.9054 127.2C97.306 128.239 96.4193 129.044 95.2497 129.615C95.1127 129.681 94.9698 129.741 94.8254 129.799L99.6266 138.587H95.1415L90.78 130.46H86.69V138.587H82.6703V116.397H90.9913ZM86.69 127.122H90.3952C91.3919 127.122 92.2092 126.986 92.8448 126.712C93.4799 126.43 93.9501 126.021 94.2534 125.487C94.5634 124.946 94.7189 124.279 94.7189 123.493C94.7186 122.706 94.5636 122.033 94.2534 121.478C93.9428 120.915 93.4679 120.488 92.8328 120.2C92.1973 119.904 91.3764 119.757 90.3729 119.757H86.69V127.122Z" fill="white"/><path d="M111.5 126.593H111.773L120.429 116.397H125.337L116.756 126.355L125.412 138.587H120.58L113.96 129.074L111.5 131.977V138.587H107.482V116.397H111.5V126.593Z" fill="white"/><path d="M146.685 119.767H136.272V125.791H145.938V129.16H136.272V135.218H146.771V138.587H132.254V116.397H146.685V119.767Z" fill="white"/><path d="M169.946 119.767H163.089V138.587H159.102V119.767H152.243V116.397H169.946V119.767Z" fill="white"/></svg>
+    <h1>Brand Guidelines</h1>
+    <p>March 2026</p>
+  </div>
+</section>
+
+<!-- 2. LOGO -->
+<section class="section" id="logo">
+  <h2 class="section-title">Logo</h2>
+  <p class="section-subtitle">Primary mark usage, clear space, and restrictions</p>
+
+  <h3 class="subsection-title">Logo Versions</h3>
+  <div class="grid-2" style="margin-bottom:32px">
+    <div>
+      <div class="logo-showcase" style="background:#ffffff; border:1px solid #e9eaea;">
+        <img src="brand/logo/VCG LOGO-Black.svg" alt="VCG Logo Black" loading="lazy" style="max-width:200px">
+      </div>
+      <div style="display:flex; align-items:center; justify-content:space-between; margin-top:12px;">
+        <span style="font-size:14px; font-weight:600; color:#232629;">Black &mdash; for light backgrounds</span>
+        <span style="display:flex;gap:8px">
+          <a href="brand/logo/VCG LOGO-Black.svg" download class="btn-download">SVG</a>
+          <a href="brand/logo/VCG LOGO-Black.png" download class="btn-download">PNG</a>
+        </span>
+      </div>
+    </div>
+    <div>
+      <div class="logo-showcase" style="background:#232629;">
+        <img src="brand/logo/VCG LOGO-white.svg" alt="VCG Logo White" loading="lazy" style="max-width:200px">
+      </div>
+      <div style="display:flex; align-items:center; justify-content:space-between; margin-top:12px;">
+        <span style="font-size:14px; font-weight:600; color:#232629;">White &mdash; for dark backgrounds</span>
+        <span style="display:flex;gap:8px">
+          <a href="brand/logo/VCG LOGO-white.svg" download class="btn-download">SVG</a>
+          <a href="brand/logo/VCG LOGO-white.png" download class="btn-download">PNG</a>
+        </span>
+      </div>
+    </div>
+  </div>
+
+  <h3 class="subsection-title">Approved Backgrounds</h3>
+  <div class="grid-4" style="margin-bottom:40px">
+    <div class="logo-showcase" style="background:#ffffff; border:1px solid #e9eaea; min-height:120px; padding:32px;">
+      <img src="brand/logo/VCG LOGO-Black.svg" alt="" loading="lazy" style="max-width:120px">
+    </div>
+    <div class="logo-showcase" style="background:#f2f2f2; min-height:120px; padding:32px;">
+      <img src="brand/logo/VCG LOGO-Black.svg" alt="" loading="lazy" style="max-width:120px">
+    </div>
+    <div class="logo-showcase" style="background:#3265e5; min-height:120px; padding:32px;">
+      <img src="brand/logo/VCG LOGO-white.svg" alt="" loading="lazy" style="max-width:120px">
+    </div>
+    <div class="logo-showcase" style="background:#232629; min-height:120px; padding:32px;">
+      <img src="brand/logo/VCG LOGO-white.svg" alt="" loading="lazy" style="max-width:120px">
+    </div>
+  </div>
+
+  <h3 class="subsection-title">Clear Space</h3>
+  <p>Maintain a minimum clear space equal to the height of the "V" mark around all sides of the logo. This ensures legibility and visual breathing room.</p>
+  <div class="card" style="margin-bottom:40px">
+    <div class="clearspace-demo">
+      <div class="cs-box">
+        <span class="cs-label top">1x</span>
+        <span class="cs-label bottom">1x</span>
+        <span class="cs-label left">1x</span>
+        <span class="cs-label right">1x</span>
+        <img src="brand/logo/VCG LOGO-Black.svg" alt="" style="width:160px; display:block;" loading="lazy">
+      </div>
+    </div>
+  </div>
+
+  <h3 class="subsection-title">Minimum Size</h3>
+  <div class="card" style="margin-bottom:40px;">
+    <div style="display:flex; align-items:flex-end; gap:48px; flex-wrap:wrap;">
+      <div style="text-align:center;">
+        <img src="brand/logo/VCG LOGO-Black.svg" alt="" style="width:120px; display:block; margin-bottom:8px;" loading="lazy">
+        <span style="font-size:12px; font-weight:600; color:#88898c;">Digital: 120px wide</span>
+      </div>
+      <div style="text-align:center;">
+        <img src="brand/logo/VCG LOGO-Black.svg" alt="" style="width:80px; display:block; margin-bottom:8px;" loading="lazy">
+        <span style="font-size:12px; font-weight:600; color:#88898c;">Minimum: 80px wide</span>
+      </div>
+      <div style="text-align:center;">
+        <img src="brand/logo/VCG LOGO-Black.svg" alt="" style="width:50px; display:block; margin-bottom:8px; opacity:.4;" loading="lazy">
+        <span style="font-size:12px; font-weight:600; color:#f83149;">Too small</span>
+      </div>
+    </div>
+  </div>
+
+  <h3 class="subsection-title">Do's &amp; Don'ts</h3>
+  <div class="dos-donts">
+    <div class="do-item">
+      <div class="dd-visual" style="background:#ffffff; border:1px solid #e9eaea;">
+        <img src="brand/logo/VCG LOGO-Black.svg" alt="" style="width:140px" loading="lazy">
+      </div>
+      <div class="dd-text"><span class="badge">Do</span><p style="margin:0;font-size:14px;">Use on solid backgrounds with good contrast.</p></div>
+    </div>
+    <div class="dont-item">
+      <div class="dd-visual" style="background: linear-gradient(135deg, #888 0%, #ccc 50%, #666 100%);">
+        <img src="brand/logo/VCG LOGO-Black.svg" alt="" style="width:140px; opacity:.6" loading="lazy">
+      </div>
+      <div class="dd-text"><span class="badge">Don't</span><p style="margin:0;font-size:14px;">Place on busy or low-contrast backgrounds.</p></div>
+    </div>
+    <div class="do-item">
+      <div class="dd-visual" style="background:#3265e5;">
+        <img src="brand/logo/VCG LOGO-white.svg" alt="" style="width:140px" loading="lazy">
+      </div>
+      <div class="dd-text"><span class="badge">Do</span><p style="margin:0;font-size:14px;">Maintain original proportions at all times.</p></div>
+    </div>
+    <div class="dont-item">
+      <div class="dd-visual" style="background:#f2f2f2;">
+        <img src="brand/logo/VCG LOGO-Black.svg" alt="" style="width:180px; height:60px; object-fit:fill;" loading="lazy">
+      </div>
+      <div class="dd-text"><span class="badge">Don't</span><p style="margin:0;font-size:14px;">Stretch or distort the logo.</p></div>
+    </div>
+    <div class="do-item">
+      <div class="dd-visual" style="background:#232629;">
+        <img src="brand/logo/VCG LOGO-white.svg" alt="" style="width:140px" loading="lazy">
+      </div>
+      <div class="dd-text"><span class="badge">Do</span><p style="margin:0;font-size:14px;">Use the white version on dark backgrounds.</p></div>
+    </div>
+    <div class="dont-item">
+      <div class="dd-visual" style="background:#f2f2f2;">
+        <svg width="140" viewBox="0 0 216 139" fill="none" xmlns="http://www.w3.org/2000/svg" style="filter:drop-shadow(4px 4px 8px rgba(0,0,0,.4))"><path d="M83.3145 5.48919C91.1294 1.48264 99.9128-0.390823 108.733 0.0678469C117.552 0.526606 126.08 3.30084 133.412 8.09508C128.217 12.562 123.941 17.9495 120.812 23.9709C116.653 21.5211 111.918 20.1519 107.06 19.9942C102.201 19.8366 97.3835 20.8962 93.0664 23.0708C88.7493 25.2454 85.078 28.4621 82.4041 32.4138C79.7303 36.3655 78.1432 40.9193 77.7952 45.6391C77.4473 50.359 78.3497 55.0881 80.4166 59.3711C82.4835 63.6538 85.6461 67.3481 89.5999 70.1004C93.5538 72.8527 98.1672 74.5714 102.999 75.0906C107.83 75.6097 112.717 74.9118 117.193 73.0653C118.275 72.6182 119.33 72.1073 120.348 71.5348C121.666 74.1571 123.184 76.6799 124.887 79.0827C127.279 82.4665 132.547 87.6561 132.606 87.7146C125.179 92.3675 116.596 94.9782 107.769 95.2677C98.9417 95.5572 90.1982 93.5158 82.4659 89.3603C74.7337 85.2047 68.3004 79.0896 63.8485 71.6636C59.3967 64.2374 57.0914 55.7761 57.1783 47.1782C57.2653 38.5803 59.7421 30.1646 64.3432 22.8251C68.9444 15.486 75.4999 9.49566 83.3145 5.48919Z" fill="#ff6600"/><path d="M67.7651 95.2935H42.7077L0 2.11717H24.5421L67.7651 95.2935Z" fill="#ff6600"/><path d="M143.221 7.32551C152.222 1.72209 162.847-0.77841 173.437 0.212141C184.027 1.20279 193.989 5.63027 201.768 12.8035L188.119 27.4838C183.763 23.4181 178.203 20.8419 172.256 20.1333C166.31 19.4249 160.289 20.6218 155.082 23.5483C149.875 26.4748 145.756 30.9763 143.329 36.3905C140.902 41.8049 140.297 47.847 141.603 53.6268C142.908 59.4061 146.055 64.6184 150.58 68.4977C155.105 72.3772 160.771 74.7196 166.742 75.1782C172.714 75.6367 178.678 74.1874 183.755 71.0452C188.832 67.903 192.755 63.2329 194.947 57.722H216C213.751 68.0013 208.124 77.2564 199.999 84.0437C191.873 90.831 181.705 94.7696 171.078 95.2454C160.452 95.7212 149.965 92.7069 141.252 86.6736C132.539 80.6404 126.09 71.9271 122.91 61.8911C119.73 51.855 119.998 41.0606 123.672 31.1908C127.346 21.3209 134.219 12.929 143.221 7.32551Z" fill="#ff6600"/><path d="M195.357 38.1169C197.267 43.1882 197.831 50.7098 194.88 57.1758H160.941C162.253 53.9488 162.94 50.5232 162.967 47.0648C162.99 44.01 162.419 40.9762 161.285 38.1169H195.357Z" fill="#ff6600"/></svg>
+      </div>
+      <div class="dd-text"><span class="badge">Don't</span><p style="margin:0;font-size:14px;">Recolor or add effects (shadows, gradients, outlines).</p></div>
+    </div>
+  </div>
+</section>
+
+<!-- 3. COLORS -->
+<section class="section" id="colors">
+  <h2 class="section-title">Color Palette</h2>
+  <p class="section-subtitle">Brand colors, semantic colors, and neutrals</p>
+
+  <h3 class="subsection-title">Core Brand Colors</h3>
+  <div class="grid-3" style="margin-bottom:40px">
+    <div class="swatch" onclick="copyHex('#3265e5')"><div class="swatch-color" style="background:#3265e5"></div><div class="swatch-info"><div class="swatch-name">Primary Blue</div><div class="swatch-hex">#3265e5</div></div></div>
+    <div class="swatch" onclick="copyHex('#f83149')"><div class="swatch-color" style="background:#f83149"></div><div class="swatch-info"><div class="swatch-name">Warning Red</div><div class="swatch-hex">#f83149</div></div></div>
+    <div class="swatch" onclick="copyHex('#232629')"><div class="swatch-color" style="background:#232629"></div><div class="swatch-info"><div class="swatch-name">Dark Neutral</div><div class="swatch-hex">#232629</div></div></div>
+  </div>
+
+  <h3 class="subsection-title">Blue Scale</h3>
+  <div class="grid-3" style="margin-bottom:40px">
+    <div class="swatch" onclick="copyHex('#2554c9')"><div class="swatch-color" style="background:#2554c9"></div><div class="swatch-info"><div class="swatch-name">Blue Dark</div><div class="swatch-hex">#2554c9</div></div></div>
+    <div class="swatch" onclick="copyHex('#3265e5')"><div class="swatch-color" style="background:#3265e5"></div><div class="swatch-info"><div class="swatch-name">Blue Primary</div><div class="swatch-hex">#3265e5</div></div></div>
+    <div class="swatch" onclick="copyHex('#88a9ff')"><div class="swatch-color" style="background:#88a9ff"></div><div class="swatch-info"><div class="swatch-name">Blue Light</div><div class="swatch-hex">#88a9ff</div></div></div>
+  </div>
+
+  <h3 class="subsection-title">Signal / Warm Scale</h3>
+  <div class="grid-4" style="margin-bottom:40px">
+    <div class="swatch" onclick="copyHex('#f83149')"><div class="swatch-color" style="background:#f83149"></div><div class="swatch-info"><div class="swatch-name">Red</div><div class="swatch-hex">#f83149</div></div></div>
+    <div class="swatch" onclick="copyHex('#ff6536')"><div class="swatch-color" style="background:#ff6536"></div><div class="swatch-info"><div class="swatch-name">Orange-Red</div><div class="swatch-hex">#ff6536</div></div></div>
+    <div class="swatch" onclick="copyHex('#ffa900')"><div class="swatch-color" style="background:#ffa900"></div><div class="swatch-info"><div class="swatch-name">Orange</div><div class="swatch-hex">#ffa900</div></div></div>
+    <div class="swatch" onclick="copyHex('#fbbf00')"><div class="swatch-color" style="background:#fbbf00"></div><div class="swatch-info"><div class="swatch-name">Yellow</div><div class="swatch-hex">#fbbf00</div></div></div>
+  </div>
+
+  <h3 class="subsection-title">ONE Purple Scale</h3>
+  <div class="grid-3" style="margin-bottom:40px">
+    <div class="swatch" onclick="copyHex('#432798')"><div class="swatch-color" style="background:#432798"></div><div class="swatch-info"><div class="swatch-name">ONE Dark</div><div class="swatch-hex">#432798</div></div></div>
+    <div class="swatch" onclick="copyHex('#9372f8')"><div class="swatch-color" style="background:#9372f8"></div><div class="swatch-info"><div class="swatch-name">ONE Light</div><div class="swatch-hex">#9372f8</div></div></div>
+    <div class="swatch" onclick="copyHex('#d991fb')"><div class="swatch-color" style="background:#d991fb"></div><div class="swatch-info"><div class="swatch-name">ONE Lighter</div><div class="swatch-hex">#d991fb</div></div></div>
+  </div>
+
+  <h3 class="subsection-title">Neutrals</h3>
+  <div class="grid-4" style="margin-bottom:40px">
+    <div class="swatch" onclick="copyHex('#000000')"><div class="swatch-color" style="background:#000000"></div><div class="swatch-info"><div class="swatch-name">Black</div><div class="swatch-hex">#000000</div></div></div>
+    <div class="swatch" onclick="copyHex('#232629')"><div class="swatch-color" style="background:#232629"></div><div class="swatch-info"><div class="swatch-name">Secondary</div><div class="swatch-hex">#232629</div></div></div>
+    <div class="swatch" onclick="copyHex('#65676a')"><div class="swatch-color" style="background:#65676a"></div><div class="swatch-info"><div class="swatch-name">Tertiary</div><div class="swatch-hex">#65676a</div></div></div>
+    <div class="swatch" onclick="copyHex('#88898c')"><div class="swatch-color" style="background:#88898c"></div><div class="swatch-info"><div class="swatch-name">Tertiary Light</div><div class="swatch-hex">#88898c</div></div></div>
+    <div class="swatch" onclick="copyHex('#a7a8aa')"><div class="swatch-color" style="background:#a7a8aa"></div><div class="swatch-info"><div class="swatch-name">Quartenary</div><div class="swatch-hex">#a7a8aa</div></div></div>
+    <div class="swatch" onclick="copyHex('#e9eaea')"><div class="swatch-color" style="background:#e9eaea"></div><div class="swatch-info"><div class="swatch-name">Divider</div><div class="swatch-hex">#e9eaea</div></div></div>
+    <div class="swatch" onclick="copyHex('#f2f2f2')"><div class="swatch-color" style="background:#f2f2f2"></div><div class="swatch-info"><div class="swatch-name">Light Grey</div><div class="swatch-hex">#f2f2f2</div></div></div>
+    <div class="swatch swatch-border" onclick="copyHex('#ffffff')"><div class="swatch-color" style="background:#ffffff"></div><div class="swatch-info"><div class="swatch-name">White</div><div class="swatch-hex">#ffffff</div></div></div>
+  </div>
+
+  <h3 class="subsection-title">Semantic Colors</h3>
+  <div class="grid-4">
+    <div class="swatch" onclick="copyHex('#1e7229')"><div class="swatch-color small" style="background:#1e7229"></div><div class="swatch-info"><div class="swatch-name">Success</div><div class="swatch-hex">#1e7229</div></div></div>
+    <div class="swatch" onclick="copyHex('#ec7669')"><div class="swatch-color small" style="background:#ec7669"></div><div class="swatch-info"><div class="swatch-name">Error</div><div class="swatch-hex">#ec7669</div></div></div>
+    <div class="swatch" onclick="copyHex('#f83149')"><div class="swatch-color small" style="background:#f83149"></div><div class="swatch-info"><div class="swatch-name">Warning</div><div class="swatch-hex">#f83149</div></div></div>
+    <div class="swatch" onclick="copyHex('#a8863b')"><div class="swatch-color small" style="background:#a8863b"></div><div class="swatch-info"><div class="swatch-name">Gold</div><div class="swatch-hex">#a8863b</div></div></div>
+  </div>
+</section>
+
+<!-- 4. GRADIENTS -->
+<section class="section" id="gradients">
+  <h2 class="section-title">Gradients</h2>
+  <p class="section-subtitle">Brand gradients for backgrounds, illustrations, and decorative elements</p>
+
+  <div class="card" style="margin-bottom:24px">
+    <p class="label">Signals</p>
+    <div class="gradient-bar" style="background: linear-gradient(90deg, #3265e5, #6c79ec);"></div>
+    <div style="display:flex; justify-content:space-between; font-size:12px; color:#88898c; font-weight:500;">#3265e5 <span>#6c79ec</span></div>
+  </div>
+  <div class="card" style="margin-bottom:24px">
+    <p class="label">Illustration Blue</p>
+    <div class="gradient-bar" style="background: linear-gradient(90deg, #4070E7, #2554C9);"></div>
+    <div style="display:flex; justify-content:space-between; font-size:12px; color:#88898c; font-weight:500;">#4070E7 <span>#2554C9</span></div>
+  </div>
+  <div class="card" style="margin-bottom:24px">
+    <p class="label">Illustration Gold</p>
+    <div class="gradient-bar" style="background: linear-gradient(90deg, #FBBF00, #FFA900);"></div>
+    <div style="display:flex; justify-content:space-between; font-size:12px; color:#88898c; font-weight:500;">#FBBF00 <span>#FFA900</span></div>
+  </div>
+  <div class="card" style="margin-bottom:24px">
+    <p class="label">Green</p>
+    <div class="gradient-bar" style="background: linear-gradient(90deg, #73d9cb, #ebf1fc);"></div>
+    <div style="display:flex; justify-content:space-between; font-size:12px; color:#88898c; font-weight:500;">#73d9cb <span>#ebf1fc</span></div>
+  </div>
+  <div class="card" style="margin-bottom:24px">
+    <p class="label">Purple</p>
+    <div class="gradient-bar" style="background: linear-gradient(90deg, #9e82f5, #e3f8f5);"></div>
+    <div style="display:flex; justify-content:space-between; font-size:12px; color:#88898c; font-weight:500;">#9e82f5 <span>#e3f8f5</span></div>
+  </div>
+  <div class="card">
+    <p class="label">Gray</p>
+    <div class="gradient-bar" style="background: linear-gradient(90deg, #222a3a, #356fe1);"></div>
+    <div style="display:flex; justify-content:space-between; font-size:12px; color:#88898c; font-weight:500;">#222a3a <span>#356fe1</span></div>
+  </div>
+</section>
+
+<!-- 5. TYPOGRAPHY -->
+<section class="section" id="typography">
+  <h2 class="section-title">Typography</h2>
+  <p class="section-subtitle">Inter is the sole typeface across all VCG products</p>
+
+  <div class="card" style="margin-bottom:32px">
+    <div style="font-size:48px; font-weight:700; letter-spacing:-0.3px; color:#232629; margin-bottom:16px;">Inter</div>
+    <div style="font-size:18px; color:#65676a; line-height:1.6;">
+      ABCDEFGHIJKLMNOPQRSTUVWXYZ<br>
+      abcdefghijklmnopqrstuvwxyz<br>
+      0123456789 !@#$%&amp;*()
+    </div>
+  </div>
+
+  <h3 class="subsection-title">Type Scale</h3>
+  <div class="card" style="margin-bottom:32px">
+    <div class="type-specimen">
+      <div style="font-size:32px; line-height:38px; font-weight:700; letter-spacing:-0.3px;">Bold / 32px | 38px</div>
+      <div class="type-meta"><span>Bold 700</span><span>32px</span><span>Line: 38px</span><span>Letter: -0.3px</span></div>
+    </div>
+    <div class="type-specimen">
+      <div style="font-size:18px; line-height:24px; font-weight:700; letter-spacing:-0.3px;">Bold / 18px | 24px</div>
+      <div class="type-meta"><span>Bold 700</span><span>18px</span><span>Line: 24px</span><span>Letter: -0.3px</span></div>
+    </div>
+    <div class="type-specimen">
+      <div style="font-size:16px; line-height:24px; font-weight:700; letter-spacing:-0.3px;">Bold / 16px | 24px</div>
+      <div class="type-meta"><span>Bold 700</span><span>16px</span><span>Line: 24px</span><span>Letter: -0.3px</span></div>
+    </div>
+    <div class="type-specimen">
+      <div style="font-size:18px; line-height:24px; font-weight:600; letter-spacing:-0.3px;">Semibold / 18px | 24px</div>
+      <div class="type-meta"><span>Semibold 600</span><span>18px</span><span>Line: 24px</span><span>Letter: -0.3px</span></div>
+    </div>
+    <div class="type-specimen">
+      <div style="font-size:16px; line-height:20px; font-weight:600; letter-spacing:-0.3px;">Semibold / 16px | 20px</div>
+      <div class="type-meta"><span>Semibold 600</span><span>16px</span><span>Line: 20px</span><span>Letter: -0.3px</span></div>
+    </div>
+    <div class="type-specimen">
+      <div style="font-size:14px; line-height:18px; font-weight:600; letter-spacing:-0.3px;">Semibold / 14px | 18px</div>
+      <div class="type-meta"><span>Semibold 600</span><span>14px</span><span>Line: 18px</span><span>Letter: -0.3px</span></div>
+    </div>
+    <div class="type-specimen">
+      <div style="font-size:14px; line-height:18px; font-weight:500; letter-spacing:-0.3px;">Medium / 14px | 18px</div>
+      <div class="type-meta"><span>Medium 500</span><span>14px</span><span>Line: 18px</span><span>Letter: -0.3px</span></div>
+    </div>
+    <div class="type-specimen">
+      <div style="font-size:12px; line-height:16px; font-weight:600; letter-spacing:0;">Semibold / 12px | 16px</div>
+      <div class="type-meta"><span>Semibold 600</span><span>12px</span><span>Line: 16px</span><span>Letter: 0</span></div>
+    </div>
+  </div>
+
+  <h3 class="subsection-title">Do's &amp; Don'ts</h3>
+  <div class="dos-donts">
+    <div class="do-item">
+      <div class="dd-visual" style="background:#f8f8f8; padding:24px;">
+        <span style="font-family:'Inter',sans-serif; font-size:20px; font-weight:600; color:#232629;">Use Inter exclusively</span>
+      </div>
+      <div class="dd-text"><span class="badge">Do</span><p style="margin:0;font-size:14px;">Always use Inter for all text in the product and marketing.</p></div>
+    </div>
+    <div class="dont-item">
+      <div class="dd-visual" style="background:#f8f8f8; padding:24px;">
+        <span style="font-family:Georgia,serif; font-size:20px; font-weight:600; color:#232629;">Don't use other typefaces</span>
+      </div>
+      <div class="dd-text"><span class="badge">Don't</span><p style="margin:0;font-size:14px;">Never substitute Inter with serif, monospace, or other sans-serif fonts.</p></div>
+    </div>
+    <div class="do-item">
+      <div class="dd-visual" style="background:#f8f8f8; padding:24px;">
+        <span style="font-family:'Inter',sans-serif; font-size:16px; font-weight:600; line-height:20px; letter-spacing:-0.3px; color:#232629;">Respect line-height and letter-spacing tokens</span>
+      </div>
+      <div class="dd-text"><span class="badge">Do</span><p style="margin:0;font-size:14px;">Use the exact values from the type scale for consistent rhythm.</p></div>
+    </div>
+    <div class="dont-item">
+      <div class="dd-visual" style="background:#f8f8f8; padding:24px;">
+        <span style="font-family:'Inter',sans-serif; font-size:16px; font-weight:300; color:#232629;">Use weights not in the system</span>
+      </div>
+      <div class="dd-text"><span class="badge">Don't</span><p style="margin:0;font-size:14px;">Only use weights 400, 500, 600, and 700 as defined in the type scale.</p></div>
+    </div>
+  </div>
+</section>
+
+<!-- 6. ICONS -->
+<section class="section" id="icons">
+  <h2 class="section-title">Asset Class Icons</h2>
+  <p class="section-subtitle">Iconography for the six primary instrument categories</p>
+
+  <div class="grid-6" style="margin-bottom:32px">
+    <div class="icon-card"><img src="brand/icons/Forex.png" alt="Forex" loading="lazy"><span>Forex</span></div>
+    <div class="icon-card"><img src="brand/icons/Shares.png" alt="Shares" loading="lazy"><span>Shares</span></div>
+    <div class="icon-card"><img src="brand/icons/Indices.png" alt="Indices" loading="lazy"><span>Indices</span></div>
+    <div class="icon-card"><img src="brand/icons/commodities.png" alt="Commodities" loading="lazy"><span>Commodities</span></div>
+    <div class="icon-card"><img src="brand/icons/Cryptos.png" alt="Cryptos" loading="lazy"><span>Cryptos</span></div>
+    <div class="icon-card"><img src="brand/icons/ETFs.png" alt="ETFs" loading="lazy"><span>ETFs</span></div>
+  </div>
+
+  <div class="card">
+    <h4 style="font-size:14px; font-weight:600; margin-bottom:8px;">Usage Notes</h4>
+    <ul style="font-size:14px; color:#65676a; padding-left:20px; line-height:1.8;">
+      <li>Use at 24px, 32px, or 56px depending on context</li>
+      <li>Always pair with the instrument category label</li>
+      <li>Do not recolor or alter the icon artwork</li>
+      <li>Maintain consistent sizing within the same UI context</li>
+    </ul>
+  </div>
+</section>
+
+<!-- 7. ILLUSTRATIONS -->
+<section class="section" id="illustrations">
+  <h2 class="section-title">Illustrations</h2>
+  <p class="section-subtitle">Geometric, gradient-rich artwork using the brand blue and gold palette</p>
+
+  <div class="illust-grid" style="margin-bottom:32px">
+    <div class="illust-card"><img src="brand/illustrations/Asset 1.svg" alt="Asset 1" loading="lazy"></div>
+    <div class="illust-card"><img src="brand/illustrations/Asset 2.svg" alt="Asset 2" loading="lazy"></div>
+    <div class="illust-card"><img src="brand/illustrations/Asset 3.svg" alt="Asset 3" loading="lazy"></div>
+    <div class="illust-card"><img src="brand/illustrations/Asset 4.svg" alt="Asset 4" loading="lazy"></div>
+    <div class="illust-card"><img src="brand/illustrations/Asset 5.svg" alt="Asset 5" loading="lazy"></div>
+    <div class="illust-card"><img src="brand/illustrations/Asset 6.svg" alt="Asset 6" loading="lazy"></div>
+    <div class="illust-card"><img src="brand/illustrations/Asset 16.svg" alt="Asset 16" loading="lazy"></div>
+    <div class="illust-card"><img src="brand/illustrations/Asset 18.svg" alt="Asset 18" loading="lazy"></div>
+    <div class="illust-card"><img src="brand/illustrations/Asset 19.svg" alt="Asset 19" loading="lazy"></div>
+    <div class="illust-card"><img src="brand/illustrations/Asset 20.svg" alt="Asset 20" loading="lazy"></div>
+    <div class="illust-card"><img src="brand/illustrations/Asset 21.svg" alt="Asset 21" loading="lazy"></div>
+    <div class="illust-card"><img src="brand/illustrations/Asset 22.svg" alt="Asset 22" loading="lazy"></div>
+    <div class="illust-card"><img src="brand/illustrations/Asset 23.svg" alt="Asset 23" loading="lazy"></div>
+    <div class="illust-card"><img src="brand/illustrations/Asset 24.svg" alt="Asset 24" loading="lazy"></div>
+    <div class="illust-card"><img src="brand/illustrations/Asset 25.svg" alt="Asset 25" loading="lazy"></div>
+    <div class="illust-card"><img src="brand/illustrations/Asset 26.svg" alt="Asset 26" loading="lazy"></div>
+    <div class="illust-card"><img src="brand/illustrations/Asset 27.svg" alt="Asset 27" loading="lazy"></div>
+    <div class="illust-card"><img src="brand/illustrations/Asset 28.svg" alt="Asset 28" loading="lazy"></div>
+    <div class="illust-card"><img src="brand/illustrations/Asset 29.svg" alt="Asset 29" loading="lazy"></div>
+    <div class="illust-card"><img src="brand/illustrations/Asset 30.svg" alt="Asset 30" loading="lazy"></div>
+    <div class="illust-card"><img src="brand/illustrations/candle sticks.svg" alt="Candle Sticks" loading="lazy"></div>
+  </div>
+
+  <h3 class="subsection-title">Background Illustration</h3>
+  <div class="card" style="margin-bottom:32px; padding:0; overflow:hidden;">
+    <img src="brand/illustrations/BG-01-VCG.jpg" alt="Background illustration" loading="lazy" style="width:100%; display:block; border-radius:12px;">
+  </div>
+
+  <h3 class="subsection-title">Do's &amp; Don'ts</h3>
+  <div class="dos-donts">
+    <div class="do-item">
+      <div class="dd-visual" style="background:linear-gradient(135deg,#3265e5,#2554c9); padding:24px;">
+        <span style="color:#fff; font-size:14px; font-weight:600;">Use brand colors only for illustrations</span>
+      </div>
+      <div class="dd-text"><span class="badge">Do</span><p style="margin:0;font-size:14px;">Stick to the blue + gold brand palette and approved gradients.</p></div>
+    </div>
+    <div class="dont-item">
+      <div class="dd-visual" style="background:linear-gradient(135deg,#ff00ff,#00ff00); padding:24px;">
+        <span style="color:#fff; font-size:14px; font-weight:600;">Off-brand color palette</span>
+      </div>
+      <div class="dd-text"><span class="badge">Don't</span><p style="margin:0;font-size:14px;">Use colors outside the brand palette for illustrations.</p></div>
+    </div>
+    <div class="do-item">
+      <div class="dd-visual" style="background:#f8f8f8; padding:24px;">
+        <span style="font-size:14px; font-weight:600; color:#232629;">Apply noise texture overlay where appropriate</span>
+      </div>
+      <div class="dd-text"><span class="badge">Do</span><p style="margin:0;font-size:14px;">Add grain textures for depth and tactile quality.</p></div>
+    </div>
+    <div class="dont-item">
+      <div class="dd-visual" style="background:#f8f8f8; padding:24px;">
+        <span style="font-size:14px; font-weight:600; color:#232629;">Mix illustration styles within a layout</span>
+      </div>
+      <div class="dd-text"><span class="badge">Don't</span><p style="margin:0;font-size:14px;">Keep style consistent. Do not mix geometric with photographic or hand-drawn styles.</p></div>
+    </div>
+  </div>
+</section>
+
+<!-- 8. NOISE TEXTURES -->
+<section class="section" id="noise">
+  <h2 class="section-title">Noise Textures</h2>
+  <p class="section-subtitle">Grain overlays that add depth and tactile quality to surfaces</p>
+
+  <div class="grid-3">
+    <div class="noise-card">
+      <div class="noise-preview" style="background: url('brand/noise ptrn/6%-UI.png') center/cover;"></div>
+      <div class="noise-info"><h4>6% UI</h4><p>Subtle grain for UI surfaces, cards, and backgrounds. The default noise texture for product interfaces.</p></div>
+    </div>
+    <div class="noise-card">
+      <div class="noise-preview" style="background: url('brand/noise ptrn/12%-bold-illustrations.png') center/cover;"></div>
+      <div class="noise-info"><h4>12% Bold Illustrations</h4><p>Heavier grain for illustrations, hero sections, and marketing materials where texture should be visible.</p></div>
+    </div>
+    <div class="noise-card">
+      <div class="noise-preview" style="background: url('brand/noise ptrn/Mezzotint.png') center/cover;"></div>
+      <div class="noise-info"><h4>Mezzotint</h4><p>Pronounced halftone pattern for special effects, limited-edition artwork, and premium feature treatments.</p></div>
+    </div>
+  </div>
+</section>
+
+<!-- 9. PHOTOGRAPHY -->
+<section class="section" id="photography">
+  <h2 class="section-title">Photography</h2>
+  <p class="section-subtitle">Diverse, confident subjects on clean, minimal backgrounds</p>
+
+  <h3 class="subsection-title">Hero Photography</h3>
+  <div class="photo-grid" style="margin-bottom:32px">
+    <div class="photo-card"><img src="brand/photos/Hero-People-001.png" alt="Hero 001" loading="lazy"><div class="photo-label">Hero-People-001</div></div>
+    <div class="photo-card"><img src="brand/photos/Hero-People-002.png" alt="Hero 002" loading="lazy"><div class="photo-label">Hero-People-002</div></div>
+    <div class="photo-card"><img src="brand/photos/Hero-People-003.png" alt="Hero 003" loading="lazy"><div class="photo-label">Hero-People-003</div></div>
+    <div class="photo-card"><img src="brand/photos/Hero-People-004.png" alt="Hero 004" loading="lazy"><div class="photo-label">Hero-People-004</div></div>
+    <div class="photo-card"><img src="brand/photos/Hero-People-005.png" alt="Hero 005" loading="lazy"><div class="photo-label">Hero-People-005</div></div>
+    <div class="photo-card"><img src="brand/photos/Hero-People-006.png" alt="Hero 006" loading="lazy"><div class="photo-label">Hero-People-006</div></div>
+    <div class="photo-card"><img src="brand/photos/Hero-People-007.png" alt="Hero 007" loading="lazy"><div class="photo-label">Hero-People-007</div></div>
+    <div class="photo-card"><img src="brand/photos/Hero-People-008.png" alt="Hero 008" loading="lazy"><div class="photo-label">Hero-People-008</div></div>
+    <div class="photo-card"><img src="brand/photos/Hero-People-009.png" alt="Hero 009" loading="lazy"><div class="photo-label">Hero-People-009</div></div>
+    <div class="photo-card"><img src="brand/photos/Hero-People-010.png" alt="Hero 010" loading="lazy"><div class="photo-label">Hero-People-010</div></div>
+    <div class="photo-card"><img src="brand/photos/Hero-People-011.png" alt="Hero 011" loading="lazy"><div class="photo-label">Hero-People-011</div></div>
+  </div>
+
+  <h3 class="subsection-title">Portraits</h3>
+  <div class="photo-grid" style="margin-bottom:32px">
+    <div class="photo-card"><img src="brand/photos/Portraid-man-001.png" alt="Portrait 001" loading="lazy"><div class="photo-label">Portrait-man-001</div></div>
+    <div class="photo-card"><img src="brand/photos/Portraid-man-002.png" alt="Portrait 002" loading="lazy"><div class="photo-label">Portrait-man-002</div></div>
+  </div>
+
+  <h3 class="subsection-title">Do's &amp; Don'ts</h3>
+  <div class="dos-donts">
+    <div class="do-item">
+      <div class="dd-visual" style="background:#f8f8f8; padding:24px;">
+        <span style="font-size:14px; font-weight:600; color:#232629;">Diverse, confident-looking subjects</span>
+      </div>
+      <div class="dd-text"><span class="badge">Do</span><p style="margin:0;font-size:14px;">Choose subjects that convey confidence and professionalism with clean backgrounds.</p></div>
+    </div>
+    <div class="dont-item">
+      <div class="dd-visual" style="background:#f8f8f8; padding:24px;">
+        <span style="font-size:14px; font-weight:600; color:#232629;">Stock-looking or overly staged photos</span>
+      </div>
+      <div class="dd-text"><span class="badge">Don't</span><p style="margin:0;font-size:14px;">Avoid generic stock imagery or photos that feel forced and inauthentic.</p></div>
+    </div>
+    <div class="do-item">
+      <div class="dd-visual" style="background:#f8f8f8; padding:24px;">
+        <span style="font-size:14px; font-weight:600; color:#232629;">Natural lighting, clean composition</span>
+      </div>
+      <div class="dd-text"><span class="badge">Do</span><p style="margin:0;font-size:14px;">Favour natural light and simple compositions that put the subject in focus.</p></div>
+    </div>
+    <div class="dont-item">
+      <div class="dd-visual" style="background:#f8f8f8; padding:24px;">
+        <span style="font-size:14px; font-weight:600; color:#232629;">Heavy filters or colour casts</span>
+      </div>
+      <div class="dd-text"><span class="badge">Don't</span><p style="margin:0;font-size:14px;">Do not apply Instagram-style filters, heavy vignettes, or colour overlays to photography.</p></div>
+    </div>
+  </div>
+</section>
+
+<!-- 10. PRODUCT SHOTS -->
+<section class="section" id="productshots">
+  <h2 class="section-title">Product Shots</h2>
+  <p class="section-subtitle">App mockups and product screenshots for marketing</p>
+
+  <div class="product-grid" style="margin-bottom:32px">
+    <div class="product-card"><img src="brand/productshots/Homepage-Hero-2.0.png" alt="Homepage Hero" loading="lazy"><div class="product-label">Homepage Hero 2.0</div></div>
+    <div class="product-card"><img src="brand/productshots/AdvancedChart.png" alt="Advanced Chart" loading="lazy"><div class="product-label">Advanced Chart</div></div>
+    <div class="product-card"><img src="brand/productshots/Signals.png" alt="Signals" loading="lazy"><div class="product-label">Signals</div></div>
+    <div class="product-card"><img src="brand/productshots/Hand-001.png" alt="Hand Mockup" loading="lazy"><div class="product-label">Hand-001</div></div>
+  </div>
+
+  <div class="card">
+    <h4 style="font-size:14px; font-weight:600; margin-bottom:8px;">Usage Guidelines</h4>
+    <ul style="font-size:14px; color:#65676a; padding-left:20px; line-height:1.8;">
+      <li>Use product shots at their native resolution or downscaled; never upscale</li>
+      <li>Apply 11px border-radius to chart/screen images within mockups</li>
+      <li>Place on brand-approved backgrounds (white, light grey, or brand blue)</li>
+      <li>Do not crop product shots in ways that remove essential UI context</li>
+    </ul>
+  </div>
+</section>
+
+<!-- 11. VIDEO -->
+<section class="section" id="video">
+  <h2 class="section-title">Video</h2>
+  <p class="section-subtitle">Motion assets for onboarding and marketing</p>
+
+  <div class="video-wrapper" style="margin-bottom:24px">
+    <video controls preload="metadata">
+      <source src="brand/videos/Traderintro.mp4" type="video/mp4">
+      Your browser does not support the video tag.
+    </video>
+  </div>
+
+  <div class="card">
+    <h4 style="font-size:14px; font-weight:600; margin-bottom:8px;">Video Style Notes</h4>
+    <ul style="font-size:14px; color:#65676a; padding-left:20px; line-height:1.8;">
+      <li>Use brand blue and dark neutral as primary background colors</li>
+      <li>Typography in video must use Inter</li>
+      <li>Transitions should be clean and minimal &mdash; avoid flashy effects</li>
+      <li>Include the VCG Markets logo in the first and last frames</li>
+      <li>Audio should feel professional and contemporary</li>
+    </ul>
+  </div>
+</section>
+
+<!-- 12. UI COMPONENTS -->
+<section class="section" id="components">
+  <h2 class="section-title">UI Components</h2>
+  <p class="section-subtitle">Buttons, cards, and foundational UI patterns</p>
+
+  <h3 class="subsection-title">Buttons</h3>
+  <div class="card" style="margin-bottom:24px">
+    <p class="label">Large (48px height)</p>
+    <div class="component-row">
+      <button class="btn btn-lg btn-primary">Primary Action</button>
+      <button class="btn btn-lg btn-outline">Secondary</button>
+      <button class="btn btn-lg btn-warning">Warning</button>
+      <button class="btn btn-lg btn-disabled">Disabled</button>
+    </div>
+    <p class="label" style="margin-top:24px">Medium (32px height)</p>
+    <div class="component-row">
+      <button class="btn btn-md btn-primary">Primary</button>
+      <button class="btn btn-md btn-secondary">Secondary</button>
+      <button class="btn btn-md btn-outline">Outline</button>
+      <button class="btn btn-md btn-disabled">Disabled</button>
+    </div>
+  </div>
+
+  <div class="card" style="margin-bottom:24px">
+    <p class="label">Button Specs</p>
+    <table style="width:100%; font-size:14px; border-collapse:collapse;">
+      <thead><tr style="border-bottom:1px solid #e9eaea; text-align:left;">
+        <th style="padding:8px 12px; font-weight:600; color:#232629;">Size</th>
+        <th style="padding:8px 12px; font-weight:600; color:#232629;">Height</th>
+        <th style="padding:8px 12px; font-weight:600; color:#232629;">Padding</th>
+        <th style="padding:8px 12px; font-weight:600; color:#232629;">Border Radius</th>
+      </tr></thead>
+      <tbody>
+        <tr style="border-bottom:1px solid #eff0f2;"><td style="padding:8px 12px; color:#65676a;">Large</td><td style="padding:8px 12px; color:#65676a;">48px</td><td style="padding:8px 12px; color:#65676a;">12px 24px</td><td style="padding:8px 12px; color:#65676a;">8px</td></tr>
+        <tr><td style="padding:8px 12px; color:#65676a;">Medium</td><td style="padding:8px 12px; color:#65676a;">32px</td><td style="padding:8px 12px; color:#65676a;">7px 12px</td><td style="padding:8px 12px; color:#65676a;">6px</td></tr>
+      </tbody>
+    </table>
+  </div>
+
+  <h3 class="subsection-title">Card</h3>
+  <div class="card" style="margin-bottom:24px">
+    <div style="display:flex; gap:32px; align-items:flex-start; flex-wrap:wrap;">
+      <div class="card-demo">
+        <h4>Card Title</h4>
+        <p>A standard content card with 12px radius and a subtle shadow. Used for grouping related content.</p>
+      </div>
+      <div>
+        <p class="label">Card Specs</p>
+        <code style="display:block; background:#f5f5f5; padding:16px; border-radius:8px; font-size:13px; line-height:1.8; color:#232629;">
+          border-radius: 12px;<br>
+          box-shadow: 0px 1px 4px 0px rgba(0,0,0,0.05);<br>
+          background: #ffffff;<br>
+          padding: 24px &ndash; 32px;
+        </code>
+      </div>
+    </div>
+  </div>
+
+  <h3 class="subsection-title">Border Radii</h3>
+  <div class="card" style="margin-bottom:24px">
+    <div class="radius-demo">
+      <div class="radius-box"><div style="border-radius:6px;"></div><span>6px &mdash; Switchers</span></div>
+      <div class="radius-box"><div style="border-radius:8px;"></div><span>8px &mdash; Buttons</span></div>
+      <div class="radius-box"><div style="border-radius:11px;"></div><span>11px &mdash; Charts</span></div>
+      <div class="radius-box"><div style="border-radius:12px;"></div><span>12px &mdash; Cards</span></div>
+      <div class="radius-box"><div style="border-radius:24px 24px 0 0;"></div><span>24px top &mdash; Sheets</span></div>
+    </div>
+  </div>
+
+  <h3 class="subsection-title">Bottom Sheet Anatomy</h3>
+  <div class="card">
+    <div style="max-width:360px; margin:0 auto;">
+      <div style="background:#00000066; border-radius:12px; padding:40px 0 0; position:relative;">
+        <div style="background:#fff; border-radius:24px 24px 0 0; padding:20px 24px 32px; position:relative;">
+          <div style="width:36px; height:4px; background:#d3d4d4; border-radius:2px; margin:0 auto 16px;"></div>
+          <div style="font-size:18px; font-weight:700; letter-spacing:-0.3px; margin-bottom:8px;">Sheet Title</div>
+          <div style="font-size:14px; color:#65676a; margin-bottom:20px;">Sheet content area with 24px top border radius and a drag handle indicator.</div>
+          <button class="btn btn-lg btn-primary" style="width:100%;">Confirm</button>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- 13. SPACING & LAYOUT -->
+<section class="section" id="spacing">
+  <h2 class="section-title">Spacing &amp; Layout</h2>
+  <p class="section-subtitle">Consistent spacing ensures visual harmony across all surfaces</p>
+
+  <h3 class="subsection-title">Spacing Scale</h3>
+  <div class="card" style="margin-bottom:32px">
+    <div class="spacing-row"><span class="spacing-label">4px</span><div class="spacing-bar" style="width:4px;"></div><span class="spacing-val">Micro &mdash; icon padding, tight gaps</span></div>
+    <div class="spacing-row"><span class="spacing-label">8px</span><div class="spacing-bar" style="width:8px;"></div><span class="spacing-val">Small &mdash; inline element gaps</span></div>
+    <div class="spacing-row"><span class="spacing-label">12px</span><div class="spacing-bar" style="width:12px;"></div><span class="spacing-val">Compact &mdash; button padding, list items</span></div>
+    <div class="spacing-row"><span class="spacing-label">16px</span><div class="spacing-bar" style="width:16px;"></div><span class="spacing-val">Default &mdash; card padding, section gaps</span></div>
+    <div class="spacing-row"><span class="spacing-label">24px</span><div class="spacing-bar" style="width:24px;"></div><span class="spacing-val">Medium &mdash; section spacing, card padding</span></div>
+    <div class="spacing-row"><span class="spacing-label">32px</span><div class="spacing-bar" style="width:32px;"></div><span class="spacing-val">Large &mdash; section margins</span></div>
+    <div class="spacing-row"><span class="spacing-label">40px</span><div class="spacing-bar" style="width:40px;"></div><span class="spacing-val">Token: Spacing/10 &mdash; primary spacing unit</span></div>
+    <div class="spacing-row"><span class="spacing-label">48px</span><div class="spacing-bar" style="width:48px;"></div><span class="spacing-val">XL &mdash; page margins, hero padding</span></div>
+  </div>
+
+  <h3 class="subsection-title">Border Radii Reference</h3>
+  <div class="card" style="margin-bottom:32px">
+    <table style="width:100%; font-size:14px; border-collapse:collapse;">
+      <thead><tr style="border-bottom:1px solid #e9eaea; text-align:left;">
+        <th style="padding:8px 12px; font-weight:600; color:#232629;">Element</th>
+        <th style="padding:8px 12px; font-weight:600; color:#232629;">Radius</th>
+      </tr></thead>
+      <tbody>
+        <tr style="border-bottom:1px solid #eff0f2;"><td style="padding:8px 12px; color:#65676a;">Switchers</td><td style="padding:8px 12px; color:#65676a;">6px</td></tr>
+        <tr style="border-bottom:1px solid #eff0f2;"><td style="padding:8px 12px; color:#65676a;">Buttons (large)</td><td style="padding:8px 12px; color:#65676a;">8px</td></tr>
+        <tr style="border-bottom:1px solid #eff0f2;"><td style="padding:8px 12px; color:#65676a;">Buttons (medium)</td><td style="padding:8px 12px; color:#65676a;">6px</td></tr>
+        <tr style="border-bottom:1px solid #eff0f2;"><td style="padding:8px 12px; color:#65676a;">Chart images</td><td style="padding:8px 12px; color:#65676a;">11px</td></tr>
+        <tr style="border-bottom:1px solid #eff0f2;"><td style="padding:8px 12px; color:#65676a;">Cards</td><td style="padding:8px 12px; color:#65676a;">12px</td></tr>
+        <tr><td style="padding:8px 12px; color:#65676a;">Bottom sheets (top corners)</td><td style="padding:8px 12px; color:#65676a;">24px</td></tr>
+      </tbody>
+    </table>
+  </div>
+
+  <h3 class="subsection-title">Dividers</h3>
+  <div class="card">
+    <div style="margin-bottom:16px;">
+      <p class="label">Primary Divider &mdash; #e9eaea</p>
+      <div style="height:1px; background:#e9eaea; margin-bottom:8px;"></div>
+      <span style="font-size:12px; color:#88898c;">Default separator for content sections and list items</span>
+    </div>
+    <div style="margin-bottom:16px;">
+      <p class="label">Secondary Divider &mdash; #eff0f2</p>
+      <div style="height:1px; background:#eff0f2; margin-bottom:8px;"></div>
+      <span style="font-size:12px; color:#88898c;">Subtle separator for tightly grouped elements</span>
+    </div>
+    <div>
+      <p class="label">Tertiary Divider &mdash; #d3d4d4</p>
+      <div style="height:1px; background:#d3d4d4; margin-bottom:8px;"></div>
+      <span style="font-size:12px; color:#88898c;">Stronger separator for major section breaks</span>
+    </div>
+  </div>
+</section>
+
+<!-- 14. TONE OF VOICE -->
+<section class="section" id="voice">
+  <h2 class="section-title">Tone of Voice</h2>
+  <p class="section-subtitle">How VCG Markets sounds across every touchpoint</p>
+
+  <div class="card">
+    <h3 class="subsection-title">Voice Personality</h3>
+    <div class="voice-personality">
+      <span class="voice-trait">Confident, not arrogant</span>
+      <span class="voice-trait">Modern, not trendy</span>
+      <span class="voice-trait">Intelligent, not academic</span>
+      <span class="voice-trait">Engaging, not salesy</span>
+      <span class="voice-trait">Inspiring, not preachy</span>
+    </div>
+    <p><strong>We sound like:</strong> A knowledgeable friend who trades &mdash; someone who explains markets clearly, gets excited about opportunities, and never talks down to you.</p>
+    <p><strong>We DON&rsquo;T sound like:</strong> A corporate bank, a compliance department, a university lecture, or a get-rich-quick scheme.</p>
+  </div>
+
+  <div class="card">
+    <h3 class="subsection-title">Voice Scale</h3>
+    <div class="voice-scale">
+      <div class="voice-scale-row">
+        <span class="voice-scale-label">Casual</span>
+        <div class="voice-scale-bar"><div class="voice-scale-marker" style="left:35%"></div></div>
+        <span class="voice-scale-label-right">Formal</span>
+      </div>
+      <div class="voice-scale-row">
+        <span class="voice-scale-label">Playful</span>
+        <div class="voice-scale-bar"><div class="voice-scale-marker" style="left:60%"></div></div>
+        <span class="voice-scale-label-right">Serious</span>
+      </div>
+      <div class="voice-scale-row">
+        <span class="voice-scale-label">Bold</span>
+        <div class="voice-scale-bar"><div class="voice-scale-marker" style="left:20%"></div></div>
+        <span class="voice-scale-label-right">Cautious</span>
+      </div>
+      <div class="voice-scale-row">
+        <span class="voice-scale-label">Simple</span>
+        <div class="voice-scale-bar"><div class="voice-scale-marker" style="left:20%"></div></div>
+        <span class="voice-scale-label-right">Technical</span>
+      </div>
+    </div>
+  </div>
+
+  <h3 class="subsection-title" style="margin-top:32px;">Do&rsquo;s &amp; Don&rsquo;ts</h3>
+  <div class="dos-donts" style="margin-bottom:24px;">
+    <div class="do-item">
+      <div class="dd-text">
+        <div class="badge">Do</div>
+        <p style="margin-bottom:0;">&ldquo;Gold just moved sharply. Here&rsquo;s what traders are watching.&rdquo;</p>
+      </div>
+    </div>
+    <div class="dont-item">
+      <div class="dd-text">
+        <div class="badge">Don&rsquo;t</div>
+        <p style="margin-bottom:0;">&ldquo;Dear valued client, please be advised that the gold market has experienced significant volatility.&rdquo;</p>
+      </div>
+    </div>
+  </div>
+  <div class="dos-donts" style="margin-bottom:24px;">
+    <div class="do-item">
+      <div class="dd-text">
+        <div class="badge">Do</div>
+        <p style="margin-bottom:0;">&ldquo;Discover what drives market momentum&rdquo;</p>
+      </div>
+    </div>
+    <div class="dont-item">
+      <div class="dd-text">
+        <div class="badge">Don&rsquo;t</div>
+        <p style="margin-bottom:0;">&ldquo;Please consult our educational resources for information regarding market dynamics&rdquo;</p>
+      </div>
+    </div>
+  </div>
+  <div class="dos-donts" style="margin-bottom:24px;">
+    <div class="do-item">
+      <div class="dd-text">
+        <div class="badge">Do</div>
+        <p style="margin-bottom:0;">&ldquo;Your trades reveal more than you think&rdquo;</p>
+      </div>
+    </div>
+    <div class="dont-item">
+      <div class="dd-text">
+        <div class="badge">Don&rsquo;t</div>
+        <p style="margin-bottom:0;">&ldquo;Trading involves significant risk of loss. Past performance is not indicative of future results.&rdquo;</p>
+      </div>
+    </div>
+  </div>
+  <div class="dos-donts">
+    <div class="do-item">
+      <div class="dd-text">
+        <div class="badge">Do</div>
+        <p style="margin-bottom:0;">&ldquo;Make your next trade legendary&rdquo;</p>
+      </div>
+    </div>
+    <div class="dont-item">
+      <div class="dd-text">
+        <div class="badge">Don&rsquo;t</div>
+        <p style="margin-bottom:0;">&ldquo;We cannot guarantee any trading outcomes&rdquo;</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- 15. TERMINOLOGY -->
+<section class="section" id="terminology">
+  <h2 class="section-title">Terminology</h2>
+  <p class="section-subtitle">Preferred language that shapes how VCG Markets communicates</p>
+
+  <div class="card" style="padding:0; overflow:hidden;">
+    <table class="term-table">
+      <thead>
+        <tr>
+          <th>Use This</th>
+          <th>Not This</th>
+          <th>Why</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr><td class="term-use">Trade / Trading</td><td class="term-avoid">Invest / Investing</td><td>We facilitate CFD trading, not traditional investing</td></tr>
+        <tr><td class="term-use">Explore the markets</td><td class="term-avoid">Open an account today</td><td>Invites curiosity, not pressure</td></tr>
+        <tr><td class="term-use">Price movement</td><td class="term-avoid">Fluctuation</td><td>More accessible language</td></tr>
+        <tr><td class="term-use">Traders</td><td class="term-avoid">Clients / Customers</td><td>Builds identity</td></tr>
+        <tr><td class="term-use">Market momentum</td><td class="term-avoid">Market conditions</td><td>More energetic</td></tr>
+        <tr><td class="term-use">Discover</td><td class="term-avoid">Learn</td><td>Implies adventure, not homework</td></tr>
+        <tr><td class="term-use">Insight</td><td class="term-avoid">Information</td><td>Feels more valuable</td></tr>
+        <tr><td class="term-use">Opportunity</td><td class="term-avoid">Chance</td><td>More deliberate</td></tr>
+        <tr><td class="term-use">Strategy</td><td class="term-avoid">Method</td><td>Sounds more skilled</td></tr>
+        <tr><td class="term-use">VCG ONE</td><td class="term-avoid">The AI tool</td><td>Always use the brand name</td></tr>
+        <tr><td class="term-use">Trading behaviour</td><td class="term-avoid">Trading history</td><td>Emphasises the improvement angle</td></tr>
+      </tbody>
+    </table>
+  </div>
+</section>
+
+<!-- 16. PUSH NOTIFICATIONS -->
+<section class="section" id="push">
+  <h2 class="section-title">Push Notifications</h2>
+  <p class="section-subtitle">Short, curiosity-driven copy that pulls traders back into the app</p>
+
+  <div class="notif-grid">
+    <div class="notif-card">
+      <div class="notif-icon">
+        <svg viewBox="0 0 22 22" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M11 2L3 7v8l8 5 8-5V7l-8-5z" stroke="#fff" stroke-width="1.5" fill="none"/><path d="M8 11l2 2 4-4" stroke="#fff" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+      </div>
+      <div class="notif-content">
+        <div class="notif-type">Market Alert</div>
+        <div class="notif-body">Gold just broke through resistance. Traders are watching.</div>
+        <div class="notif-time">2m ago</div>
+      </div>
+    </div>
+    <div class="notif-card">
+      <div class="notif-icon" style="background:#9372f8;">
+        <svg viewBox="0 0 22 22" fill="none" xmlns="http://www.w3.org/2000/svg"><circle cx="11" cy="11" r="7" stroke="#fff" stroke-width="1.5" fill="none"/><path d="M11 8v3l2 2" stroke="#fff" stroke-width="1.5" stroke-linecap="round"/></svg>
+      </div>
+      <div class="notif-content">
+        <div class="notif-type">VCG ONE</div>
+        <div class="notif-body">Your weekly trading recap is ready. See your patterns.</div>
+        <div class="notif-time">15m ago</div>
+      </div>
+    </div>
+    <div class="notif-card">
+      <div class="notif-icon">
+        <svg viewBox="0 0 22 22" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M3 16l4-5 3 3 4-6 5 6" stroke="#fff" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+      </div>
+      <div class="notif-content">
+        <div class="notif-type">Market Alert</div>
+        <div class="notif-body">Bitcoin volatility spiked 40% today. Explore the move.</div>
+        <div class="notif-time">1h ago</div>
+      </div>
+    </div>
+    <div class="notif-card">
+      <div class="notif-icon" style="background:#feac3f;">
+        <svg viewBox="0 0 22 22" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M11 4v8M11 15v2" stroke="#fff" stroke-width="1.5" stroke-linecap="round"/></svg>
+      </div>
+      <div class="notif-content">
+        <div class="notif-type">Re-engagement</div>
+        <div class="notif-body">You haven&rsquo;t traded in 3 days. Markets don&rsquo;t wait.</div>
+        <div class="notif-time">3h ago</div>
+      </div>
+    </div>
+    <div class="notif-card">
+      <div class="notif-icon" style="background:#10b80a;">
+        <svg viewBox="0 0 22 22" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M11 4l2 4h4l-3 3 1 4-4-2-4 2 1-4-3-3h4l2-4z" stroke="#fff" stroke-width="1.5" fill="none" stroke-linejoin="round"/></svg>
+      </div>
+      <div class="notif-content">
+        <div class="notif-type">Feature</div>
+        <div class="notif-body">New: AI trading insights are live. Meet VCG ONE.</div>
+        <div class="notif-time">5h ago</div>
+      </div>
+    </div>
+    <div class="notif-card">
+      <div class="notif-icon">
+        <svg viewBox="0 0 22 22" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M3 16l4-5 3 3 4-6 5 6" stroke="#fff" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+      </div>
+      <div class="notif-content">
+        <div class="notif-type">Market Alert</div>
+        <div class="notif-body">Oil surged after OPEC news. See what happened.</div>
+        <div class="notif-time">6h ago</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="dos-donts" style="margin-top:32px;">
+    <div class="do-item">
+      <div class="dd-text">
+        <div class="badge">Do</div>
+        <p style="margin-bottom:0;">Short (under 60 chars), action-oriented, curiosity-driven, timely</p>
+      </div>
+    </div>
+    <div class="dont-item">
+      <div class="dd-text">
+        <div class="badge">Don&rsquo;t</div>
+        <p style="margin-bottom:0;">Generic (&ldquo;Check out our app!&rdquo;), desperate (&ldquo;We miss you!&rdquo;), or misleading</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- 17. EMAIL EXAMPLES -->
+<section class="section" id="emails">
+  <h2 class="section-title">Email Examples</h2>
+  <p class="section-subtitle">Template patterns for key email touchpoints</p>
+
+  <div class="grid-3">
+    <div class="email-card">
+      <div class="email-header">
+        <div class="email-subject">Welcome to the markets</div>
+        <div class="email-preview">Your trading journey starts here</div>
+      </div>
+      <div class="email-body">
+        <p>You just joined thousands of traders exploring global markets. Gold, oil, forex, crypto &mdash; the world&rsquo;s biggest markets are now at your fingertips.</p>
+        <p>Your first step? Open the app and watch how markets move in real time.</p>
+        <a class="email-cta" href="#">Explore the markets</a>
+      </div>
+    </div>
+    <div class="email-card">
+      <div class="email-header">
+        <div class="email-subject">Something just happened in gold</div>
+        <div class="email-preview">Traders are reacting to today&rsquo;s move</div>
+      </div>
+      <div class="email-body">
+        <p>Gold moved sharply today after unexpected inflation data. This kind of volatility often attracts short-term traders looking to understand momentum.</p>
+        <p>Here&rsquo;s what traders are watching right now.</p>
+        <a class="email-cta" href="#">See what traders see</a>
+      </div>
+    </div>
+    <div class="email-card">
+      <div class="email-header">
+        <div class="email-subject">Your trading patterns tell a story</div>
+        <div class="email-preview">VCG ONE just analysed your trades</div>
+      </div>
+      <div class="email-body">
+        <p>Most traders never look at their own behaviour. VCG ONE analyses your trading patterns and helps you spot habits you didn&rsquo;t know you had.</p>
+        <p>Your first insight is ready.</p>
+        <a class="email-cta" href="#">Discover your patterns</a>
+      </div>
+    </div>
+  </div>
+
+  <div class="card" style="margin-top:32px;">
+    <h3 class="subsection-title">Email Guidelines</h3>
+    <p>Personal subject lines. Curiosity-driven preview text. Short paragraphs. Single clear CTA. Mobile-first design.</p>
+  </div>
+</section>
+
+<!-- 18. LANDING PAGES -->
+<section class="section" id="landingpages">
+  <h2 class="section-title">Landing Pages</h2>
+  <p class="section-subtitle">Messaging angles for performance and brand landing pages</p>
+
+  <div class="grid-3">
+    <div class="wireframe-card">
+      <div class="wireframe-visual">
+        <h3>See what traders see</h3>
+        <p>Global markets. Real-time movements. One powerful platform.</p>
+        <span class="wf-cta">Start exploring</span>
+      </div>
+      <div class="wireframe-info">
+        <h4>Angle 1: Market Discovery</h4>
+        <p>Leads with curiosity about markets. Visual: chart with live price movement.</p>
+      </div>
+    </div>
+    <div class="wireframe-card">
+      <div class="wireframe-visual" style="background:linear-gradient(135deg, #232629 0%, #3265e5 100%);">
+        <h3>Upgrade your trading game</h3>
+        <p>Tools, insights, and AI-powered analysis &mdash; built for traders who want to improve.</p>
+        <span class="wf-cta">Explore VCG Markets</span>
+      </div>
+      <div class="wireframe-info">
+        <h4>Angle 2: Trader Identity</h4>
+        <p>Speaks to self-improvement. Visual: product shot with VCG ONE.</p>
+      </div>
+    </div>
+    <div class="wireframe-card">
+      <div class="wireframe-visual" style="background:linear-gradient(135deg, #2554c9 0%, #9372f8 100%);">
+        <h3>Markets move. Do you?</h3>
+        <p>Gold, oil, crypto, forex &mdash; trade price movements in the world&rsquo;s biggest markets.</p>
+        <span class="wf-cta">Discover the markets</span>
+      </div>
+      <div class="wireframe-info">
+        <h4>Angle 3: Market Momentum</h4>
+        <p>Creates urgency through market energy. Visual: asset class icons.</p>
+      </div>
+    </div>
+  </div>
+
+  <div class="dos-donts" style="margin-top:32px;">
+    <div class="do-item">
+      <div class="dd-text">
+        <div class="badge">Do</div>
+        <p style="margin-bottom:0;">Lead with a bold headline. Use short sub-copy. Single prominent CTA. Mobile-first layouts. Show the product.</p>
+      </div>
+    </div>
+    <div class="dont-item">
+      <div class="dd-text">
+        <div class="badge">Don&rsquo;t</div>
+        <p style="margin-bottom:0;">Wall of text above the fold. Multiple competing CTAs. Stock photography of suits. Promise profits or returns.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- 19. ONBOARDING FUNNEL -->
+<section class="section" id="onboarding">
+  <h2 class="section-title">Onboarding Funnel</h2>
+  <p class="section-subtitle">The conversion journey from curiosity to active trading</p>
+
+  <div class="funnel-flow">
+    <div class="funnel-step">
+      <div class="funnel-num">1</div>
+      <div class="funnel-name">Curiosity</div>
+      <div class="funnel-mindset">&ldquo;What is this?&rdquo;</div>
+      <div class="funnel-msg">Spark interest with market stories</div>
+      <div class="funnel-cta">See what traders see</div>
+    </div>
+    <div class="funnel-step">
+      <div class="funnel-num">2</div>
+      <div class="funnel-name">Exploration</div>
+      <div class="funnel-mindset">&ldquo;Tell me more&rdquo;</div>
+      <div class="funnel-msg">Show the platform&rsquo;s power</div>
+      <div class="funnel-cta">Explore the markets</div>
+    </div>
+    <div class="funnel-step">
+      <div class="funnel-num">3</div>
+      <div class="funnel-name">Account Creation</div>
+      <div class="funnel-mindset">&ldquo;I want to try this&rdquo;</div>
+      <div class="funnel-msg">Make sign-up effortless</div>
+      <div class="funnel-cta">Start in 60 seconds</div>
+    </div>
+    <div class="funnel-step">
+      <div class="funnel-num">4</div>
+      <div class="funnel-name">First Deposit</div>
+      <div class="funnel-mindset">&ldquo;Am I ready?&rdquo;</div>
+      <div class="funnel-msg">Build confidence, reduce friction</div>
+      <div class="funnel-cta">Fund your account</div>
+    </div>
+    <div class="funnel-step">
+      <div class="funnel-num">5</div>
+      <div class="funnel-name">First Trade</div>
+      <div class="funnel-mindset">&ldquo;Let&rsquo;s go&rdquo;</div>
+      <div class="funnel-msg">Celebrate the milestone</div>
+      <div class="funnel-cta">Make your first move</div>
+    </div>
+    <div class="funnel-step">
+      <div class="funnel-num">6</div>
+      <div class="funnel-name">Trading Activity</div>
+      <div class="funnel-mindset">&ldquo;I&rsquo;m a trader now&rdquo;</div>
+      <div class="funnel-msg">Keep momentum with insights</div>
+      <div class="funnel-cta">See your recap</div>
+    </div>
+    <div class="funnel-step">
+      <div class="funnel-num">7</div>
+      <div class="funnel-name">Behaviour Improvement</div>
+      <div class="funnel-mindset">&ldquo;How do I get better?&rdquo;</div>
+      <div class="funnel-msg">Introduce VCG ONE insights</div>
+      <div class="funnel-cta">Discover your patterns</div>
+    </div>
+  </div>
+</section>
+
+<!-- 20. MARKETING CAMPAIGNS -->
+<section class="section" id="campaigns">
+  <h2 class="section-title">Marketing Campaigns</h2>
+  <p class="section-subtitle">Campaign concepts and narrative structures for paid and organic channels</p>
+
+  <div class="grid-2">
+    <div class="campaign-card">
+      <h3>Campaign 1: &ldquo;Market Moments&rdquo;</h3>
+      <p class="campaign-theme">Real-time market events driving curiosity</p>
+      <p class="label">Hooks</p>
+      <div class="campaign-hooks">
+        <span class="campaign-hook">Gold just moved sharply</span>
+        <span class="campaign-hook">Bitcoin volatility is rising again</span>
+        <span class="campaign-hook">Oil prices jumped after market news</span>
+      </div>
+      <div class="campaign-meta">
+        <div class="campaign-meta-item">
+          <p class="label">Channels</p>
+          <p>Meta ads, TikTok, push notifications</p>
+        </div>
+        <div class="campaign-meta-item">
+          <p class="label">Visual Direction</p>
+          <p>Mobile-first charts, price movement highlights</p>
+        </div>
+        <div class="campaign-meta-item">
+          <p class="label">CTA</p>
+          <p style="font-weight:600; color:#3265e5;">&ldquo;Explore the markets&rdquo;</p>
+        </div>
+      </div>
+    </div>
+    <div class="campaign-card alt">
+      <h3>Campaign 2: &ldquo;Trading Patterns&rdquo;</h3>
+      <p class="campaign-theme">VCG ONE helping traders understand their behaviour</p>
+      <p class="label">Hooks</p>
+      <div class="campaign-hooks">
+        <span class="campaign-hook">Your trades reveal more than you think</span>
+        <span class="campaign-hook">Most traders never analyse their behaviour</span>
+        <span class="campaign-hook">I realised something about my trades</span>
+      </div>
+      <div class="campaign-meta">
+        <div class="campaign-meta-item">
+          <p class="label">Channels</p>
+          <p>UGC influencer content, email, in-app</p>
+        </div>
+        <div class="campaign-meta-item">
+          <p class="label">Visual Direction</p>
+          <p>AI interface, pattern visualisations, insight screens</p>
+        </div>
+        <div class="campaign-meta-item">
+          <p class="label">CTA</p>
+          <p style="font-weight:600; color:#9372f8;">&ldquo;Discover your trading patterns&rdquo;</p>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="card" style="margin-top:32px;">
+    <h3 class="subsection-title">Ad Narrative Structure</h3>
+    <div class="narrative-flow">
+      <span class="narrative-step">Hook</span>
+      <span class="narrative-arrow">&rarr;</span>
+      <span class="narrative-step">Discovery</span>
+      <span class="narrative-arrow">&rarr;</span>
+      <span class="narrative-step">Insight</span>
+      <span class="narrative-arrow">&rarr;</span>
+      <span class="narrative-step" style="background:#1e7229;">CTA</span>
+    </div>
+  </div>
+
+  <div class="card">
+    <h3 class="subsection-title">UGC Script Structure</h3>
+    <div class="narrative-flow">
+      <span class="narrative-step purple">Hook</span>
+      <span class="narrative-arrow">&rarr;</span>
+      <span class="narrative-step purple">Personal Observation</span>
+      <span class="narrative-arrow">&rarr;</span>
+      <span class="narrative-step purple">Market Discovery</span>
+      <span class="narrative-arrow">&rarr;</span>
+      <span class="narrative-step purple">Insight</span>
+      <span class="narrative-arrow">&rarr;</span>
+      <span class="narrative-step" style="background:#1e7229;">CTA</span>
+    </div>
+  </div>
+</section>
+
+<!-- 21. SALES GUIDELINES -->
+<section class="section" id="sales">
+  <h2 class="section-title">Sales Guidelines</h2>
+  <p class="section-subtitle">Consultative, not pushy &mdash; we guide traders to explore, we don&rsquo;t pressure them</p>
+
+  <div class="card">
+    <h3 class="subsection-title">Key Principles</h3>
+    <ol class="principle-list">
+      <li>Lead with curiosity, not features</li>
+      <li>Ask about their market interests, not their budget</li>
+      <li>Frame trading as a skill to develop</li>
+      <li>Introduce VCG ONE as a co-pilot, not a magic tool</li>
+      <li>Never promise profits or guaranteed outcomes</li>
+    </ol>
+  </div>
+
+  <div class="grid-2" style="margin-bottom:32px;">
+    <div class="card">
+      <h3 class="subsection-title" style="color:#1e7229;">Approved Phrases</h3>
+      <div class="phrase-card">&ldquo;What markets are you most curious about?&rdquo;</div>
+      <div class="phrase-card">&ldquo;Let me show you how traders are watching this move&rdquo;</div>
+      <div class="phrase-card">&ldquo;VCG ONE can help you understand your trading patterns&rdquo;</div>
+      <div class="phrase-card">&ldquo;Trading is a skill &mdash; the platform helps you develop it&rdquo;</div>
+    </div>
+    <div class="card">
+      <h3 class="subsection-title" style="color:#f83149;">Avoid</h3>
+      <div class="phrase-card avoid">&ldquo;You&rsquo;ll make money with this&rdquo;</div>
+      <div class="phrase-card avoid">&ldquo;This is a guaranteed opportunity&rdquo;</div>
+      <div class="phrase-card avoid">&ldquo;You&rsquo;re missing out if you don&rsquo;t trade now&rdquo;</div>
+      <div class="phrase-card avoid">&ldquo;Just deposit and start making profits&rdquo;</div>
+    </div>
+  </div>
+
+  <div class="dos-donts">
+    <div class="do-item">
+      <div class="dd-text">
+        <div class="badge">Do</div>
+        <p style="margin-bottom:0;">Listen first, then recommend. Share market context. Celebrate their curiosity. Frame the platform as a tool for growth.</p>
+      </div>
+    </div>
+    <div class="dont-item">
+      <div class="dd-text">
+        <div class="badge">Don&rsquo;t</div>
+        <p style="margin-bottom:0;">Push for deposits. Promise returns. Use urgency or FOMO tactics. Compare to gambling or get-rich-quick schemes.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Footer -->
+<footer style="padding:48px; text-align:center; border-top:1px solid #e9eaea; background:#ffffff;">
+  <svg width="80" height="52" viewBox="0 0 216 139" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M83.3145 5.48919C91.1294 1.48264 99.9128-0.390823 108.733 0.0678469C117.552 0.526606 126.08 3.30084 133.412 8.09508C128.217 12.562 123.941 17.9495 120.812 23.9709C116.653 21.5211 111.918 20.1519 107.06 19.9942C102.201 19.8366 97.3835 20.8962 93.0664 23.0708C88.7493 25.2454 85.078 28.4621 82.4041 32.4138C79.7303 36.3655 78.1432 40.9193 77.7952 45.6391C77.4473 50.359 78.3497 55.0881 80.4166 59.3711C82.4835 63.6538 85.6461 67.3481 89.5999 70.1004C93.5538 72.8527 98.1672 74.5714 102.999 75.0906C107.83 75.6097 112.717 74.9118 117.193 73.0653C118.275 72.6182 119.33 72.1073 120.348 71.5348C121.666 74.1571 123.184 76.6799 124.887 79.0827C127.279 82.4665 132.547 87.6561 132.606 87.7146C125.179 92.3675 116.596 94.9782 107.769 95.2677C98.9417 95.5572 90.1982 93.5158 82.4659 89.3603C74.7337 85.2047 68.3004 79.0896 63.8485 71.6636C59.3967 64.2374 57.0914 55.7761 57.1783 47.1782C57.2653 38.5803 59.7421 30.1646 64.3432 22.8251C68.9444 15.486 75.4999 9.49566 83.3145 5.48919Z" fill="#a7a8aa"/><path d="M67.7651 95.2935H42.7077L0 2.11717H24.5421L67.7651 95.2935Z" fill="#a7a8aa"/><path d="M143.221 7.32551C152.222 1.72209 162.847-0.77841 173.437 0.212141C184.027 1.20279 193.989 5.63027 201.768 12.8035L188.119 27.4838C183.763 23.4181 178.203 20.8419 172.256 20.1333C166.31 19.4249 160.289 20.6218 155.082 23.5483C149.875 26.4748 145.756 30.9763 143.329 36.3905C140.902 41.8049 140.297 47.847 141.603 53.6268C142.908 59.4061 146.055 64.6184 150.58 68.4977C155.105 72.3772 160.771 74.7196 166.742 75.1782C172.714 75.6367 178.678 74.1874 183.755 71.0452C188.832 67.903 192.755 63.2329 194.947 57.722H216C213.751 68.0013 208.124 77.2564 199.999 84.0437C191.873 90.831 181.705 94.7696 171.078 95.2454C160.452 95.7212 149.965 92.7069 141.252 86.6736C132.539 80.6404 126.09 71.9271 122.91 61.8911C119.73 51.855 119.998 41.0606 123.672 31.1908C127.346 21.3209 134.219 12.929 143.221 7.32551Z" fill="#a7a8aa"/><path d="M195.357 38.1169C197.267 43.1882 197.831 50.7098 194.88 57.1758H160.941C162.253 53.9488 162.94 50.5232 162.967 47.0648C162.99 44.01 162.419 40.9762 161.285 38.1169H195.357Z" fill="#a7a8aa"/></svg>
+  <p style="font-size:13px; color:#a7a8aa; margin-top:16px;">VCG Markets Brand Guidelines &mdash; March 2026</p>
+  <p style="font-size:12px; color:#a7a8aa; margin-top:4px;">Confidential. For internal use and approved partners only.</p>
+</footer>
+
+</div>
+
+<script>
+function copyHex(hex) {
+  navigator.clipboard.writeText(hex).then(function() {
+    var t = document.getElementById('toast');
+    t.textContent = 'Copied ' + hex;
+    t.classList.add('show');
+    setTimeout(function() { t.classList.remove('show'); }, 1600);
+  });
+}
+
+var hamburger = document.getElementById('hamburger');
+var sidebar = document.getElementById('sidebar');
+var overlay = document.getElementById('overlay');
+function toggleNav() {
+  sidebar.classList.toggle('open');
+  overlay.classList.toggle('open');
+}
+hamburger.addEventListener('click', toggleNav);
+overlay.addEventListener('click', toggleNav);
+
+var sections = document.querySelectorAll('.section, .hero');
+var navLinks = document.querySelectorAll('.sidebar-nav a');
+var linkMap = {};
+navLinks.forEach(function(link) {
+  var id = link.getAttribute('href').replace('#', '');
+  linkMap[id] = link;
+});
+
+function onScroll() {
+  var scrollPos = window.scrollY + 120;
+  var current = '';
+  sections.forEach(function(sec) {
+    if (sec.offsetTop <= scrollPos) current = sec.id;
+  });
+  navLinks.forEach(function(l) { l.classList.remove('active'); });
+  if (current && linkMap[current]) linkMap[current].classList.add('active');
+}
+window.addEventListener('scroll', onScroll, { passive: true });
+onScroll();
+
+navLinks.forEach(function(link) {
+  link.addEventListener('click', function() {
+    if (window.innerWidth <= 1024) toggleNav();
+  });
+});
+</script>
+</body>
+</html>
