@@ -214,10 +214,10 @@ section{padding:120px 0;position:relative}
   letter-spacing:-0.3px;margin-bottom:20px;
   color:var(--text);
 }
-.section-h .blue{color:var(--blue)}
-.section-h .gold{background:linear-gradient(135deg,#fbbf00,#a8863b);-webkit-background-clip:text;-webkit-text-fill-color:transparent}
-.section-h .red{color:var(--red)}
-.section-h .purple{color:var(--one)}
+.section-h .blue{color:var(--text)}
+.section-h .gold{color:var(--text);-webkit-text-fill-color:var(--text)}
+.section-h .red{color:var(--text)}
+.section-h .purple{color:var(--text)}
 .section-sub{font-size:17px;font-weight:400;line-height:1.7;color:var(--text-2);max-width:580px}
 
 /* ── PROBLEM SECTION ────────────────────────────────────── */
@@ -514,6 +514,50 @@ footer{background:var(--bg-dark-2);padding:48px 0 32px;border-top:1px solid rgba
 .footer-copy{font-size:12px;color:var(--text-inv-3)}
 .footer-reg{font-size:11px;color:rgba(255,255,255,0.18);max-width:560px;line-height:1.5}
 
+/* ── PAYMENTS ────────────────────────────────────────────── */
+.payments{background:var(--bg-2);border-top:1px solid var(--border)}
+.payments-inner{display:grid;grid-template-columns:1fr 1fr;gap:80px;align-items:center}
+.payments-regions{display:flex;flex-direction:column;gap:24px;margin-top:40px}
+.payments-region{
+  background:var(--bg);border:1px solid var(--border);border-radius:var(--r-card);
+  padding:24px;box-shadow:var(--shadow-card);
+  transition:box-shadow .25s,transform .25s;
+}
+.payments-region:hover{box-shadow:var(--shadow-md);transform:translateY(-2px)}
+.payments-region-header{display:flex;align-items:center;gap:12px;margin-bottom:16px}
+.payments-region-flag{font-size:22px}
+.payments-region-name{font-family:var(--font);font-size:15px;font-weight:600;color:var(--text);letter-spacing:-0.3px}
+.payments-region-sub{font-size:12px;color:var(--text-3);margin-top:1px}
+.payments-methods{display:flex;flex-wrap:wrap;gap:8px}
+.pay-badge{
+  display:inline-flex;align-items:center;gap:6px;
+  background:var(--bg-2);border:1px solid var(--border);
+  border-radius:6px;padding:6px 12px;
+  font-size:13px;font-weight:500;color:var(--text-2);
+  box-shadow:var(--shadow-card);
+  transition:border-color .2s,color .2s;
+}
+.pay-badge:hover{border-color:var(--blue-border);color:var(--text)}
+.pay-badge-icon{font-size:15px}
+.payments-global{
+  display:flex;flex-direction:column;gap:16px;margin-top:40px;
+}
+.payments-global-row{
+  display:flex;align-items:center;gap:12px;flex-wrap:wrap;
+}
+.payments-global-label{
+  font-size:12px;font-weight:600;letter-spacing:1px;text-transform:uppercase;
+  color:var(--text-3);min-width:100px;
+}
+.payments-stat{
+  background:var(--bg);border:1px solid var(--border);border-radius:var(--r-card);
+  padding:20px 24px;margin-top:32px;
+  display:flex;align-items:center;gap:20px;
+  box-shadow:var(--shadow-card);
+}
+.payments-stat-val{font-family:var(--font);font-size:32px;font-weight:700;color:var(--blue);letter-spacing:-1px}
+.payments-stat-lbl{font-size:14px;color:var(--text-2);line-height:1.5}
+
 /* ── REVEAL ──────────────────────────────────────────────── */
 .reveal{opacity:0;transform:translateY(32px);transition:opacity .75s cubic-bezier(.2,.6,.4,1),transform .75s cubic-bezier(.2,.6,.4,1)}
 .reveal.in{opacity:1;transform:translateY(0)}
@@ -522,7 +566,7 @@ footer{background:var(--bg-dark-2);padding:48px 0 32px;border-top:1px solid rgba
 /* ── RESPONSIVE ──────────────────────────────────────────── */
 @media(max-width:980px){
   .hero-proof{gap:20px}
-  .problem-grid,.vcgone-inner,.trust-inner,.product-showcase{grid-template-columns:1fr;gap:48px}
+  .problem-grid,.vcgone-inner,.trust-inner,.product-showcase,.payments-inner{grid-template-columns:1fr;gap:48px}
   .layers-grid{grid-template-columns:1fr}
   .assets-grid{grid-template-columns:repeat(3,1fr)}
   .journey-track{grid-template-columns:1fr}
@@ -620,7 +664,7 @@ footer{background:var(--bg-dark-2);padding:48px 0 32px;border-top:1px solid rgba
     <div class="problem-grid">
       <div>
         <p class="eyebrow reveal">The Problem With Most Platforms</p>
-        <h2 class="section-h reveal d1">Most platforms <span class="blue">execute</span> trades. None make you <span class="red">better.</span></h2>
+        <h2 class="section-h reveal d1">Most platforms execute trades. None make you better.</h2>
         <p class="section-sub reveal d2">Most trading platforms do one thing: execute. They give you charts, leverage, and instruments — but zero insight into why a trade worked, why it failed, or how your own behaviour is costing you.</p>
         <div class="problem-quote reveal d3">
           "Access to markets is easy. Good decisions are <span>harder.</span> VCG was built to solve that."
@@ -683,7 +727,7 @@ footer{background:var(--bg-dark-2);padding:48px 0 32px;border-top:1px solid rgba
   <div class="wrap">
     <div class="layers-header">
       <p class="eyebrow reveal">A New Era of Trading Platform</p>
-      <h2 class="section-h reveal d1">Three layers of intelligence. <span class="blue">One platform.</span></h2>
+      <h2 class="section-h reveal d1">Three layers of intelligence. One platform.</h2>
       <p class="section-sub reveal d2">VCG Markets connects capabilities that no competitor currently combines for retail traders.</p>
     </div>
     <div class="layers-grid">
@@ -727,7 +771,7 @@ footer{background:var(--bg-dark-2);padding:48px 0 32px;border-top:1px solid rgba
   <div class="wrap">
     <div class="assets-header">
       <p class="eyebrow reveal">Trade Global Markets</p>
-      <h2 class="section-h reveal d1">Five markets. <span class="blue">One account. Always ready.</span></h2>
+      <h2 class="section-h reveal d1">Five markets. One account. Always ready.</h2>
       <p class="section-sub reveal d2">The assets that move the global economy — all accessible from your mobile, with institutional-grade execution behind every trade.</p>
     </div>
     <div class="assets-grid">
@@ -763,7 +807,7 @@ footer{background:var(--bg-dark-2);padding:48px 0 32px;border-top:1px solid rgba
       </div>
       <div>
         <p class="eyebrow showcase-eyebrow">Mobile-First. Built for Speed.</p>
-        <h3 class="section-h" style="font-size:32px;">The market moves. <span class="blue">Your platform should too.</span></h3>
+        <h3 class="section-h" style="font-size:32px;">The market moves. Your platform should too.</h3>
         <p class="section-sub" style="font-size:16px;margin-top:12px;">Whether you're checking gold at 7am or reacting to a breakout at midnight — the VCG Markets app is ready. Fast execution. Real-time prices. VCG ONE running quietly in the background, learning how you trade.</p>
         <div style="margin-top:32px">
           <a href="#cta" class="btn-primary" style="display:inline-flex">See It in Action →</a>
@@ -826,7 +870,7 @@ footer{background:var(--bg-dark-2);padding:48px 0 32px;border-top:1px solid rgba
       </div>
       <div class="one-content">
         <p class="eyebrow reveal" style="color:var(--one);display:flex;align-items:center;"><span style="display:block;width:28px;height:2px;background:var(--one);border-radius:2px;flex-shrink:0;margin-right:10px"></span>Behavioural Trading Intelligence</p>
-        <h2 class="section-h reveal d1">The AI that studies how <span class="purple">you</span> trade.</h2>
+        <h2 class="section-h reveal d1">The AI that studies how you trade.</h2>
         <p class="section-sub reveal d2">Here's what most traders never do: look at themselves. They analyse charts, follow news, study indicators — and completely ignore the most important variable in every trade they've ever made.</p>
         <p class="section-sub reveal d2" style="margin-top:14px">Their own behaviour.</p>
         <p class="section-sub reveal d2" style="margin-top:14px">VCG ONE fixes that. It runs behind every trade, builds a picture of your decision patterns, and surfaces the insights that actually change how you trade.</p>
@@ -844,7 +888,7 @@ footer{background:var(--bg-dark-2);padding:48px 0 32px;border-top:1px solid rgba
   <div class="wrap">
     <div class="compete-header">
       <p class="eyebrow reveal">Competitive Positioning</p>
-      <h2 class="section-h reveal d1">Where VCG Markets <span class="blue">leads the field.</span></h2>
+      <h2 class="section-h reveal d1">Where VCG Markets leads the field.</h2>
       <p class="section-sub reveal d2">The retail CFD market has been dominated by platforms built on 2010s infrastructure. None were designed with behavioural intelligence, AI agents, or emerging-market-first distribution in mind. VCG was.</p>
     </div>
     <div class="table-wrap reveal d1">
@@ -921,7 +965,7 @@ footer{background:var(--bg-dark-2);padding:48px 0 32px;border-top:1px solid rgba
   <div class="wrap">
     <div class="journey-header">
       <p class="eyebrow reveal">Your Trading Journey</p>
-      <h2 class="section-h reveal d1">From curiosity to <span class="blue">mastery.</span></h2>
+      <h2 class="section-h reveal d1">From curiosity to mastery.</h2>
       <p class="section-sub reveal d2">Every trader on VCG Markets started exactly where you are now. Here's how the journey unfolds.</p>
     </div>
     <div class="journey-track">
@@ -970,7 +1014,7 @@ footer{background:var(--bg-dark-2);padding:48px 0 32px;border-top:1px solid rgba
     <div class="trust-inner">
       <div>
         <p class="eyebrow reveal">Trust & Security</p>
-        <h2 class="section-h reveal d1">Your money. Your data. <span class="blue">Protected. Always.</span></h2>
+        <h2 class="section-h reveal d1">Your money. Your data. Protected. Always.</h2>
         <p class="section-sub reveal d2">Before you place a single trade, you need to know the platform is safe, regulated, and built to last. VCG Markets takes that seriously.</p>
         <div class="reg-badges reveal d3">
           <div class="reg-badge">
@@ -1011,6 +1055,78 @@ footer{background:var(--bg-dark-2);padding:48px 0 32px;border-top:1px solid rgba
             <div class="trust-title">Real support</div>
             <p class="trust-body">Real people. Fast responses. Because markets don't keep office hours and neither do we.</p>
           </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- PAYMENTS -->
+<section class="payments" id="payments">
+  <div class="wrap">
+    <div class="payments-inner">
+      <div>
+        <p class="eyebrow reveal">Payments & Deposits</p>
+        <h2 class="section-h reveal d1">Fund your account your way. Wherever you are.</h2>
+        <p class="section-sub reveal d2">VCG Markets supports the payment methods traders in your region actually use — from mobile money in Africa to instant bank transfers in Brazil and digital wallets everywhere.</p>
+        <div class="payments-stat reveal d3">
+          <div class="payments-stat-val">100+</div>
+          <div class="payments-stat-lbl">Payment methods supported across all regions.<br>Fast deposits. Reliable withdrawals.</div>
+        </div>
+      </div>
+      <div>
+        <div class="payments-regions">
+
+          <div class="payments-region reveal">
+            <div class="payments-region-header">
+              <span class="payments-region-flag">🌍</span>
+              <div>
+                <div class="payments-region-name">Africa</div>
+                <div class="payments-region-sub">Mobile money — no bank account required</div>
+              </div>
+            </div>
+            <div class="payments-methods">
+              <span class="pay-badge"><span class="pay-badge-icon">📱</span>Vodafone M-Pesa</span>
+              <span class="pay-badge"><span class="pay-badge-icon">📱</span>Orange Money</span>
+              <span class="pay-badge"><span class="pay-badge-icon">💳</span>Airtel Money</span>
+              <span class="pay-badge"><span class="pay-badge-icon">🏦</span>Bank Transfer</span>
+            </div>
+          </div>
+
+          <div class="payments-region reveal d1">
+            <div class="payments-region-header">
+              <span class="payments-region-flag">🇧🇷</span>
+              <div>
+                <div class="payments-region-name">Brazil</div>
+                <div class="payments-region-sub">Instant payments — 24/7</div>
+              </div>
+            </div>
+            <div class="payments-methods">
+              <span class="pay-badge"><span class="pay-badge-icon">⚡</span>PIX</span>
+              <span class="pay-badge"><span class="pay-badge-icon">💳</span>Credit Card</span>
+              <span class="pay-badge"><span class="pay-badge-icon">💳</span>Debit Card</span>
+              <span class="pay-badge"><span class="pay-badge-icon">🏦</span>Boleto</span>
+            </div>
+          </div>
+
+          <div class="payments-region reveal d2">
+            <div class="payments-region-header">
+              <span class="payments-region-flag">🌐</span>
+              <div>
+                <div class="payments-region-name">Global</div>
+                <div class="payments-region-sub">Cards & digital wallets accepted worldwide</div>
+              </div>
+            </div>
+            <div class="payments-methods">
+              <span class="pay-badge"><span class="pay-badge-icon">🍎</span>Apple Pay</span>
+              <span class="pay-badge"><span class="pay-badge-icon">🔵</span>Google Pay</span>
+              <span class="pay-badge"><span class="pay-badge-icon">💳</span>Visa</span>
+              <span class="pay-badge"><span class="pay-badge-icon">💳</span>Mastercard</span>
+              <span class="pay-badge"><span class="pay-badge-icon">💰</span>Crypto</span>
+              <span class="pay-badge"><span class="pay-badge-icon">🏦</span>Bank Wire</span>
+            </div>
+          </div>
+
         </div>
       </div>
     </div>
