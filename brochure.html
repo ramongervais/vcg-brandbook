@@ -3,738 +3,541 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>VCG Markets — Trade Intelligently</title>
+<title>VCG Markets — Make Bold Trades. Make Intelligent Decisions.</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
-<style>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
 
-/* ── VCG DESIGN TOKENS ─────────────────────────────────────────── */
+<style>
+/* ── TOKENS — VCG Design System ─────────────────────────── */
 :root {
-  /* Core Brand */
+  /* Brand */
   --blue:        #3265e5;
   --blue-dark:   #2554c9;
   --blue-light:  #88a9ff;
-  --dark:        #232629;
-  --secondary:   #232629;
-  --tertiary:    #65676a;
-  --tertiary-lt: #88898c;
-  --quaternary:  #a7a8aa;
-  --divider:     #e9eaea;
-  --light-grey:  #f2f2f2;
-  --white:       #ffffff;
-
-  /* Signal / Warm */
-  --red:         #f83149;
-  --orange-red:  #ff6536;
-  --orange:      #ffa900;
-  --yellow:      #fbbf00;
-
-  /* ONE Purple */
-  --one-dark:    #432798;
-  --one-light:   #9372f8;
-  --one-lighter: #d991fb;
-
-  /* Gold */
+  --blue-glow:   rgba(50,101,229,0.2);
+  --blue-dim:    rgba(50,101,229,0.08);
+  --blue-border: rgba(50,101,229,0.2);
   --gold:        #a8863b;
-  --gold-light:  #fbbf00;
+  --gold-lt:     #fbbf00;
+  --one:         #9372f8;
+  --one-dark:    #432798;
+  --one-dim:     rgba(147,114,248,0.1);
+  --red:         #f83149;
+  --green:       #1e7229;
+  --green-lt:    #22c55e;
 
-  /* Gradients */
-  --grad-signals:    linear-gradient(135deg, #3265e5 0%, #6c79ec 100%);
-  --grad-blue:       linear-gradient(135deg, #4070E7 0%, #2554C9 100%);
-  --grad-gold:       linear-gradient(135deg, #FBBF00 0%, #FFA900 100%);
-  --grad-gray:       linear-gradient(135deg, #222a3a 0%, #356fe1 100%);
-  --grad-purple:     linear-gradient(135deg, #9e82f5 0%, #e3f8f5 100%);
+  /* Neutrals — VCG Design System */
+  --bg:          #f2f2f2;   /* Light Grey — page background */
+  --bg-2:        #ffffff;   /* White — card background */
+  --bg-dark:     #232629;   /* Dark Neutral — dark sections */
+  --bg-dark-2:   #1a1d21;
+  --surface:     #ffffff;   /* Card surface */
+  --border:      #e9eaea;   /* Divider */
+  --border-mid:  #d3d4d4;
+  --border-b:    rgba(50,101,229,0.2);
+
+  /* Text — VCG Design System */
+  --text:        #232629;   /* Primary — Secondary Black */
+  --text-2:      #65676a;   /* Tertiary */
+  --text-3:      #a7a8aa;   /* Quaternary */
+  --text-inv:    #ffffff;   /* On dark */
+  --text-inv-2:  rgba(255,255,255,0.65);
+  --text-inv-3:  rgba(255,255,255,0.35);
+
+  /* Card shadow — VCG Design System */
+  --shadow-card: 0px 1px 4px 0px rgba(0,0,0,0.05);
+  --shadow-md:   0 4px 24px rgba(35,38,41,0.08);
+  --shadow-lg:   0 8px 40px rgba(35,38,41,0.12);
+  --shadow-blue: 0 4px 24px rgba(50,101,229,0.18);
 
   /* Typography */
-  --font: 'Inter', -apple-system, sans-serif;
-  --letter-tight: -0.3px;
+  --font:        'Inter', -apple-system, sans-serif;
 
   /* Radii */
-  --r-btn-lg: 8px;
-  --r-btn-md: 6px;
-  --r-card:   12px;
-  --r-chart:  11px;
-
-  /* Shadows */
-  --shadow-card: 0px 1px 4px 0px rgba(0,0,0,0.05);
-  --shadow-md:   0 4px 24px rgba(50,101,229,0.12);
-  --shadow-lg:   0 8px 48px rgba(50,101,229,0.18);
+  --r-btn:  8px;
+  --r-card: 12px;
+  --r-pill: 40px;
 }
 
-/* ── RESET ─────────────────────────────────────────────────────── */
-*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
-html { scroll-behavior: smooth; }
-body {
-  font-family: var(--font);
-  font-size: 16px;
-  color: var(--dark);
-  background: var(--white);
-  -webkit-font-smoothing: antialiased;
-  overflow-x: hidden;
-}
-img { display: block; max-width: 100%; }
-a { text-decoration: none; color: inherit; }
+/* ── RESET ──────────────────────────────────────────────── */
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth;font-size:16px}
+body{font-family:var(--font);background:var(--bg);color:var(--text);-webkit-font-smoothing:antialiased;overflow-x:hidden}
+img{display:block;max-width:100%}
+a{text-decoration:none;color:inherit}
 
-/* ── NOISE TEXTURE UTILITY ─────────────────────────────────────── */
-.noise-6::after {
-  content: '';
-  position: absolute; inset: 0;
-  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)' opacity='0.06'/%3E%3C/svg%3E");
-  pointer-events: none;
-  border-radius: inherit;
-}
-.noise-12::after {
-  content: '';
-  position: absolute; inset: 0;
-  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)' opacity='0.12'/%3E%3C/svg%3E");
-  pointer-events: none;
-  border-radius: inherit;
+/* ── GRAIN OVERLAY ──────────────────────────────────────── */
+body::before{
+  content:'';position:fixed;inset:0;pointer-events:none;z-index:9999;
+  background-image:url("data:image/svg+xml,%3Csvg viewBox='0 0 512 512' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.8' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.04'/%3E%3C/svg%3E");
+  opacity:.4;
 }
 
-/* ── LAYOUT ────────────────────────────────────────────────────── */
-.container {
-  max-width: 1100px;
-  margin: 0 auto;
-  padding: 0 48px;
-}
-@media (max-width: 768px) { .container { padding: 0 24px; } }
+/* ── LAYOUT ─────────────────────────────────────────────── */
+.wrap{max-width:1120px;margin:0 auto;padding:0 48px}
+@media(max-width:768px){.wrap{padding:0 24px}}
 
-/* ── NAV ───────────────────────────────────────────────────────── */
-.nav {
-  position: fixed; top: 0; left: 0; right: 0; z-index: 100;
-  background: rgba(255,255,255,0.95);
-  backdrop-filter: blur(12px);
-  border-bottom: 1px solid var(--divider);
-  height: 64px;
-  display: flex; align-items: center;
+/* ── NAV ────────────────────────────────────────────────── */
+.nav{
+  position:fixed;top:0;left:0;right:0;z-index:100;
+  height:68px;display:flex;align-items:center;
+  border-bottom:1px solid transparent;
+  background:transparent;
+  transition:background .3s,border-color .3s;
 }
-.nav-inner {
-  display: flex; align-items: center; justify-content: space-between;
-  width: 100%; max-width: 1100px; margin: 0 auto; padding: 0 48px;
+.nav.scrolled{
+  background:rgba(255,255,255,0.96);
+  border-bottom-color:var(--border);
+  backdrop-filter:blur(16px);
 }
-.nav-logo img { height: 28px; }
-.nav-cta {
-  background: var(--blue);
-  color: var(--white);
-  font-size: 14px; font-weight: 600; letter-spacing: var(--letter-tight);
-  padding: 8px 20px;
-  border-radius: var(--r-btn-lg);
-  transition: background 0.2s, box-shadow 0.2s;
+.nav-inner{display:flex;align-items:center;justify-content:space-between;width:100%}
+.nav-logo img{height:26px;transition:opacity .3s}
+.nav-logo .logo-white{display:block}
+.nav-logo .logo-black{display:none}
+.nav.scrolled .nav-logo .logo-white{display:none}
+.nav.scrolled .nav-logo .logo-black{display:block}
+.nav-right{display:flex;align-items:center;gap:24px}
+.nav-link{
+  font-family:var(--font);font-size:14px;font-weight:600;letter-spacing:-0.3px;
+  color:rgba(255,255,255,0.8);transition:color .2s;
 }
-.nav-cta:hover { background: var(--blue-dark); box-shadow: var(--shadow-md); }
+.nav-link:hover{color:#fff}
+.nav.scrolled .nav-link{color:var(--text-2)}
+.nav.scrolled .nav-link:hover{color:var(--text)}
+.nav-btn{
+  font-family:var(--font);font-size:14px;font-weight:600;letter-spacing:-0.3px;
+  background:rgba(255,255,255,0.15);color:#fff;border:1px solid rgba(255,255,255,0.3);
+  padding:9px 22px;border-radius:var(--r-btn);
+  transition:background .2s,box-shadow .2s,transform .15s,border-color .2s;
+}
+.nav-btn:hover{background:rgba(255,255,255,0.25);transform:translateY(-1px)}
+.nav.scrolled .nav-btn{background:var(--blue);color:#fff;border-color:var(--blue)}
+.nav.scrolled .nav-btn:hover{background:var(--blue-dark);box-shadow:var(--shadow-blue)}
 
-/* ── HERO ──────────────────────────────────────────────────────── */
-.hero {
-  position: relative;
-  padding-top: 64px;
-  min-height: 100vh;
-  display: flex; align-items: center;
-  background: var(--dark);
-  overflow: hidden;
+/* ── HERO ───────────────────────────────────────────────── */
+.hero{
+  min-height:100vh;padding-top:68px;
+  display:flex;align-items:center;
+  position:relative;overflow:hidden;
+  background:#3265e5;
 }
-.hero-bg {
-  position: absolute; inset: 0;
-  background: var(--grad-gray);
-  opacity: 0.9;
+.hero-mesh{
+  position:absolute;inset:0;
+  background:
+    radial-gradient(ellipse 55% 55% at 75% 35%, rgba(255,255,255,0.12) 0%, transparent 65%),
+    radial-gradient(ellipse 45% 50% at 15% 75%, rgba(37,84,201,0.6) 0%, transparent 60%),
+    radial-gradient(ellipse 60% 70% at 95% 85%, rgba(20,50,150,0.5) 0%, transparent 60%);
+  pointer-events:none;
 }
-.hero-bg-img {
-  position: absolute; inset: 0;
-  background-image: url('https://ramongervais.github.io/vcg-brandbook/brand/illustrations/BG-01-VCG.jpg');
-  background-size: cover; background-position: center;
-  opacity: 0.18;
-  mix-blend-mode: luminosity;
+.hero-grid{
+  position:absolute;inset:0;pointer-events:none;
+  background-image:linear-gradient(rgba(255,255,255,0.06) 1px,transparent 1px),linear-gradient(90deg,rgba(255,255,255,0.06) 1px,transparent 1px);
+  background-size:80px 80px;
+  mask-image:radial-gradient(ellipse 80% 80% at 50% 50%, black 20%, transparent 100%);
 }
-.hero-noise {
-  position: absolute; inset: 0;
-  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 512 512' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.75' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.12'/%3E%3C/svg%3E");
-  pointer-events: none;
+.hero-content{position:relative;z-index:2;padding:100px 0 80px}
+.hero-kicker{
+  display:inline-flex;align-items:center;gap:8px;
+  font-family:var(--font);font-size:12px;font-weight:600;letter-spacing:1.5px;text-transform:uppercase;
+  color:rgba(255,255,255,0.9);border:1px solid rgba(255,255,255,0.25);background:rgba(255,255,255,0.12);
+  padding:6px 16px;border-radius:var(--r-pill);margin-bottom:32px;
 }
-.hero-content {
-  position: relative; z-index: 2;
-  display: grid; grid-template-columns: 1fr 1fr;
-  gap: 64px; align-items: center;
-  padding: 80px 0;
-}
-.hero-eyebrow {
-  display: inline-flex; align-items: center; gap: 8px;
-  background: rgba(50,101,229,0.2);
-  border: 1px solid rgba(50,101,229,0.4);
-  color: var(--blue-light);
-  font-size: 12px; font-weight: 600; letter-spacing: 1.2px;
-  padding: 6px 14px; border-radius: 40px;
-  margin-bottom: 24px; text-transform: uppercase;
-}
-.hero-eyebrow span { width: 6px; height: 6px; background: var(--blue-light); border-radius: 50%; display: block; }
-.hero-h1 {
-  font-size: clamp(40px, 5vw, 64px);
-  font-weight: 700; line-height: 1.1;
-  letter-spacing: var(--letter-tight);
-  color: var(--white);
-  margin-bottom: 24px;
-}
-.hero-h1 em {
-  font-style: normal;
-  background: var(--grad-gold);
-  -webkit-background-clip: text; -webkit-text-fill-color: transparent;
-}
-.hero-sub {
-  font-size: 18px; font-weight: 400; line-height: 1.6;
-  color: rgba(255,255,255,0.65);
-  margin-bottom: 40px;
-  max-width: 480px;
-}
-.hero-actions { display: flex; gap: 16px; flex-wrap: wrap; }
-.btn-primary {
-  background: var(--blue);
-  color: var(--white);
-  font-size: 16px; font-weight: 600; letter-spacing: var(--letter-tight);
-  padding: 14px 28px; border-radius: var(--r-btn-lg);
-  display: inline-flex; align-items: center; gap: 8px;
-  transition: background 0.2s, box-shadow 0.2s, transform 0.15s;
-  cursor: pointer;
-}
-.btn-primary:hover { background: var(--blue-dark); box-shadow: var(--shadow-lg); transform: translateY(-1px); }
-.btn-secondary {
-  background: rgba(255,255,255,0.08);
-  border: 1px solid rgba(255,255,255,0.2);
-  color: var(--white);
-  font-size: 16px; font-weight: 600; letter-spacing: var(--letter-tight);
-  padding: 14px 28px; border-radius: var(--r-btn-lg);
-  display: inline-flex; align-items: center; gap: 8px;
-  transition: background 0.2s, border-color 0.2s;
-  cursor: pointer;
-}
-.btn-secondary:hover { background: rgba(255,255,255,0.14); border-color: rgba(255,255,255,0.35); }
-.hero-stats {
-  display: flex; gap: 32px; margin-top: 48px;
-  padding-top: 32px; border-top: 1px solid rgba(255,255,255,0.1);
-}
-.hero-stat-val {
-  font-size: 24px; font-weight: 700; color: var(--white);
-  letter-spacing: var(--letter-tight);
-}
-.hero-stat-lbl {
-  font-size: 12px; font-weight: 500; color: rgba(255,255,255,0.45);
-  margin-top: 2px; letter-spacing: 0.2px;
-}
-.hero-visual {
-  position: relative; display: flex; justify-content: center;
-}
-.hero-phone-wrap {
-  position: relative; width: 280px;
-}
-.hero-phone-wrap img {
-  width: 100%; border-radius: var(--r-chart);
-  box-shadow: 0 32px 80px rgba(0,0,0,0.5);
-}
-.hero-badge {
-  position: absolute; bottom: -16px; left: -32px;
-  background: var(--white);
-  border-radius: var(--r-card);
-  padding: 14px 18px;
-  box-shadow: var(--shadow-lg);
-  display: flex; align-items: center; gap: 10px;
-  animation: float 3s ease-in-out infinite;
-}
-.hero-badge-icon { font-size: 22px; }
-.hero-badge-text { font-size: 13px; font-weight: 600; color: var(--dark); line-height: 1.3; }
-.hero-badge-sub { font-size: 11px; color: var(--tertiary); }
-@keyframes float { 0%,100%{transform:translateY(0)} 50%{transform:translateY(-6px)} }
+.hero-kicker-dot{width:6px;height:6px;background:#fff;border-radius:50%;animation:pulse 2s ease-in-out infinite}
+@keyframes pulse{0%,100%{opacity:1;transform:scale(1)}50%{opacity:.4;transform:scale(.7)}}
 
-/* ── SECTION LABELS ────────────────────────────────────────────── */
-.section-eyebrow {
-  font-size: 11px; font-weight: 600; letter-spacing: 1.5px; text-transform: uppercase;
-  color: var(--blue);
-  margin-bottom: 12px;
-  display: flex; align-items: center; gap: 8px;
+.hero-h1{
+  font-family:var(--font);
+  font-size:clamp(44px,7vw,80px);
+  font-weight:700;line-height:1.05;
+  letter-spacing:-2px;
+  margin-bottom:28px;
 }
-.section-eyebrow::before {
-  content: '';
-  width: 24px; height: 2px; background: var(--blue);
-  border-radius: 2px; flex-shrink: 0;
+.hero-h1 .line-1{display:block;color:var(--text-inv);font-size:32px;letter-spacing:-0.5px}
+.hero-h1 .line-2{display:block;color:var(--text-inv)}
+.hero-h1 .accent{color:#ffffff;-webkit-text-fill-color:#ffffff}
+.hero-sub{
+  font-size:18px;font-weight:300;line-height:1.7;
+  color:var(--text-inv-2);max-width:540px;margin-bottom:44px;
 }
-.section-title {
-  font-size: clamp(28px, 3.5vw, 40px);
-  font-weight: 700; line-height: 1.15;
-  letter-spacing: var(--letter-tight);
-  color: var(--dark);
-  margin-bottom: 16px;
+.hero-actions{display:flex;gap:16px;flex-wrap:wrap;margin-bottom:64px}
+.btn-primary{
+  font-family:var(--font);font-size:16px;font-weight:600;letter-spacing:-0.3px;
+  background:var(--blue);color:#fff;
+  padding:15px 32px;border-radius:var(--r-btn);
+  display:inline-flex;align-items:center;gap:10px;
+  transition:background .2s,box-shadow .2s,transform .15s;cursor:pointer;
 }
-.section-body {
-  font-size: 16px; font-weight: 400; line-height: 1.7;
-  color: var(--tertiary);
-  max-width: 560px;
+.btn-primary:hover{background:var(--blue-dark);box-shadow:var(--shadow-blue);transform:translateY(-2px)}
+.btn-ghost{
+  font-family:var(--font);font-size:16px;font-weight:600;letter-spacing:-0.3px;
+  border:1px solid rgba(255,255,255,0.2);color:var(--text-inv-2);
+  padding:15px 32px;border-radius:var(--r-btn);
+  display:inline-flex;align-items:center;gap:10px;
+  transition:border-color .2s,color .2s;cursor:pointer;
 }
-.section-body + .section-body { margin-top: 14px; }
+.btn-ghost:hover{border-color:rgba(255,255,255,0.4);color:var(--text-inv)}
 
-/* ── INTRO SECTION ─────────────────────────────────────────────── */
-.intro {
-  padding: 120px 0;
-  background: var(--white);
+.hero-proof{
+  display:flex;align-items:center;gap:32px;
+  padding-top:32px;border-top:1px solid rgba(255,255,255,0.2);
+  flex-wrap:wrap;
 }
-.intro-grid {
-  display: grid; grid-template-columns: 1fr 1fr;
-  gap: 80px; align-items: center;
-}
-.intro-quote {
-  font-size: 20px; font-weight: 600; line-height: 1.5;
-  color: var(--blue); letter-spacing: var(--letter-tight);
-  border-left: 3px solid var(--blue);
-  padding-left: 20px;
-  margin-top: 32px;
-  font-style: italic;
-}
-.intro-visual {
-  position: relative;
-  border-radius: var(--r-card);
-  overflow: visible;
-}
-.intro-visual img:first-child { width: 100%; border-radius: var(--r-chart); }
-.intro-visual-overlay {
-  position: absolute; inset: 0;
-  background: var(--grad-signals);
-  opacity: 0.12;
-}
+.hero-proof-item{display:flex;flex-direction:column}
+.hero-proof-val{font-family:var(--font);font-size:28px;font-weight:700;color:var(--text-inv);letter-spacing:-1px}
+.hero-proof-lbl{font-size:12px;color:var(--text-inv-3);margin-top:2px;letter-spacing:.3px}
 
-/* ── VISION SECTION ────────────────────────────────────────────── */
-.vision {
-  padding: 120px 0;
-  background: var(--dark);
-  position: relative; overflow: hidden;
+.hero-ticker{
+  position:absolute;bottom:0;left:0;right:0;
+  background:rgba(0,0,0,0.15);border-top:1px solid rgba(255,255,255,0.15);
+  padding:12px 0;overflow:hidden;
 }
-.vision-bg {
-  position: absolute; inset: 0;
-  background: var(--grad-gray);
-  opacity: 0.85;
-}
-.vision-noise {
-  position: absolute; inset: 0;
-  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 512 512' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.75' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.12'/%3E%3C/svg%3E");
-  pointer-events: none;
-}
-.vision-content { position: relative; z-index: 2; }
-.vision .section-title { color: var(--white); }
-.vision .section-eyebrow { color: var(--blue-light); }
-.vision .section-eyebrow::before { background: var(--blue-light); }
-.vision .section-body { color: rgba(255,255,255,0.65); }
-.vision-callout {
-  background: rgba(50,101,229,0.15);
-  border: 1px solid rgba(50,101,229,0.3);
-  border-radius: var(--r-card);
-  padding: 28px 32px;
-  margin-top: 40px;
-}
-.vision-callout-label {
-  font-size: 11px; font-weight: 600; letter-spacing: 1.2px; text-transform: uppercase;
-  color: var(--blue-light); margin-bottom: 10px;
-}
-.vision-callout-text {
-  font-size: 18px; font-weight: 600; line-height: 1.5;
-  color: var(--white); letter-spacing: var(--letter-tight);
-}
-.vision-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 80px; align-items: center; }
-.vision-illus { position: relative; }
-.vision-illus img { width: 100%; border-radius: var(--r-card); }
+.ticker-track{display:flex;gap:64px;animation:ticker 30s linear infinite;white-space:nowrap}
+@keyframes ticker{0%{transform:translateX(0)}100%{transform:translateX(-50%)}}
+.ticker-item{display:flex;align-items:center;gap:10px;flex-shrink:0}
+.ticker-name{font-family:var(--font);font-size:13px;font-weight:600;color:rgba(255,255,255,0.95)}
+.ticker-val{font-size:13px;color:rgba(255,255,255,0.6)}
+.ticker-chg{font-size:12px;color:rgba(255,255,255,0.35)}
 
-/* ── MISSION ───────────────────────────────────────────────────── */
-.mission { padding: 120px 0; background: var(--light-grey); }
-.mission-inner { display: grid; grid-template-columns: 1fr 1fr; gap: 80px; align-items: center; }
-.mission-highlight {
-  background: var(--white);
-  border-radius: var(--r-card);
-  box-shadow: var(--shadow-card);
-  padding: 32px;
-  border-top: 3px solid var(--blue);
+/* ── SECTION COMMON ─────────────────────────────────────── */
+section{padding:120px 0;position:relative}
+.eyebrow{
+  font-family:var(--font);font-size:11px;font-weight:600;
+  letter-spacing:1.8px;text-transform:uppercase;color:var(--blue);
+  display:flex;align-items:center;gap:10px;margin-bottom:16px;
 }
-.mission-highlight p {
-  font-size: 16px; line-height: 1.7; color: var(--tertiary);
+.eyebrow::before{content:'';width:28px;height:2px;background:var(--blue);border-radius:2px;flex-shrink:0}
+.section-h{
+  font-family:var(--font);
+  font-size:clamp(28px,4vw,48px);
+  font-weight:600;line-height:1.15;
+  letter-spacing:-0.3px;margin-bottom:20px;
+  color:var(--text);
 }
-.mission-highlight strong { color: var(--dark); }
+.section-h .blue{color:var(--blue)}
+.section-h .gold{background:linear-gradient(135deg,#fbbf00,#a8863b);-webkit-background-clip:text;-webkit-text-fill-color:transparent}
+.section-h .red{color:var(--red)}
+.section-h .purple{color:var(--one)}
+.section-sub{font-size:17px;font-weight:400;line-height:1.7;color:var(--text-2);max-width:580px}
 
-/* ── WHY TRADE ─────────────────────────────────────────────────── */
-.why { padding: 120px 0; background: var(--white); }
-.why-contrast {
-  margin: 40px 0;
-  padding: 32px;
-  background: var(--light-grey);
-  border-radius: var(--r-card);
-  display: grid; grid-template-columns: 1fr 1px 1fr; gap: 32px; align-items: center;
+/* ── PROBLEM SECTION ────────────────────────────────────── */
+.problem{background:var(--bg)}
+.problem-grid{display:grid;grid-template-columns:1fr 1fr;gap:80px;align-items:center}
+.problem-quote{
+  font-family:var(--font);font-size:22px;font-weight:600;line-height:1.4;
+  color:var(--text);border-left:3px solid var(--blue);padding-left:24px;margin-top:32px;
+  letter-spacing:-0.3px;
 }
-.why-contrast-divider { background: var(--divider); }
-.why-contrast-side { text-align: center; }
-.why-contrast-tag {
-  font-size: 11px; font-weight: 600; letter-spacing: 1px; text-transform: uppercase;
-  margin-bottom: 8px;
+.problem-quote span{color:var(--blue)}
+.compare-strip{
+  background:var(--surface);border:1px solid var(--border);border-radius:var(--r-card);
+  overflow:hidden;box-shadow:var(--shadow-card);margin-top:8px;
 }
-.why-contrast-tag.a { color: var(--tertiary-lt); }
-.why-contrast-tag.b { color: var(--blue); }
-.why-contrast-text {
-  font-size: 18px; font-weight: 700; line-height: 1.4;
-  letter-spacing: var(--letter-tight);
-}
-.why-contrast-text.a { color: var(--tertiary); }
-.why-contrast-text.b { color: var(--blue); }
+.compare-row{display:grid;grid-template-columns:1fr 1px 1fr;align-items:stretch}
+.compare-row+.compare-row{border-top:1px solid var(--border)}
+.compare-divider{background:var(--border)}
+.compare-cell{padding:16px 20px}
+.compare-label{font-size:11px;font-weight:600;letter-spacing:1.2px;text-transform:uppercase;margin-bottom:6px}
+.compare-label.them{color:var(--text-3)}
+.compare-label.us{color:var(--blue)}
+.compare-text{font-size:15px;font-weight:600;line-height:1.4}
+.compare-text.them{color:var(--text-3)}
+.compare-text.us{color:var(--text)}
 
-/* ── PLATFORM (ASSETS) ─────────────────────────────────────────── */
-.platform { padding: 120px 0; background: var(--dark); position: relative; overflow: hidden; }
-.platform-bg { position: absolute; inset: 0; background: var(--grad-gray); opacity: 0.85; }
-.platform-noise {
-  position: absolute; inset: 0;
-  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 512 512' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.75' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.12'/%3E%3C/svg%3E");
-  pointer-events: none;
+/* ── THREE LAYERS ───────────────────────────────────────── */
+.layers{background:var(--bg-2)}
+.layers-header{text-align:center;margin-bottom:64px}
+.layers-header .eyebrow{justify-content:center}
+.layers-header .eyebrow::before{display:none}
+.layers-header .section-sub{margin:0 auto}
+.layers-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:16px}
+.layer-card{
+  background:var(--surface);border:1px solid var(--border);border-radius:var(--r-card);
+  padding:40px 32px;position:relative;overflow:hidden;
+  box-shadow:var(--shadow-card);
+  transition:box-shadow .3s,transform .3s;
 }
-.platform-content { position: relative; z-index: 2; }
-.platform .section-title { color: var(--white); }
-.platform .section-eyebrow { color: var(--blue-light); }
-.platform .section-eyebrow::before { background: var(--blue-light); }
-.platform .section-body { color: rgba(255,255,255,0.65); max-width: 640px; }
-.platform-header { text-align: center; margin-bottom: 64px; }
-.platform-header .section-body { margin: 0 auto; }
-.platform-header .section-eyebrow { justify-content: center; }
-.platform-header .section-eyebrow::before { display: none; }
-.assets-grid {
-  display: grid; grid-template-columns: repeat(5, 1fr); gap: 16px;
-  margin-bottom: 64px;
+.layer-card:hover{box-shadow:var(--shadow-md);transform:translateY(-4px)}
+.layer-card::before{
+  content:'';position:absolute;top:0;left:0;right:0;height:3px;
 }
-.asset-card {
-  background: rgba(255,255,255,0.06);
-  border: 1px solid rgba(255,255,255,0.1);
-  border-radius: var(--r-card);
-  padding: 24px 16px;
-  text-align: center;
-  transition: background 0.2s, border-color 0.2s, transform 0.2s;
-  cursor: default;
+.layer-card.market::before{background:var(--blue)}
+.layer-card.trader::before{background:var(--one)}
+.layer-card.execution::before{background:linear-gradient(90deg,#fbbf00,#a8863b)}
+.layer-num{
+  font-family:var(--font);font-size:40px;font-weight:700;
+  opacity:.08;margin-bottom:16px;line-height:1;color:var(--text);
 }
-.asset-card:hover {
-  background: rgba(50,101,229,0.15);
-  border-color: rgba(50,101,229,0.4);
-  transform: translateY(-4px);
-}
-.asset-card img { width: 56px; height: 56px; margin: 0 auto 12px; }
-.asset-card-name {
-  font-size: 14px; font-weight: 600; color: rgba(255,255,255,0.85);
-  letter-spacing: var(--letter-tight);
-}
-.asset-card-desc {
-  font-size: 12px; color: rgba(255,255,255,0.45); margin-top: 4px; line-height: 1.5;
-}
-.platform-product {
-  display: grid; grid-template-columns: 1fr 1fr; gap: 64px; align-items: center;
-}
-.platform-product img {
-  width: 100%; border-radius: var(--r-chart);
-  box-shadow: 0 24px 64px rgba(0,0,0,0.4);
-}
+.layer-title{font-family:var(--font);font-size:18px;font-weight:600;margin-bottom:12px;letter-spacing:-0.3px}
+.layer-card.market .layer-title{color:var(--blue)}
+.layer-card.trader .layer-title{color:var(--one)}
+.layer-card.execution .layer-title{color:var(--gold)}
+.layer-body{font-size:15px;line-height:1.7;color:var(--text-2)}
+.layer-tags{display:flex;flex-wrap:wrap;gap:8px;margin-top:20px}
+.layer-tag{font-size:11px;font-weight:600;letter-spacing:.5px;padding:4px 10px;border-radius:20px}
+.market .layer-tag{background:var(--blue-dim);color:var(--blue)}
+.trader .layer-tag{background:var(--one-dim);color:var(--one)}
+.execution .layer-tag{background:rgba(168,134,59,0.1);color:var(--gold)}
 
-/* ── VCG ONE ───────────────────────────────────────────────────── */
-.vcgone { padding: 120px 0; background: var(--white); overflow: hidden; }
-.vcgone-inner { display: grid; grid-template-columns: 1fr 1fr; gap: 80px; align-items: center; }
-.vcgone-card {
-  background: var(--dark);
-  border-radius: var(--r-card);
-  padding: 32px;
-  position: relative; overflow: hidden;
-  border: 1px solid rgba(147,114,248,0.3);
+/* ── ASSETS ─────────────────────────────────────────────── */
+.assets{background:var(--bg)}
+.assets-header{text-align:center;margin-bottom:64px}
+.assets-header .eyebrow{justify-content:center}
+.assets-header .eyebrow::before{display:none}
+.assets-header .section-sub{margin:0 auto}
+.assets-grid{display:grid;grid-template-columns:repeat(5,1fr);gap:12px;margin-bottom:40px}
+.asset-card{
+  background:var(--surface);border:1px solid var(--border);border-radius:var(--r-card);
+  padding:24px 16px;text-align:center;
+  box-shadow:var(--shadow-card);
+  transition:box-shadow .25s,transform .25s,border-color .25s;
+  cursor:default;
 }
-.vcgone-card-bg {
-  position: absolute; inset: 0;
-  background: linear-gradient(135deg, #432798 0%, #1a1a2e 60%);
-  opacity: 0.6;
-}
-.vcgone-card-noise {
-  position: absolute; inset: 0;
-  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 512 512' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.75' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.12'/%3E%3C/svg%3E");
-  pointer-events: none;
-}
-.vcgone-card-content { position: relative; z-index: 2; }
-.vcgone-tag {
-  display: inline-flex; align-items: center; gap: 6px;
-  background: rgba(147,114,248,0.2);
-  border: 1px solid rgba(147,114,248,0.4);
-  color: var(--one-lighter);
-  font-size: 11px; font-weight: 600; letter-spacing: 1px; text-transform: uppercase;
-  padding: 5px 12px; border-radius: 40px;
-  margin-bottom: 20px;
-}
-.vcgone-tag-dot { width: 6px; height: 6px; background: var(--one-lighter); border-radius: 50%; }
-.vcgone-card-title {
-  font-size: 24px; font-weight: 700; color: var(--white);
-  letter-spacing: var(--letter-tight); margin-bottom: 12px;
-}
-.vcgone-card-body {
-  font-size: 15px; line-height: 1.65; color: rgba(255,255,255,0.6);
-  margin-bottom: 24px;
-}
-.vcgone-features { display: flex; flex-direction: column; gap: 12px; }
-.vcgone-feature {
-  display: flex; align-items: flex-start; gap: 12px;
-}
-.vcgone-feature-dot {
-  width: 8px; height: 8px; border-radius: 50%;
-  background: var(--one-light); flex-shrink: 0; margin-top: 6px;
-}
-.vcgone-feature-text {
-  font-size: 14px; font-weight: 500; color: rgba(255,255,255,0.8);
-}
-.vcgone-feature-text em {
-  font-style: normal; font-weight: 400; color: rgba(255,255,255,0.5); display: block; font-size: 13px;
-}
+.asset-card:hover{box-shadow:var(--shadow-md);transform:translateY(-6px);border-color:var(--blue-border)}
+.asset-card img{width:52px;height:52px;margin:0 auto 14px}
+.asset-name{font-family:var(--font);font-size:15px;font-weight:600;color:var(--text);margin-bottom:4px;letter-spacing:-0.3px}
+.asset-desc{font-size:12px;color:var(--text-3);line-height:1.5}
 
-/* ── ADVANTAGES ────────────────────────────────────────────────── */
-.advantages { padding: 120px 0; background: var(--light-grey); }
-.advantages-header { margin-bottom: 64px; }
-.advantages-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 24px; }
-.adv-card {
-  background: var(--white);
-  border-radius: var(--r-card);
-  box-shadow: var(--shadow-card);
-  padding: 32px;
-  border-top: 3px solid transparent;
-  transition: box-shadow 0.2s, transform 0.2s, border-color 0.2s;
+.product-showcase{
+  display:grid;grid-template-columns:1fr 1fr;gap:64px;align-items:center;
+  background:var(--surface);border:1px solid var(--border);border-radius:var(--r-card);
+  padding:56px;box-shadow:var(--shadow-card);
 }
-.adv-card:hover {
-  box-shadow: var(--shadow-md);
-  transform: translateY(-4px);
-  border-top-color: var(--blue);
+.product-showcase img{
+  width:100%;border-radius:11px;
+  filter:drop-shadow(0 24px 48px rgba(35,38,41,.15));
 }
-.adv-icon {
-  width: 48px; height: 48px;
-  background: var(--light-grey);
-  border-radius: 12px;
-  display: flex; align-items: center; justify-content: center;
-  font-size: 22px;
-  margin-bottom: 20px;
-}
-.adv-title {
-  font-size: 16px; font-weight: 700; color: var(--dark);
-  letter-spacing: var(--letter-tight); margin-bottom: 8px;
-}
-.adv-body { font-size: 14px; line-height: 1.65; color: var(--tertiary); }
+.showcase-eyebrow{color:var(--blue)}
+.showcase-eyebrow::before{background:var(--blue)}
 
-/* ── REWARDS ───────────────────────────────────────────────────── */
-.rewards { padding: 120px 0; background: var(--white); }
-.rewards-inner { display: grid; grid-template-columns: 1fr 1fr; gap: 80px; align-items: start; }
-.reward-highlight {
-  position: relative; overflow: hidden;
-  background: var(--grad-signals);
-  border-radius: var(--r-card);
-  padding: 40px;
-  color: var(--white);
+/* ── VCG ONE ────────────────────────────────────────────── */
+.vcgone{background:var(--bg-2);overflow:hidden}
+.vcgone-inner{display:grid;grid-template-columns:1fr 1fr;gap:64px;align-items:center}
+.one-card{
+  background:var(--bg-dark);border:1px solid rgba(147,114,248,0.2);
+  border-radius:var(--r-card);padding:40px;position:relative;overflow:hidden;
+  box-shadow:var(--shadow-lg);
 }
-.reward-highlight-noise {
-  position: absolute; inset: 0;
-  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 512 512' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.75' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.12'/%3E%3C/svg%3E");
-  pointer-events: none;
+.one-card-glow{
+  position:absolute;top:-80px;right:-80px;width:300px;height:300px;
+  background:radial-gradient(circle,rgba(147,114,248,0.2) 0%,transparent 70%);
+  pointer-events:none;
 }
-.reward-highlight-content { position: relative; z-index: 2; }
-.reward-amount {
-  font-size: 72px; font-weight: 700; line-height: 1;
-  letter-spacing: -2px;
-  margin-bottom: 8px;
+.one-tag{
+  display:inline-flex;align-items:center;gap:6px;
+  font-size:11px;font-weight:600;letter-spacing:1px;text-transform:uppercase;
+  color:var(--one);background:var(--one-dim);border:1px solid rgba(147,114,248,.3);
+  padding:5px 14px;border-radius:var(--r-pill);margin-bottom:20px;
 }
-.reward-tag {
-  font-size: 12px; font-weight: 600; letter-spacing: 1px; text-transform: uppercase;
-  opacity: 0.75; margin-bottom: 20px;
+.one-tag-dot{width:6px;height:6px;background:var(--one);border-radius:50%;animation:pulse 2s infinite}
+.one-title{font-family:var(--font);font-size:32px;font-weight:700;color:var(--text-inv);margin-bottom:10px;letter-spacing:-0.3px}
+.one-subtitle{font-size:15px;color:var(--text-inv-2);line-height:1.6;margin-bottom:28px}
+.one-metrics{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-bottom:28px}
+.one-metric{
+  background:rgba(147,114,248,0.08);border:1px solid rgba(147,114,248,0.15);
+  border-radius:var(--r-card);padding:16px;
 }
-.reward-desc {
-  font-size: 16px; line-height: 1.65; opacity: 0.85;
-  margin-bottom: 28px;
-}
-.reward-list { display: flex; flex-direction: column; gap: 16px; }
-.reward-item {
-  display: flex; align-items: flex-start; gap: 12px;
-  padding: 16px; background: var(--white);
-  border-radius: var(--r-card);
-  box-shadow: var(--shadow-card);
-}
-.reward-item-icon { font-size: 20px; flex-shrink: 0; }
-.reward-item-title { font-size: 15px; font-weight: 600; color: var(--dark); }
-.reward-item-desc { font-size: 13px; color: var(--tertiary); line-height: 1.5; }
+.one-metric-val{font-family:var(--font);font-size:24px;font-weight:700;color:var(--one);margin-bottom:4px}
+.one-metric-lbl{font-size:12px;color:var(--text-inv-3)}
+.one-features{display:flex;flex-direction:column;gap:12px}
+.one-feature{display:flex;gap:12px;align-items:flex-start}
+.one-feature-dot{width:7px;height:7px;background:var(--one);border-radius:50%;margin-top:6px;flex-shrink:0}
+.one-feature-title{font-size:14px;font-weight:600;color:var(--text-inv)}
+.one-feature-desc{font-size:13px;color:var(--text-inv-3);margin-top:2px;line-height:1.5}
 
-/* ── TRUST ─────────────────────────────────────────────────────── */
-.trust { padding: 120px 0; background: var(--light-grey); }
-.trust-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 24px; margin-top: 56px; }
-.trust-card {
-  background: var(--white); border-radius: var(--r-card);
-  box-shadow: var(--shadow-card); padding: 32px;
-  display: flex; gap: 20px; align-items: flex-start;
-  transition: box-shadow 0.2s;
+.one-diff{
+  background:var(--one-dim);border:1px solid rgba(147,114,248,.15);
+  border-radius:var(--r-card);padding:20px 24px;margin-top:28px;
 }
-.trust-card:hover { box-shadow: var(--shadow-md); }
-.trust-card-icon {
-  width: 48px; height: 48px; flex-shrink: 0;
-  background: rgba(50,101,229,0.08);
-  border-radius: 12px;
-  display: flex; align-items: center; justify-content: center;
-  font-size: 22px;
-}
-.trust-card-title { font-size: 16px; font-weight: 700; color: var(--dark); margin-bottom: 6px; }
-.trust-card-body { font-size: 14px; line-height: 1.65; color: var(--tertiary); }
+.one-diff-label{font-size:11px;font-weight:600;letter-spacing:1px;text-transform:uppercase;color:var(--one);margin-bottom:8px}
+.one-diff-text{font-size:15px;line-height:1.65;color:var(--text-2)}
 
-/* ── JOURNEY ───────────────────────────────────────────────────── */
-.journey { padding: 120px 0; background: var(--white); }
-.journey-header { text-align: center; margin-bottom: 72px; }
-.journey-header .section-eyebrow { justify-content: center; }
-.journey-header .section-eyebrow::before { display: none; }
-.journey-header .section-body { margin: 0 auto; text-align: center; }
-.journey-steps {
-  display: grid; grid-template-columns: repeat(5, 1fr);
-  position: relative;
-  gap: 0;
+/* ── COMPETITOR TABLE ───────────────────────────────────── */
+.compete{background:var(--bg);padding-bottom:140px}
+.compete-header{text-align:center;margin-bottom:64px}
+.compete-header .eyebrow{justify-content:center}
+.compete-header .eyebrow::before{display:none}
+.compete-header .section-sub{margin:0 auto}
+.table-wrap{
+  border:1px solid var(--border);border-radius:var(--r-card);overflow:hidden;
+  background:var(--surface);box-shadow:var(--shadow-card);
 }
-.journey-steps::before {
-  content: '';
-  position: absolute; top: 28px; left: 10%; right: 10%;
-  height: 2px; background: var(--divider); z-index: 0;
+.table-head{
+  display:grid;grid-template-columns:2fr 1fr 1fr 1fr 1.2fr;
+  background:var(--text);border-bottom:1px solid var(--blue-border);
 }
-.journey-step {
-  display: flex; flex-direction: column; align-items: center;
-  text-align: center; position: relative; z-index: 1; padding: 0 12px;
+.th{
+  padding:16px 20px;
+  font-family:var(--font);font-size:13px;font-weight:600;color:rgba(255,255,255,0.5);
+  letter-spacing:.3px;
 }
-.journey-step-num {
-  width: 56px; height: 56px;
-  background: var(--white);
-  border: 2px solid var(--divider);
-  border-radius: 50%;
-  display: flex; align-items: center; justify-content: center;
-  font-size: 20px; font-weight: 700; color: var(--quaternary);
-  margin-bottom: 20px;
-  transition: border-color 0.2s, color 0.2s, background 0.2s;
-  flex-shrink: 0;
+.th.vcg{color:var(--blue-light)}
+.table-row{
+  display:grid;grid-template-columns:2fr 1fr 1fr 1fr 1.2fr;
+  border-bottom:1px solid var(--border);
+  transition:background .2s;
 }
-.journey-step:hover .journey-step-num {
-  border-color: var(--blue);
-  background: var(--blue);
-  color: var(--white);
+.table-row:hover{background:var(--bg)}
+.table-row:last-child{border-bottom:none}
+.td{padding:14px 20px;display:flex;align-items:center;font-size:14px;color:var(--text-2)}
+.td.feature{font-weight:600;color:var(--text);font-size:14px}
+.td.no{color:var(--text-3)}
+.td.yes{color:var(--green);font-weight:600}
+.td.partial{color:var(--gold)}
+.td.vcg-col{
+  background:rgba(50,101,229,0.05);
+  font-weight:700;color:var(--blue);
+  border-left:1px solid var(--blue-border);
 }
-.journey-step-title {
-  font-size: 14px; font-weight: 700; color: var(--dark);
-  letter-spacing: var(--letter-tight); margin-bottom: 8px;
+.check{margin-right:6px}
+.table-note{
+  text-align:center;margin-top:24px;
+  font-size:13px;color:var(--text-3);line-height:1.6;
 }
-.journey-step-desc { font-size: 13px; line-height: 1.6; color: var(--tertiary); }
+.table-note strong{color:var(--text-2)}
 
-/* ── PEOPLE PHOTO STRIP ────────────────────────────────────────── */
-.people-strip { padding: 0; background: var(--light-grey); overflow: hidden; }
-.people-strip-inner {
-  display: flex; gap: 0;
-  height: 320px;
+/* ── JOURNEY ────────────────────────────────────────────── */
+.journey{background:var(--bg-2)}
+.journey-header{text-align:center;margin-bottom:72px}
+.journey-header .eyebrow{justify-content:center}
+.journey-header .eyebrow::before{display:none}
+.journey-header .section-sub{margin:0 auto}
+.journey-track{display:grid;grid-template-columns:repeat(5,1fr);position:relative;gap:0}
+.journey-track::before{
+  content:'';position:absolute;
+  top:28px;left:8%;right:8%;height:1px;
+  background:var(--border-mid);z-index:0;
 }
-.people-strip-inner img {
-  flex: 1; object-fit: cover; object-position: top center;
-  height: 100%; filter: grayscale(0.2);
-  transition: flex 0.4s ease, filter 0.3s;
+.journey-step{display:flex;flex-direction:column;align-items:center;text-align:center;position:relative;z-index:1;padding:0 12px}
+.journey-num{
+  width:56px;height:56px;border-radius:50%;
+  display:flex;align-items:center;justify-content:center;
+  font-family:var(--font);font-size:16px;font-weight:700;
+  background:var(--surface);border:1px solid var(--border);
+  color:var(--text-3);margin-bottom:20px;flex-shrink:0;
+  box-shadow:var(--shadow-card);
+  transition:all .3s;
 }
-.people-strip-inner img:hover { flex: 2; filter: grayscale(0); }
+.journey-step:hover .journey-num{
+  background:var(--blue);border-color:var(--blue);
+  color:#fff;box-shadow:var(--shadow-blue);
+}
+.journey-title{font-family:var(--font);font-size:14px;font-weight:600;color:var(--text);margin-bottom:8px;letter-spacing:-0.3px}
+.journey-desc{font-size:13px;line-height:1.6;color:var(--text-3)}
 
-/* ── CTA ───────────────────────────────────────────────────────── */
-.cta-section {
-  padding: 120px 0;
-  background: var(--dark);
-  position: relative; overflow: hidden; text-align: center;
+/* ── TRUST ──────────────────────────────────────────────── */
+.trust{background:var(--bg);border-top:1px solid var(--border)}
+.trust-inner{display:grid;grid-template-columns:1fr 1fr;gap:80px;align-items:start}
+.trust-grid{display:grid;grid-template-columns:1fr 1fr;gap:16px;margin-top:40px}
+.trust-card{
+  background:var(--surface);border:1px solid var(--border);border-radius:var(--r-card);
+  padding:24px;display:flex;flex-direction:column;gap:10px;
+  box-shadow:var(--shadow-card);
+  transition:box-shadow .25s,transform .25s,border-color .25s;
 }
-.cta-bg { position: absolute; inset: 0; background: var(--grad-gray); opacity: 0.9; }
-.cta-noise {
-  position: absolute; inset: 0;
-  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 512 512' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.75' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.12'/%3E%3C/svg%3E");
-  pointer-events: none;
+.trust-card:hover{box-shadow:var(--shadow-md);transform:translateY(-3px);border-color:var(--blue-border)}
+.trust-icon{font-size:22px}
+.trust-title{font-family:var(--font);font-size:15px;font-weight:600;color:var(--text);letter-spacing:-0.3px}
+.trust-body{font-size:13px;line-height:1.6;color:var(--text-3)}
+.reg-badges{display:flex;flex-direction:column;gap:12px;margin-top:32px}
+.reg-badge{
+  display:flex;align-items:center;gap:14px;
+  background:var(--surface);border:1px solid var(--border);border-radius:var(--r-card);
+  padding:16px 20px;box-shadow:var(--shadow-card);
 }
-.cta-content { position: relative; z-index: 2; }
-.cta-pre {
-  font-size: 12px; font-weight: 600; letter-spacing: 1.5px; text-transform: uppercase;
-  color: var(--blue-light); margin-bottom: 20px;
+.reg-badge-dot{width:8px;height:8px;border-radius:50%;background:var(--green);flex-shrink:0}
+.reg-badge-text{font-size:14px;font-weight:600;color:var(--text)}
+.reg-badge-sub{font-size:12px;color:var(--text-3);margin-top:2px}
+
+/* ── PEOPLE ─────────────────────────────────────────────── */
+.people{padding:0;overflow:hidden;height:340px;position:relative}
+.people-track{display:flex;height:100%}
+.people-track img{
+  flex:1;object-fit:cover;object-position:top center;
+  height:100%;filter:grayscale(.3) brightness(.85);
+  transition:flex .5s ease,filter .3s;
 }
-.cta-h2 {
-  font-size: clamp(36px, 5vw, 56px);
-  font-weight: 700; line-height: 1.1;
-  letter-spacing: var(--letter-tight);
-  color: var(--white); margin-bottom: 20px;
-}
-.cta-h2 em {
-  font-style: normal;
-  background: var(--grad-gold);
-  -webkit-background-clip: text; -webkit-text-fill-color: transparent;
-}
-.cta-sub {
-  font-size: 18px; line-height: 1.6;
-  color: rgba(255,255,255,0.6); max-width: 520px; margin: 0 auto 40px;
-}
-.cta-actions { display: flex; justify-content: center; gap: 16px; flex-wrap: wrap; margin-bottom: 48px; }
-.cta-btn {
-  background: var(--blue);
-  color: var(--white);
-  font-size: 16px; font-weight: 600; letter-spacing: var(--letter-tight);
-  padding: 16px 36px; border-radius: var(--r-btn-lg);
-  display: inline-flex; align-items: center; gap: 8px;
-  transition: background 0.2s, box-shadow 0.2s, transform 0.15s;
-  cursor: pointer;
-}
-.cta-btn:hover { background: var(--blue-dark); box-shadow: var(--shadow-lg); transform: translateY(-1px); }
-.cta-disclaimer {
-  font-size: 12px; color: rgba(255,255,255,0.3); line-height: 1.6;
-  max-width: 600px; margin: 0 auto;
+.people-track img:hover{flex:2.5;filter:grayscale(0) brightness(1)}
+.people-overlay{
+  position:absolute;inset:0;
+  background:linear-gradient(to bottom,var(--dark) 0%,transparent 20%,transparent 80%,var(--dark) 100%);
+  pointer-events:none;
 }
 
-/* ── FOOTER ────────────────────────────────────────────────────── */
-footer {
-  background: #111316;
-  padding: 48px 0 32px;
-  border-top: 1px solid rgba(255,255,255,0.06);
+/* ── CTA ────────────────────────────────────────────────── */
+.cta-section{
+  padding:140px 0;text-align:center;
+  background:var(--bg-dark);position:relative;overflow:hidden;
 }
-.footer-inner {
-  display: flex; justify-content: space-between; align-items: center;
-  flex-wrap: wrap; gap: 24px;
+.cta-mesh{
+  position:absolute;inset:0;
+  background:
+    radial-gradient(ellipse 50% 60% at 50% 50%, rgba(50,101,229,0.18) 0%, transparent 70%),
+    radial-gradient(ellipse 30% 30% at 80% 20%, rgba(251,191,0,0.07) 0%, transparent 60%);
+  pointer-events:none;
 }
-.footer-logo img { height: 24px; opacity: 0.7; }
-.footer-tagline {
-  font-size: 13px; font-weight: 500;
-  color: rgba(255,255,255,0.3);
-  letter-spacing: 0.2px;
+.cta-content{position:relative;z-index:2}
+.cta-kicker{
+  font-size:12px;font-weight:600;letter-spacing:2px;text-transform:uppercase;
+  color:var(--text-inv-3);margin-bottom:24px;
 }
-footer .divider-line {
-  border: none; border-top: 1px solid rgba(255,255,255,0.06);
-  margin: 32px 0 24px;
+.cta-h{
+  font-family:var(--font);
+  font-size:clamp(40px,6vw,68px);
+  font-weight:700;line-height:1.05;
+  letter-spacing:-1.5px;margin-bottom:28px;
 }
-.footer-bottom {
-  display: flex; justify-content: space-between; align-items: center;
-  flex-wrap: wrap; gap: 12px;
+.cta-h .line{display:block;color:var(--text-inv)}
+.cta-h .gold-text{background:linear-gradient(135deg,#fbbf00,#a8863b);-webkit-background-clip:text;-webkit-text-fill-color:transparent}
+.cta-sub{
+  font-size:18px;font-weight:300;line-height:1.7;color:var(--text-inv-2);
+  max-width:520px;margin:0 auto 44px;
 }
-.footer-copy { font-size: 12px; color: rgba(255,255,255,0.2); }
-.footer-reg { font-size: 11px; color: rgba(255,255,255,0.2); max-width: 500px; line-height: 1.5; }
+.cta-actions{display:flex;justify-content:center;gap:16px;flex-wrap:wrap;margin-bottom:48px}
+.cta-primary{
+  font-family:var(--font);font-size:16px;font-weight:700;letter-spacing:-0.3px;
+  background:var(--blue);color:#fff;
+  padding:18px 40px;border-radius:var(--r-btn);
+  display:inline-flex;align-items:center;gap:10px;
+  transition:background .2s,box-shadow .2s,transform .15s;cursor:pointer;
+}
+.cta-primary:hover{background:var(--blue-dark);box-shadow:0 0 60px rgba(50,101,229,0.4);transform:translateY(-2px)}
+.cta-disclaimer{font-size:12px;color:var(--text-inv-3);line-height:1.7;max-width:620px;margin:0 auto}
 
-/* ── SCROLL REVEAL ─────────────────────────────────────────────── */
-.reveal {
-  opacity: 0; transform: translateY(28px);
-  transition: opacity 0.7s cubic-bezier(.2,.6,.4,1), transform 0.7s cubic-bezier(.2,.6,.4,1);
-}
-.reveal.visible { opacity: 1; transform: translateY(0); }
-.reveal-d1 { transition-delay: 0.1s; }
-.reveal-d2 { transition-delay: 0.2s; }
-.reveal-d3 { transition-delay: 0.3s; }
-.reveal-d4 { transition-delay: 0.4s; }
-.reveal-d5 { transition-delay: 0.5s; }
+/* ── FOOTER ─────────────────────────────────────────────── */
+footer{background:var(--bg-dark-2);padding:48px 0 32px;border-top:1px solid rgba(255,255,255,0.06)}
+.footer-inner{display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:20px}
+.footer-logo img{height:22px;opacity:.6}
+.footer-tagline{font-size:13px;color:var(--text-inv-3)}
+.footer-divider{border:none;border-top:1px solid rgba(255,255,255,0.06);margin:28px 0 20px}
+.footer-bottom{display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:12px}
+.footer-copy{font-size:12px;color:var(--text-inv-3)}
+.footer-reg{font-size:11px;color:rgba(255,255,255,0.18);max-width:560px;line-height:1.5}
 
-/* ── RESPONSIVE ────────────────────────────────────────────────── */
-@media (max-width: 960px) {
-  .hero-content, .intro-grid, .vision-grid, .mission-inner,
-  .vcgone-inner, .rewards-inner { grid-template-columns: 1fr; gap: 48px; }
-  .hero-visual { display: none; }
-  .assets-grid { grid-template-columns: repeat(3, 1fr); }
-  .advantages-grid { grid-template-columns: repeat(2, 1fr); }
-  .journey-steps { grid-template-columns: 1fr; }
-  .journey-steps::before { display: none; }
-  .journey-step { flex-direction: row; text-align: left; gap: 16px; }
-  .trust-grid { grid-template-columns: 1fr; }
-  .platform-product { grid-template-columns: 1fr; }
-  .people-strip-inner { height: 200px; }
-  .why-contrast { grid-template-columns: 1fr; }
-  .why-contrast-divider { display: none; }
+/* ── REVEAL ──────────────────────────────────────────────── */
+.reveal{opacity:0;transform:translateY(32px);transition:opacity .75s cubic-bezier(.2,.6,.4,1),transform .75s cubic-bezier(.2,.6,.4,1)}
+.reveal.in{opacity:1;transform:translateY(0)}
+.d1{transition-delay:.1s}.d2{transition-delay:.2s}.d3{transition-delay:.3s}.d4{transition-delay:.4s}.d5{transition-delay:.5s}
+
+/* ── RESPONSIVE ──────────────────────────────────────────── */
+@media(max-width:980px){
+  .hero-proof{gap:20px}
+  .problem-grid,.vcgone-inner,.trust-inner,.product-showcase{grid-template-columns:1fr;gap:48px}
+  .layers-grid{grid-template-columns:1fr}
+  .assets-grid{grid-template-columns:repeat(3,1fr)}
+  .journey-track{grid-template-columns:1fr}
+  .journey-track::before{display:none}
+  .journey-step{flex-direction:row;text-align:left;gap:16px}
+  .table-head,.table-row{grid-template-columns:1.5fr 1fr 1fr 1.2fr}
+  .th:nth-child(3),.td:nth-child(3){display:none}
 }
-@media (max-width: 600px) {
-  .nav-inner { padding: 0 24px; }
-  .assets-grid { grid-template-columns: repeat(2, 1fr); }
-  .advantages-grid { grid-template-columns: 1fr; }
-  .footer-inner, .footer-bottom { flex-direction: column; align-items: flex-start; }
+@media(max-width:600px){
+  .assets-grid{grid-template-columns:repeat(2,1fr)}
+  .one-metrics{grid-template-columns:1fr}
+  .trust-grid{grid-template-columns:1fr}
+  .people{height:200px}
+  .table-head,.table-row{grid-template-columns:1.5fr 1fr 1.2fr}
+  .th:nth-child(2),.td:nth-child(2){display:none}
 }
 </style>
 </head>
@@ -742,52 +545,131 @@ footer .divider-line {
 
 <!-- NAV -->
 <nav class="nav">
-  <div class="nav-inner">
-    <div class="nav-logo">
-      <img src="https://ramongervais.github.io/vcg-brandbook/brand/logo/VCG%20LOGO-Black.svg" alt="VCG Markets">
+  <div class="wrap nav-inner">
+    <a class="nav-logo" href="#">
+      <img class="logo-white" src="https://ramongervais.github.io/vcg-brandbook/brand/logo/VCG%20LOGO-white.svg" alt="VCG Markets">
+      <img class="logo-black" src="https://ramongervais.github.io/vcg-brandbook/brand/logo/VCG%20LOGO-Black.svg" alt="VCG Markets">
+    </a>
+    <div class="nav-right">
+      <a href="#markets" class="nav-link">Markets</a>
+      <a href="#vcgone" class="nav-link">VCG ONE</a>
+      <a href="#compete" class="nav-link">Why VCG</a>
+      <a href="#cta" class="nav-btn">Claim $100 Reward →</a>
     </div>
-    <a href="#cta" class="nav-cta">Claim $100 Reward →</a>
   </div>
 </nav>
 
 <!-- HERO -->
 <section class="hero" id="hero">
-  <div class="hero-bg"></div>
-  <div class="hero-bg-img"></div>
-  <div class="hero-noise"></div>
-  <div class="container">
+  <div class="hero-mesh"></div>
+  <div class="hero-grid"></div>
+  <div class="wrap">
     <div class="hero-content">
-      <div class="hero-text">
-        <div class="hero-eyebrow"><span></span>Gold. Oil. Forex. Crypto. Indices.</div>
-        <h1 class="hero-h1">Most traders guess.<br><em>You don't have to.</em></h1>
-        <p class="hero-sub">VCG Markets is the intelligent trading platform built for traders who want more than just a buy and sell button. Global markets, AI-powered insights, and a $100 reward to get you started.</p>
-        <div class="hero-actions">
-          <a href="#cta" class="btn-primary">Claim Your $100 Reward →</a>
-          <a href="#platform" class="btn-secondary">See the Platform</a>
+      <div class="hero-kicker"><span class="hero-kicker-dot"></span>The Intelligent Trading Platform</div>
+      <h1 class="hero-h1">
+        <span class="line-1">When the market moves:</span>
+        <span class="line-2">Make bold trades. Make <span class="accent">intelligent</span> decisions.</span>
+      </h1>
+      <p class="hero-sub">Financial markets move the world every day. Gold reacts to inflation. Oil shifts when OPEC speaks. The traders who win are not the ones who react fastest — they are the ones who understand most.</p>
+      <div class="hero-actions">
+        <a href="#cta" class="btn-primary">Claim Your $100 Reward →</a>
+        <a href="#compete" class="btn-ghost">See How We Compare</a>
+      </div>
+      <div class="hero-proof">
+        <div class="hero-proof-item">
+          <span class="hero-proof-val">5</span>
+          <span class="hero-proof-lbl">Global Markets</span>
         </div>
-        <div class="hero-stats">
-          <div>
-            <div class="hero-stat-val">5</div>
-            <div class="hero-stat-lbl">Global Markets</div>
-          </div>
-          <div>
-            <div class="hero-stat-val">$100</div>
-            <div class="hero-stat-lbl">Welcome Reward</div>
-          </div>
-          <div>
-            <div class="hero-stat-val">VCG ONE</div>
-            <div class="hero-stat-lbl">AI Trading Co-Pilot</div>
-          </div>
+        <div class="hero-proof-item">
+          <span class="hero-proof-val">30+</span>
+          <span class="hero-proof-lbl">Trader Performance Indicators</span>
+        </div>
+        <div class="hero-proof-item">
+          <span class="hero-proof-val">5,000+</span>
+          <span class="hero-proof-lbl">Global Partners</span>
+        </div>
+        <div class="hero-proof-item">
+          <span class="hero-proof-val">2</span>
+          <span class="hero-proof-lbl">Regulatory Licences</span>
         </div>
       </div>
-      <div class="hero-visual">
-        <div class="hero-phone-wrap">
-          <img src="https://ramongervais.github.io/vcg-brandbook/brand/productshots/Homepage-Hero-2.0.png" alt="VCG Markets Platform">
-          <div class="hero-badge">
-            <div class="hero-badge-icon">📈</div>
-            <div>
-              <div class="hero-badge-text">Gold up 2.4% today</div>
-              <div class="hero-badge-sub">Are you positioned?</div>
+    </div>
+  </div>
+  <div class="hero-ticker">
+    <div class="ticker-track">
+      <div class="ticker-item"><span class="ticker-name">GOLD</span><span class="ticker-val">XAU/USD</span><span class="ticker-chg">Precious metals & macro hedge</span></div>
+      <div class="ticker-item"><span class="ticker-name">OIL</span><span class="ticker-val">WTI/BRENT</span><span class="ticker-chg">Geopolitical volatility plays</span></div>
+      <div class="ticker-item"><span class="ticker-name">FOREX</span><span class="ticker-val">50+ Pairs</span><span class="ticker-chg">World's most liquid market</span></div>
+      <div class="ticker-item"><span class="ticker-name">CRYPTO</span><span class="ticker-val">BTC · ETH · More</span><span class="ticker-chg">High-volatility digital assets</span></div>
+      <div class="ticker-item"><span class="ticker-name">INDICES</span><span class="ticker-val">S&P 500 · NASDAQ</span><span class="ticker-chg">Global equity exposure</span></div>
+      <div class="ticker-item"><span class="ticker-name">VCG ONE</span><span class="ticker-val">AI Co-Pilot</span><span class="ticker-chg">Your behavioural edge engine</span></div>
+      <!-- duplicate for seamless loop -->
+      <div class="ticker-item"><span class="ticker-name">GOLD</span><span class="ticker-val">XAU/USD</span><span class="ticker-chg">Precious metals & macro hedge</span></div>
+      <div class="ticker-item"><span class="ticker-name">OIL</span><span class="ticker-val">WTI/BRENT</span><span class="ticker-chg">Geopolitical volatility plays</span></div>
+      <div class="ticker-item"><span class="ticker-name">FOREX</span><span class="ticker-val">50+ Pairs</span><span class="ticker-chg">World's most liquid market</span></div>
+      <div class="ticker-item"><span class="ticker-name">CRYPTO</span><span class="ticker-val">BTC · ETH · More</span><span class="ticker-chg">High-volatility digital assets</span></div>
+      <div class="ticker-item"><span class="ticker-name">INDICES</span><span class="ticker-val">S&P 500 · NASDAQ</span><span class="ticker-chg">Global equity exposure</span></div>
+      <div class="ticker-item"><span class="ticker-name">VCG ONE</span><span class="ticker-val">AI Co-Pilot</span><span class="ticker-chg">Your behavioural edge engine</span></div>
+    </div>
+  </div>
+</section>
+
+<!-- PROBLEM -->
+<section class="problem" id="problem">
+  <div class="wrap">
+    <div class="problem-grid">
+      <div>
+        <p class="eyebrow reveal">The Problem With Most Platforms</p>
+        <h2 class="section-h reveal d1">Most platforms <span class="blue">execute</span> trades. None make you <span class="red">better.</span></h2>
+        <p class="section-sub reveal d2">Most trading platforms do one thing: execute. They give you charts, leverage, and instruments — but zero insight into why a trade worked, why it failed, or how your own behaviour is costing you.</p>
+        <div class="problem-quote reveal d3">
+          "Access to markets is easy. Good decisions are <span>harder.</span> VCG was built to solve that."
+        </div>
+      </div>
+      <div class="reveal d2">
+        <div class="compare-strip">
+          <div class="compare-row">
+            <div class="compare-cell">
+              <div class="compare-label them">What they offer</div>
+              <div class="compare-text them">Charts and execution only</div>
+            </div>
+            <div class="compare-divider"></div>
+            <div class="compare-cell">
+              <div class="compare-label us">What VCG adds</div>
+              <div class="compare-text us">Behavioural AI via VCG ONE</div>
+            </div>
+          </div>
+          <div class="compare-row">
+            <div class="compare-cell">
+              <div class="compare-label them">What they offer</div>
+              <div class="compare-text them">Copy other traders</div>
+            </div>
+            <div class="compare-divider"></div>
+            <div class="compare-cell">
+              <div class="compare-label us">What VCG adds</div>
+              <div class="compare-text us">Understand yourself as a trader</div>
+            </div>
+          </div>
+          <div class="compare-row">
+            <div class="compare-cell">
+              <div class="compare-label them">What they offer</div>
+              <div class="compare-text them">Market maker execution</div>
+            </div>
+            <div class="compare-divider"></div>
+            <div class="compare-cell">
+              <div class="compare-label us">What VCG adds</div>
+              <div class="compare-text us">ECN — no conflict of interest</div>
+            </div>
+          </div>
+          <div class="compare-row">
+            <div class="compare-cell">
+              <div class="compare-label them">What they offer</div>
+              <div class="compare-text them">Europe-primary, restricted elsewhere</div>
+            </div>
+            <div class="compare-divider"></div>
+            <div class="compare-cell">
+              <div class="compare-label us">What VCG adds</div>
+              <div class="compare-text us">Built natively for your market</div>
             </div>
           </div>
         </div>
@@ -796,148 +678,95 @@ footer .divider-line {
   </div>
 </section>
 
-<!-- INTRO -->
-<section class="intro" id="intro">
-  <div class="container">
-    <div class="intro-grid">
-      <div>
-        <p class="section-eyebrow reveal">01 — The Problem with Most Platforms</p>
-        <h2 class="section-title reveal reveal-d1">A platform that executes trades<br>is the minimum. Not the goal.</h2>
-        <p class="section-body reveal reveal-d2">Most trading platforms do one thing: they let you place a trade. That's it. No insight into why you made the decision. No analysis of whether it was a good one. No help becoming a better trader.</p>
-        <p class="section-body reveal reveal-d2">VCG Markets was built differently. We combine access to global financial markets with the intelligence tools to help you actually understand what you're doing — and improve it.</p>
-        <p class="section-body reveal reveal-d2">Gold, oil, forex, indices, crypto — all in one mobile-first platform. And behind every trade, an AI co-pilot that helps you understand yourself as a trader.</p>
-        <blockquote class="intro-quote reveal reveal-d3">"Your trades reveal more than you think. VCG ONE helps you see what most traders miss."</blockquote>
-      </div>
-      <div class="intro-visual reveal reveal-d2">
-        <img src="https://ramongervais.github.io/vcg-brandbook/brand/productshots/AdvancedChart.png" alt="Advanced Chart" style="border-radius: 11px;">
-        <div class="intro-visual-overlay"></div>
-        <img src="https://ramongervais.github.io/vcg-brandbook/brand/illustrations/candle%20sticks.svg" alt="" style="position:absolute; bottom:-24px; right:-24px; width:120px; opacity:0.7; filter: drop-shadow(0 4px 12px rgba(50,101,229,0.3));">
-      </div>
+<!-- THREE LAYERS -->
+<section class="layers" id="intelligence">
+  <div class="wrap">
+    <div class="layers-header">
+      <p class="eyebrow reveal">A New Era of Trading Platform</p>
+      <h2 class="section-h reveal d1">Three layers of intelligence. <span class="blue">One platform.</span></h2>
+      <p class="section-sub reveal d2">VCG Markets connects capabilities that no competitor currently combines for retail traders.</p>
     </div>
-  </div>
-</section>
-
-<!-- VISION -->
-<section class="vision" id="vision">
-  <div class="vision-bg"></div>
-  <div class="vision-noise"></div>
-  <div class="container vision-content">
-    <div class="vision-grid">
-      <div class="vision-illus reveal">
-        <img src="https://ramongervais.github.io/vcg-brandbook/brand/illustrations/Asset%2019.svg" alt="" style="opacity:0.95; max-width: 420px; margin: 0 auto; filter: drop-shadow(0 16px 48px rgba(50,101,229,0.25));">
+    <div class="layers-grid">
+      <div class="layer-card market reveal">
+        <div class="layer-num">01</div>
+        <div class="layer-title">Market Intelligence</div>
+        <p class="layer-body">Understanding what markets are doing — powered by Trading Central, TradingView, and real-time AI market agents that analyse macro events as they happen.</p>
+        <div class="layer-tags">
+          <span class="layer-tag">Trading Central</span>
+          <span class="layer-tag">TradingView</span>
+          <span class="layer-tag">AI Agents</span>
+          <span class="layer-tag">PrimeXM</span>
+        </div>
       </div>
-      <div>
-        <p class="section-eyebrow reveal">02 — Vision</p>
-        <h2 class="section-title reveal reveal-d1">The traders who win tomorrow<br>are learning today.</h2>
-        <p class="section-body reveal reveal-d2">Markets are moving faster than ever. AI, data, and automation are changing who has the edge — and the advantage now belongs to traders who understand their own behaviour, not just the charts.</p>
-        <p class="section-body reveal reveal-d2">The old way: place a trade, hope for the best, repeat. The new way: trade with intelligence. Understand the signals. Analyse your decisions. Improve with every position you take.</p>
-        <p class="section-body reveal reveal-d2">VCG Markets is building the platform where that future is available to every trader — not just professionals with access to expensive tools.</p>
-        <div class="vision-callout reveal reveal-d3">
-          <div class="vision-callout-label">Our Vision</div>
-          <div class="vision-callout-text">Give every trader access to the intelligence and insight that once belonged only to the professionals. Democratise edge. Reward curiosity.</div>
+      <div class="layer-card trader reveal d2">
+        <div class="layer-num">02</div>
+        <div class="layer-title">Trader Intelligence</div>
+        <p class="layer-body">Understanding how you trade — powered by VCG ONE, the only behavioural AI engine in retail trading. 30+ indicators. A personalised Trader Strength Score after 50 trades.</p>
+        <div class="layer-tags">
+          <span class="layer-tag">VCG ONE</span>
+          <span class="layer-tag">30+ Indicators</span>
+          <span class="layer-tag">Strength Score</span>
+        </div>
+      </div>
+      <div class="layer-card execution reveal d4">
+        <div class="layer-num">03</div>
+        <div class="layer-title">Execution Intelligence</div>
+        <p class="layer-body">Turning insight into action — ECN execution via PrimeXM means no conflict of interest, faster fills, and tighter spreads. No market maker taking the other side of your trade.</p>
+        <div class="layer-tags">
+          <span class="layer-tag">ECN Execution</span>
+          <span class="layer-tag">PrimeXM</span>
+          <span class="layer-tag">No Conflict</span>
         </div>
       </div>
     </div>
   </div>
 </section>
 
-<!-- MISSION -->
-<section class="mission" id="mission">
-  <div class="container">
-    <div class="mission-inner">
-      <div>
-        <p class="section-eyebrow reveal">03 — Mission</p>
-        <h2 class="section-title reveal reveal-d1">We exist to make you<br>a better trader.</h2>
-        <p class="section-body reveal reveal-d2">Not to simply take your trades. Not to dazzle you with a flashy interface and disappear. VCG Markets was built with one purpose: to give traders the tools, insight, and intelligence to actually improve.</p>
-        <p class="section-body reveal reveal-d2">That means global market access on a mobile-first platform. Real-time execution. And an AI co-pilot — VCG ONE — that does something no other platform offers: it analyses your trading behaviour and tells you what it means.</p>
-        <p class="section-body reveal reveal-d2">Markets move constantly. The traders who thrive are the ones who keep learning. VCG Markets is where that learning happens.</p>
-      </div>
-      <div class="mission-highlight reveal reveal-d2">
-        <img src="https://ramongervais.github.io/vcg-brandbook/brand/illustrations/Asset%2022.svg" alt="" style="width:80px; margin-bottom:16px; opacity:0.85;">
-        <p><strong>Better information. Better decisions. Better trades.</strong></p>
-        <p style="margin-top:14px;">Most traders lose not because markets are unpredictable — but because they keep making the same mistakes without realising it. Overtrading. Emotional entries. Revenge trades after a loss.</p>
-        <p style="margin-top:14px;">VCG ONE identifies those patterns. So you can break them. <strong>That's the VCG difference.</strong></p>
-      </div>
+<!-- MARKETS -->
+<section class="assets" id="markets">
+  <div class="wrap">
+    <div class="assets-header">
+      <p class="eyebrow reveal">Trade Global Markets</p>
+      <h2 class="section-h reveal d1">Five markets. <span class="blue">One account. Always ready.</span></h2>
+      <p class="section-sub reveal d2">The assets that move the global economy — all accessible from your mobile, with institutional-grade execution behind every trade.</p>
     </div>
-  </div>
-</section>
-
-<!-- WHY TRADE -->
-<section class="why" id="why">
-  <div class="container" style="position:relative;">
-    <img src="https://ramongervais.github.io/vcg-brandbook/brand/illustrations/Asset%2025.svg" alt="" style="position:absolute; top:-20px; right:-60px; width:220px; opacity:0.12; pointer-events:none;">
-    <img src="https://ramongervais.github.io/vcg-brandbook/brand/illustrations/Asset%2016.svg" alt="" style="position:absolute; bottom:-40px; left:-40px; width:160px; opacity:0.10; pointer-events:none;">
-    <p class="section-eyebrow reveal">04 — Why Trade Financial Markets</p>
-    <h2 class="section-title reveal reveal-d1" style="max-width:560px;">Every day, markets move.<br>Every day, there's an opportunity.</h2>
-    <p class="section-body reveal reveal-d2">Gold reacts to inflation data. Oil shifts when OPEC meets. Forex moves when central banks speak. Crypto surges when sentiment turns. These movements happen every single day — and traders who are positioned correctly can participate in them.</p>
-    <p class="section-body reveal reveal-d2" style="margin-top:14px;">You don't need to predict the future. You need to understand the present — what's moving, why it's moving, and how to trade it with discipline. That's exactly what VCG Markets is designed to help you do.</p>
-
-    <div class="why-contrast reveal reveal-d3">
-      <div class="why-contrast-side">
-        <div class="why-contrast-tag a">Without VCG Markets</div>
-        <div class="why-contrast-text a">Reacts to every move.<br>No strategy. No insight.</div>
-      </div>
-      <div class="why-contrast-divider"></div>
-      <div class="why-contrast-side">
-        <div class="why-contrast-tag b">With VCG Markets</div>
-        <div class="why-contrast-text b">Reads the signal.<br>Trades with intelligence.</div>
-      </div>
-    </div>
-
-    <p class="section-body reveal reveal-d2">The market doesn't care if you're ready. But with the right tools, you can be. Whether you trade gold, oil, forex, indices, or crypto — VCG Markets puts you in the room where it happens.</p>
-  </div>
-</section>
-
-<!-- PLATFORM / ASSETS -->
-<section class="platform" id="platform">
-  <div class="platform-bg"></div>
-  <div class="platform-noise"></div>
-  <div class="container platform-content">
-    <div class="platform-header">
-      <p class="section-eyebrow">05 — Platform Overview</p>
-      <h2 class="section-title reveal reveal-d1">Five markets. One platform.<br>Always in your pocket.</h2>
-      <p class="section-body reveal reveal-d2">Trade the assets that move the world — from wherever you are. The VCG Markets mobile platform is built for speed, clarity, and serious trading activity.</p>
-    </div>
-
     <div class="assets-grid">
       <div class="asset-card reveal">
         <img src="https://ramongervais.github.io/vcg-brandbook/brand/icons/Forex.png" alt="Forex">
-        <div class="asset-card-name">Forex</div>
-        <div class="asset-card-desc">Trade the world's most liquid market, 24/5</div>
+        <div class="asset-name">Forex</div>
+        <div class="asset-desc">World's most liquid market, 24/5</div>
       </div>
-      <div class="asset-card reveal reveal-d1">
-        <img src="https://ramongervais.github.io/vcg-brandbook/brand/icons/commodities.png" alt="Commodities">
-        <div class="asset-card-name">Gold & Oil</div>
-        <div class="asset-card-desc">React to the moves that drive global markets</div>
+      <div class="asset-card reveal d1">
+        <img src="https://ramongervais.github.io/vcg-brandbook/brand/icons/commodities.png" alt="Gold & Oil">
+        <div class="asset-name">Gold & Oil</div>
+        <div class="asset-desc">React to macro events in real time</div>
       </div>
-      <div class="asset-card reveal reveal-d2">
+      <div class="asset-card reveal d2">
         <img src="https://ramongervais.github.io/vcg-brandbook/brand/icons/Indices.png" alt="Indices">
-        <div class="asset-card-name">Indices</div>
-        <div class="asset-card-desc">Trade the S&P 500, NASDAQ, and beyond</div>
+        <div class="asset-name">Indices</div>
+        <div class="asset-desc">S&P 500, NASDAQ & global markets</div>
       </div>
-      <div class="asset-card reveal reveal-d3">
-        <img src="https://ramongervais.github.io/vcg-brandbook/brand/icons/Cryptos.png" alt="Cryptos">
-        <div class="asset-card-name">Crypto</div>
-        <div class="asset-card-desc">Bitcoin, Ethereum & high-volatility plays</div>
+      <div class="asset-card reveal d3">
+        <img src="https://ramongervais.github.io/vcg-brandbook/brand/icons/Cryptos.png" alt="Crypto">
+        <div class="asset-name">Crypto</div>
+        <div class="asset-desc">BTC, ETH & high-volatility plays</div>
       </div>
-      <div class="asset-card reveal reveal-d4">
+      <div class="asset-card reveal d4">
         <img src="https://ramongervais.github.io/vcg-brandbook/brand/icons/Shares.png" alt="Shares">
-        <div class="asset-card-name">Shares</div>
-        <div class="asset-card-desc">Trade the companies shaping the world</div>
+        <div class="asset-name">Shares</div>
+        <div class="asset-desc">Trade the companies shaping the world</div>
       </div>
     </div>
-
-    <div class="platform-product">
-      <div class="reveal" style="text-align:center;">
-        <img src="https://ramongervais.github.io/vcg-brandbook/brand/productshots/Hand-001.png" alt="VCG Markets App" style="max-width:340px; margin:0 auto; filter: drop-shadow(0 32px 64px rgba(0,0,0,0.5));">
+    <div class="product-showcase reveal d1">
+      <div>
+        <img src="https://ramongervais.github.io/vcg-brandbook/brand/productshots/Hand-001.png" alt="VCG Markets App" style="max-width:320px;margin:0 auto;filter:drop-shadow(0 32px 72px rgba(0,0,0,.7))">
       </div>
       <div>
-        <p class="section-eyebrow reveal" style="color: var(--blue-light);">Built for Mobile. Built for Speed.</p>
-        <h3 class="section-title reveal reveal-d1" style="color: var(--white); font-size: 28px;">The market moves.<br>Your platform should too.</h3>
-        <p class="section-body reveal reveal-d2">The VCG Markets app is designed for one thing: getting you in and out of trades with speed, clarity, and zero friction. No clutter. No confusion. Just the market, your position, and the tools to act on what you see.</p>
-        <p class="section-body reveal reveal-d2" style="margin-top:14px;">Whether you're checking gold at 7am or reacting to a breakout at midnight, the platform is ready. Fast execution. Real-time prices. And VCG ONE running quietly in the background, learning how you trade.</p>
-        <div style="margin-top:32px;" class="reveal reveal-d3">
-          <a href="#cta" class="btn-primary">See It in Action →</a>
+        <p class="eyebrow showcase-eyebrow">Mobile-First. Built for Speed.</p>
+        <h3 class="section-h" style="font-size:32px;">The market moves. <span class="blue">Your platform should too.</span></h3>
+        <p class="section-sub" style="font-size:16px;margin-top:12px;">Whether you're checking gold at 7am or reacting to a breakout at midnight — the VCG Markets app is ready. Fast execution. Real-time prices. VCG ONE running quietly in the background, learning how you trade.</p>
+        <div style="margin-top:32px">
+          <a href="#cta" class="btn-primary" style="display:inline-flex">See It in Action →</a>
         </div>
       </div>
     </div>
@@ -946,127 +775,189 @@ footer .divider-line {
 
 <!-- VCG ONE -->
 <section class="vcgone" id="vcgone">
-  <div class="container" style="position:relative;">
-    <img src="https://ramongervais.github.io/vcg-brandbook/brand/illustrations/Asset%205.svg" alt="" style="position:absolute; right:-40px; top:-60px; width:200px; opacity:0.08; pointer-events:none;">
+  <div class="wrap">
     <div class="vcgone-inner">
-      <div class="vcgone-card">
-        <div class="vcgone-card-bg"></div>
-        <div class="vcgone-card-noise"></div>
-        <div class="vcgone-card-content">
-          <div class="vcgone-tag"><span class="vcgone-tag-dot"></span>AI Co-Pilot</div>
-          <div class="vcgone-card-title">VCG ONE</div>
-          <div class="vcgone-card-body">Most traders study the market. VCG ONE studies you. It analyses every trade you make and shows you the patterns you can't see yourself.</div>
-          <div class="vcgone-features">
-            <div class="vcgone-feature">
-              <div class="vcgone-feature-dot"></div>
-              <div class="vcgone-feature-text">Spot your blind spots <em>See the habits that are costing you — overtrading, revenge trades, emotional entries</em></div>
+      <div class="one-card reveal">
+        <div class="one-card-glow"></div>
+        <div class="one-tag"><span class="one-tag-dot"></span>AI Co-Pilot</div>
+        <div class="one-title">VCG ONE</div>
+        <p class="one-subtitle">Most tools analyse markets. VCG ONE analyses the trader. It watches every trade you make and surfaces the patterns you can't see yourself.</p>
+        <div class="one-metrics">
+          <div class="one-metric">
+            <div class="one-metric-val">30+</div>
+            <div class="one-metric-lbl">Performance indicators tracked</div>
+          </div>
+          <div class="one-metric">
+            <div class="one-metric-val">50</div>
+            <div class="one-metric-lbl">Trades to unlock your report</div>
+          </div>
+          <div class="one-metric">
+            <div class="one-metric-val">1</div>
+            <div class="one-metric-lbl">Platform that offers this</div>
+          </div>
+          <div class="one-metric">
+            <div class="one-metric-val">0</div>
+            <div class="one-metric-lbl">Competitors with an equivalent</div>
+          </div>
+        </div>
+        <div class="one-features">
+          <div class="one-feature">
+            <div class="one-feature-dot"></div>
+            <div>
+              <div class="one-feature-title">Spot your blind spots</div>
+              <div class="one-feature-desc">Overtrading, revenge trades, emotional entries — VCG ONE finds them</div>
             </div>
-            <div class="vcgone-feature">
-              <div class="vcgone-feature-dot"></div>
-              <div class="vcgone-feature-text">Understand your patterns <em>Discover what your best trades have in common — and repeat them</em></div>
+          </div>
+          <div class="one-feature">
+            <div class="one-feature-dot"></div>
+            <div>
+              <div class="one-feature-title">Understand your patterns</div>
+              <div class="one-feature-desc">Discover what your best trades have in common — and repeat them</div>
             </div>
-            <div class="vcgone-feature">
-              <div class="vcgone-feature-dot"></div>
-              <div class="vcgone-feature-text">Trade with confidence <em>Replace guesswork with insight. Every decision gets sharper over time</em></div>
+          </div>
+          <div class="one-feature">
+            <div class="one-feature-dot"></div>
+            <div>
+              <div class="one-feature-title">Personalised Trader Strength Score</div>
+              <div class="one-feature-desc">A quantified view of your trading behaviour — found nowhere else in retail</div>
             </div>
           </div>
         </div>
       </div>
-      <div>
-        <p class="section-eyebrow reveal">06 — VCG ONE</p>
-        <h2 class="section-title reveal reveal-d1">The AI co-pilot that studies<br>how <em style="-webkit-text-fill-color:var(--blue); font-style:normal;">you</em> trade.</h2>
-        <p class="section-body reveal reveal-d2">Here's what most traders never do: look at themselves. They analyse charts, follow news, study indicators — and completely ignore the most important variable in every trade they've ever made. Their own behaviour.</p>
-        <p class="section-body reveal reveal-d2" style="margin-top:14px;">VCG ONE fixes that. It runs behind every trade you make, builds a picture of your decision patterns, and surfaces the insights that actually change how you trade.</p>
-        <p class="section-body reveal reveal-d2" style="margin-top:14px;">No other retail trading platform does this. It's the difference between a platform that takes your trades and one that helps you take better ones.</p>
-        <p style="margin-top:24px; font-size:16px; font-weight:700; color:var(--dark); letter-spacing:var(--letter-tight);" class="reveal reveal-d3">Your trades reveal more than you think.<br><span style="color:var(--blue);">VCG ONE shows you exactly what.</span></p>
+      <div class="one-content">
+        <p class="eyebrow reveal" style="color:var(--one);display:flex;align-items:center;"><span style="display:block;width:28px;height:2px;background:var(--one);border-radius:2px;flex-shrink:0;margin-right:10px"></span>Behavioural Trading Intelligence</p>
+        <h2 class="section-h reveal d1">The AI that studies how <span class="purple">you</span> trade.</h2>
+        <p class="section-sub reveal d2">Here's what most traders never do: look at themselves. They analyse charts, follow news, study indicators — and completely ignore the most important variable in every trade they've ever made.</p>
+        <p class="section-sub reveal d2" style="margin-top:14px">Their own behaviour.</p>
+        <p class="section-sub reveal d2" style="margin-top:14px">VCG ONE fixes that. It runs behind every trade, builds a picture of your decision patterns, and surfaces the insights that actually change how you trade.</p>
+        <div class="one-diff reveal d3">
+          <div class="one-diff-label">The difference that matters</div>
+          <div class="one-diff-text">eToro shows you what other traders do. Plus500 shows you nothing. VCG ONE shows you what <strong style="color:var(--text)">you</strong> do — and how to do it better. No competitor offers anything close to this.</div>
+        </div>
       </div>
     </div>
   </div>
 </section>
 
-<!-- ADVANTAGES -->
-<section class="advantages" id="advantages">
-  <div class="container">
-    <div class="advantages-header">
-      <p class="section-eyebrow reveal">07 — Platform Advantages</p>
-      <h2 class="section-title reveal reveal-d1">Everything serious traders<br>need. Nothing they don't.</h2>
+<!-- COMPETITOR TABLE -->
+<section class="compete" id="compete">
+  <div class="wrap">
+    <div class="compete-header">
+      <p class="eyebrow reveal">Competitive Positioning</p>
+      <h2 class="section-h reveal d1">Where VCG Markets <span class="blue">leads the field.</span></h2>
+      <p class="section-sub reveal d2">The retail CFD market has been dominated by platforms built on 2010s infrastructure. None were designed with behavioural intelligence, AI agents, or emerging-market-first distribution in mind. VCG was.</p>
     </div>
-    <div class="advantages-grid">
-      <div class="adv-card reveal">
-        <div class="adv-icon">📱</div>
-        <div class="adv-title">Trade from anywhere</div>
-        <div class="adv-body">The VCG Markets app puts global markets in your pocket. Designed for mobile from the ground up — not a desktop platform squeezed onto a small screen.</div>
+    <div class="table-wrap reveal d1">
+      <div class="table-head">
+        <div class="th">Feature</div>
+        <div class="th">eToro</div>
+        <div class="th">Plus500</div>
+        <div class="th">XTB</div>
+        <div class="th vcg">VCG Markets</div>
       </div>
-      <div class="adv-card reveal reveal-d1">
-        <div class="adv-icon">🌍</div>
-        <div class="adv-title">Five global markets</div>
-        <div class="adv-body">Gold. Oil. Forex. Indices. Crypto. The assets that move the world's economy, available in one account — so you're always where the opportunity is.</div>
+      <div class="table-row">
+        <div class="td feature">Behavioural AI (VCG ONE)</div>
+        <div class="td no">✗ None</div>
+        <div class="td no">✗ None</div>
+        <div class="td no">✗ None</div>
+        <div class="td yes vcg-col"><span class="check">✓</span> Only platform</div>
       </div>
-      <div class="adv-card reveal reveal-d2">
-        <div class="adv-icon">⚡</div>
-        <div class="adv-title">Leverage that works for you</div>
-        <div class="adv-body">Amplify your market exposure beyond your deposit. VCG Markets gives you the leverage tools to trade at a scale that matches your conviction — and your strategy.</div>
+      <div class="table-row">
+        <div class="td feature">AI Real-Time Market Agents</div>
+        <div class="td no">✗ None</div>
+        <div class="td no">✗ None</div>
+        <div class="td no">✗ None</div>
+        <div class="td yes vcg-col"><span class="check">✓</span> In-platform</div>
       </div>
-      <div class="adv-card reveal reveal-d3">
-        <div class="adv-icon">🧠</div>
-        <div class="adv-title">VCG ONE behavioural AI</div>
-        <div class="adv-body">No other retail platform does this. VCG ONE watches how you trade, identifies your patterns, and tells you what's working and what isn't. Your personal edge engine.</div>
+      <div class="table-row">
+        <div class="td feature">Trader Strength Score</div>
+        <div class="td no">✗ None</div>
+        <div class="td no">✗ None</div>
+        <div class="td no">✗ None</div>
+        <div class="td yes vcg-col"><span class="check">✓</span> 30+ indicators</div>
       </div>
-      <div class="adv-card reveal reveal-d4">
-        <div class="adv-icon">🚀</div>
-        <div class="adv-title">Execution you can rely on</div>
-        <div class="adv-body">When gold spikes or oil breaks out, you need a platform that doesn't lag, freeze, or let you down. VCG Markets is built for exactly those moments.</div>
+      <div class="table-row">
+        <div class="td feature">ECN Execution (no conflict)</div>
+        <div class="td no">✗ Market maker</div>
+        <div class="td no">✗ Market maker</div>
+        <div class="td partial">~ Partial</div>
+        <div class="td yes vcg-col"><span class="check">✓</span> Full ECN</div>
       </div>
-      <div class="adv-card reveal reveal-d5">
-        <div class="adv-icon">🛡️</div>
-        <div class="adv-title">Licensed and regulated</div>
-        <div class="adv-body">Trade with confidence. VCG Markets holds a Mauritius Investment Dealer Licence. Your funds, your data, and your account are protected by a proper regulatory framework.</div>
+      <div class="table-row">
+        <div class="td feature">Emerging Market Focus</div>
+        <div class="td partial">~ Limited</div>
+        <div class="td partial">~ Limited</div>
+        <div class="td partial">~ EU-primary</div>
+        <div class="td yes vcg-col"><span class="check">✓</span> Native build</div>
+      </div>
+      <div class="table-row">
+        <div class="td feature">Dual Regulation (FSC + SCA)</div>
+        <div class="td partial">~ FCA / CySEC</div>
+        <div class="td partial">~ FCA / CySEC</div>
+        <div class="td partial">~ FCA / KNF</div>
+        <div class="td yes vcg-col"><span class="check">✓</span> FSC + UAE SCA</div>
+      </div>
+      <div class="table-row">
+        <div class="td feature">TradingView Integration</div>
+        <div class="td partial">~ Charts only</div>
+        <div class="td no">✗ None</div>
+        <div class="td partial">~ Charts only</div>
+        <div class="td yes vcg-col"><span class="check">✓</span> Full integration</div>
+      </div>
+      <div class="table-row">
+        <div class="td feature">Global Partner Network</div>
+        <div class="td partial">~ Large</div>
+        <div class="td partial">~ Medium</div>
+        <div class="td partial">~ Medium</div>
+        <div class="td yes vcg-col"><span class="check">✓</span> 5,000+ / 50+ countries</div>
       </div>
     </div>
+    <p class="table-note reveal d2">The competitive gap is largest in behavioural intelligence and emerging market access — <strong>two areas no competitor has addressed for retail traders.</strong></p>
   </div>
 </section>
 
-<!-- REWARDS -->
-<section class="rewards" id="rewards">
-  <div class="container">
-    <div class="rewards-inner">
-      <div>
-        <p class="section-eyebrow reveal">08 — Rewards & Incentives</p>
-        <h2 class="section-title reveal reveal-d1">Start with more.<br>Keep earning as you trade.</h2>
-        <p class="section-body reveal reveal-d2">VCG Markets rewards traders who show up. From the moment you open your account to every deposit you make after, there are incentives designed to put more behind your trades.</p>
-        <div style="margin-top: 32px;" class="reveal reveal-d3">
-          <div class="reward-list">
-            <div class="reward-item">
-              <div class="reward-item-icon">🎁</div>
-              <div>
-                <div class="reward-item-title">Deposit Bonuses</div>
-                <div class="reward-item-desc">Every time you fund your account, you could unlock extra trading capital — giving you more to work with on the markets you're watching</div>
-              </div>
-            </div>
-            <div class="reward-item">
-              <div class="reward-item-icon">💳</div>
-              <div>
-                <div class="reward-item-title">Promotional Trading Credits</div>
-                <div class="reward-item-desc">When markets heat up, so do our campaigns. Extra credits during high-volatility windows mean you can trade bigger when it matters most</div>
-              </div>
-            </div>
-            <div class="reward-item">
-              <div class="reward-item-icon">📅</div>
-              <div>
-                <div class="reward-item-title">Event-Based Incentives</div>
-                <div class="reward-item-desc">Major market events — OPEC, Fed decisions, earnings season — come with tailored rewards for active traders who are positioned and ready</div>
-              </div>
-            </div>
-          </div>
+<!-- JOURNEY -->
+<section class="journey" id="journey">
+  <div class="wrap">
+    <div class="journey-header">
+      <p class="eyebrow reveal">Your Trading Journey</p>
+      <h2 class="section-h reveal d1">From curiosity to <span class="blue">mastery.</span></h2>
+      <p class="section-sub reveal d2">Every trader on VCG Markets started exactly where you are now. Here's how the journey unfolds.</p>
+    </div>
+    <div class="journey-track">
+      <div class="journey-step reveal">
+        <div class="journey-num">01</div>
+        <div>
+          <div class="journey-title">Curiosity</div>
+          <div class="journey-desc">A market moves. You want to understand why. Claim your $100 reward and start exploring.</div>
         </div>
       </div>
-      <div class="reward-highlight reveal reveal-d2">
-        <div class="reward-highlight-noise"></div>
-        <div class="reward-highlight-content">
-          <div class="reward-amount">$100</div>
-          <div class="reward-tag">Welcome Reward — New Traders Only</div>
-          <p class="reward-desc">Open your account today and we'll add $100 in trading rewards to get you started. No complex conditions. Just extra firepower to explore the markets from your very first trade.</p>
-          <a href="#cta" class="btn-primary" style="width:100%; justify-content:center;">Claim Your $100 Now →</a>
+      <div class="journey-step reveal d1">
+        <div class="journey-num">02</div>
+        <div>
+          <div class="journey-title">First Deposit</div>
+          <div class="journey-desc">Fund your account, unlock your reward, and access all five global markets instantly.</div>
+        </div>
+      </div>
+      <div class="journey-step reveal d2">
+        <div class="journey-num">03</div>
+        <div>
+          <div class="journey-title">First Trade</div>
+          <div class="journey-desc">Markets become real. VCG ONE starts watching — and learning how you think.</div>
+        </div>
+      </div>
+      <div class="journey-step reveal d3">
+        <div class="journey-num">04</div>
+        <div>
+          <div class="journey-title">Pattern Recognition</div>
+          <div class="journey-desc">After 50 trades, VCG ONE surfaces your first insights. You see what was invisible before.</div>
+        </div>
+      </div>
+      <div class="journey-step reveal d4">
+        <div class="journey-num">05</div>
+        <div>
+          <div class="journey-title">Mastery</div>
+          <div class="journey-desc">Your Trader Strength Score reflects real progress. Trading becomes strategic, not reactive.</div>
         </div>
       </div>
     </div>
@@ -1075,37 +966,51 @@ footer .divider-line {
 
 <!-- TRUST -->
 <section class="trust" id="trust">
-  <div class="container">
-    <p class="section-eyebrow reveal">09 — Trust & Security</p>
-    <h2 class="section-title reveal reveal-d1">Your money. Your data.<br>Protected — always.</h2>
-    <p class="section-body reveal reveal-d2">Before you place a single trade, you need to know the platform you're using is safe, regulated, and built to last. VCG Markets takes that seriously.</p>
-    <div class="trust-grid">
-      <div class="trust-card reveal">
-        <div class="trust-card-icon">⚖️</div>
-        <div>
-          <div class="trust-card-title">Properly licensed</div>
-          <div class="trust-card-body">VCG Markets holds a Mauritius Investment Dealer Licence. You're trading on a regulated platform with a clear legal framework — not a fly-by-night operation.</div>
+  <div class="wrap">
+    <div class="trust-inner">
+      <div>
+        <p class="eyebrow reveal">Trust & Security</p>
+        <h2 class="section-h reveal d1">Your money. Your data. <span class="blue">Protected. Always.</span></h2>
+        <p class="section-sub reveal d2">Before you place a single trade, you need to know the platform is safe, regulated, and built to last. VCG Markets takes that seriously.</p>
+        <div class="reg-badges reveal d3">
+          <div class="reg-badge">
+            <div class="reg-badge-dot"></div>
+            <div>
+              <div class="reg-badge-text">Mauritius Financial Services Commission</div>
+              <div class="reg-badge-sub">Investment Dealer Licence — FSC regulated</div>
+            </div>
+          </div>
+          <div class="reg-badge">
+            <div class="reg-badge-dot"></div>
+            <div>
+              <div class="reg-badge-text">UAE Securities & Commodities Authority</div>
+              <div class="reg-badge-sub">Category 5 SCA licence — GCC market access</div>
+            </div>
+          </div>
         </div>
       </div>
-      <div class="trust-card reveal reveal-d1">
-        <div class="trust-card-icon">🏗️</div>
-        <div>
-          <div class="trust-card-title">Infrastructure built for volatility</div>
-          <div class="trust-card-body">The moments that matter most in trading are exactly when most platforms buckle. VCG Markets is engineered to stay fast and stable when markets are moving hard.</div>
-        </div>
-      </div>
-      <div class="trust-card reveal reveal-d2">
-        <div class="trust-card-icon">🔒</div>
-        <div>
-          <div class="trust-card-title">Your funds stay yours</div>
-          <div class="trust-card-body">Secure transactions, encrypted data, and responsible account practices. What you deposit is protected — and what you earn is yours to withdraw.</div>
-        </div>
-      </div>
-      <div class="trust-card reveal reveal-d3">
-        <div class="trust-card-icon">💬</div>
-        <div>
-          <div class="trust-card-title">Real support when you need it</div>
-          <div class="trust-card-body">Questions about your account, a trade, or the platform? Our team is available. Real people, fast responses — because markets don't keep office hours.</div>
+      <div>
+        <div class="trust-grid">
+          <div class="trust-card reveal">
+            <div class="trust-icon">⚖️</div>
+            <div class="trust-title">Properly licensed</div>
+            <p class="trust-body">Dual regulation — FSC and UAE SCA. A combination no competitor serving the Middle East currently matches.</p>
+          </div>
+          <div class="trust-card reveal d1">
+            <div class="trust-icon">🏗️</div>
+            <div class="trust-title">Built for volatility</div>
+            <p class="trust-body">The moments that matter most are when most platforms buckle. VCG is engineered to stay fast when markets move hard.</p>
+          </div>
+          <div class="trust-card reveal d2">
+            <div class="trust-icon">🔒</div>
+            <div class="trust-title">Segregated funds</div>
+            <p class="trust-body">Client funds are held separately. Negative balance protection. Encrypted transactions and data throughout.</p>
+          </div>
+          <div class="trust-card reveal d3">
+            <div class="trust-icon">💬</div>
+            <div class="trust-title">Real support</div>
+            <p class="trust-body">Real people. Fast responses. Because markets don't keep office hours and neither do we.</p>
+          </div>
         </div>
       </div>
     </div>
@@ -1113,8 +1018,8 @@ footer .divider-line {
 </section>
 
 <!-- PEOPLE STRIP -->
-<div class="people-strip">
-  <div class="people-strip-inner">
+<div class="people">
+  <div class="people-track">
     <img src="https://ramongervais.github.io/vcg-brandbook/brand/photos/Hero-People-001.png" alt="">
     <img src="https://ramongervais.github.io/vcg-brandbook/brand/photos/Hero-People-002.png" alt="">
     <img src="https://ramongervais.github.io/vcg-brandbook/brand/photos/Hero-People-003.png" alt="">
@@ -1127,100 +1032,54 @@ footer .divider-line {
     <img src="https://ramongervais.github.io/vcg-brandbook/brand/photos/Hero-People-010.png" alt="">
     <img src="https://ramongervais.github.io/vcg-brandbook/brand/photos/Hero-People-011.png" alt="">
   </div>
+  <div class="people-overlay"></div>
 </div>
-
-<!-- JOURNEY -->
-<section class="journey" id="journey">
-  <div class="container">
-    <div class="journey-header">
-      <p class="section-eyebrow">10 — Your Trading Journey</p>
-      <h2 class="section-title reveal reveal-d1">You don't need to be ready.<br>You just need to start.</h2>
-      <p class="section-body reveal reveal-d2">Every trader on VCG Markets started exactly where you are now — curious about markets, wondering if this is for them. Here's how the journey unfolds.</p>
-    </div>
-    <div class="journey-steps">
-      <div class="journey-step reveal">
-        <div class="journey-step-num">01</div>
-        <div>
-          <div class="journey-step-title">Curiosity</div>
-          <div class="journey-step-desc">Something moves in the market — gold spikes, crypto surges — and you want to know why. That question is worth $100 to us. Claim your reward and start exploring.</div>
-        </div>
-      </div>
-      <div class="journey-step reveal reveal-d1">
-        <div class="journey-step-num">02</div>
-        <div>
-          <div class="journey-step-title">First Deposit</div>
-          <div class="journey-step-desc">Fund your account and unlock your welcome reward. Now you have real capital, real markets, and a platform built to help you use both intelligently.</div>
-        </div>
-      </div>
-      <div class="journey-step reveal reveal-d2">
-        <div class="journey-step-num">03</div>
-        <div>
-          <div class="journey-step-title">First Trade</div>
-          <div class="journey-step-desc">You place your first position. Markets become real, immediate, and alive. Whatever happens, VCG ONE has already started watching — and learning how you think.</div>
-        </div>
-      </div>
-      <div class="journey-step reveal reveal-d3">
-        <div class="journey-step-num">04</div>
-        <div>
-          <div class="journey-step-title">Pattern Recognition</div>
-          <div class="journey-step-desc">VCG ONE surfaces your first insights. You start to see your habits — the trades you take too early, the ones you hold too long. The patterns you couldn't see before.</div>
-        </div>
-      </div>
-      <div class="journey-step reveal reveal-d4">
-        <div class="journey-step-num">05</div>
-        <div>
-          <div class="journey-step-title">Sharper Trading</div>
-          <div class="journey-step-desc">Your decisions get cleaner. Your discipline improves. You're not just placing trades anymore — you're building a strategy. This is what intelligent trading looks like.</div>
-        </div>
-      </div>
-    </div>
-  </div>
-</section>
 
 <!-- CTA -->
 <section class="cta-section" id="cta">
-  <div class="cta-bg"></div>
-  <div class="cta-noise"></div>
-  <img src="https://ramongervais.github.io/vcg-brandbook/brand/illustrations/Asset%2020.svg" alt="" style="position:absolute; left:-80px; top:50%; transform:translateY(-50%); width:340px; opacity:0.07; pointer-events:none; z-index:1;">
-  <img src="https://ramongervais.github.io/vcg-brandbook/brand/illustrations/Asset%2020.svg" alt="" style="position:absolute; right:-80px; top:50%; transform:translateY(-50%) scaleX(-1); width:340px; opacity:0.07; pointer-events:none; z-index:1;">
-  <div class="container cta-content">
-    <div class="cta-pre">The market is open. Are you?</div>
-    <h2 class="cta-h2">Stop watching.<br>Start trading <em>intelligently.</em></h2>
-    <p class="cta-sub">Open your account in minutes. Claim your $100 welcome reward. Access five global markets with an AI co-pilot that helps you improve with every single trade.</p>
+  <div class="cta-mesh"></div>
+  <div class="wrap cta-content">
+    <p class="cta-kicker">The market is open. Are you?</p>
+    <h2 class="cta-h">
+      <span class="line">Make your next</span>
+      <span class="line gold-text">trade legendary.</span>
+    </h2>
+    <p class="cta-sub">Open your account in minutes. Claim your $100 welcome reward. Access five global markets with the only AI co-pilot in retail trading that helps you improve with every single trade.</p>
     <div class="cta-actions">
-      <a href="#" class="cta-btn">Claim Your $100 & Start Trading →</a>
-      <a href="#intro" class="btn-secondary">Learn More First</a>
+      <a href="#" class="cta-primary">Claim Your $100 & Start Trading →</a>
+      <a href="#intelligence" class="btn-ghost">Explore the Platform</a>
     </div>
-    <p class="cta-disclaimer">Trading CFDs involves significant risk of loss and may not be suitable for all investors. Capital is at risk. Past performance is not indicative of future results. VCG Markets operates under a Mauritius Investment Dealer Licence.</p>
+    <p class="cta-disclaimer">Trading CFDs involves significant risk of loss and may not be suitable for all investors. Capital is at risk. Past performance is not indicative of future results. VCG Markets is regulated by the Mauritius Financial Services Commission (FSC) and the UAE Securities and Commodities Authority (SCA) under a Category 5 licence.</p>
   </div>
 </section>
 
 <!-- FOOTER -->
 <footer>
-  <div class="container">
+  <div class="wrap">
     <div class="footer-inner">
-      <div class="footer-logo">
-        <img src="https://ramongervais.github.io/vcg-brandbook/brand/logo/VCG%20LOGO-white.svg" alt="VCG Markets">
-      </div>
-      <div class="footer-tagline">Stop watching. Start trading intelligently.</div>
+      <div class="footer-logo"><img src="https://ramongervais.github.io/vcg-brandbook/brand/logo/VCG%20LOGO-white.svg" alt="VCG Markets"></div>
+      <div class="footer-tagline">Bold trades. Intelligent decisions. vcgmarkets.com</div>
     </div>
-    <hr class="divider-line">
+    <hr class="footer-divider">
     <div class="footer-bottom">
-      <div class="footer-copy">© 2026 VCG Markets. All rights reserved.</div>
-      <div class="footer-reg">VCG Markets operates under a Mauritius Investment Dealer Licence. Trading CFDs carries significant risk and may not be suitable for all investors. Capital is at risk.</div>
+      <span class="footer-copy">© 2026 VCG Markets. All rights reserved.</span>
+      <span class="footer-reg">VCG Markets operates under a Mauritius Investment Dealer Licence and UAE SCA Category 5 Licence. Trading CFDs carries significant risk. Capital is at risk.</span>
     </div>
   </div>
 </footer>
 
 <script>
 // Scroll reveal
-const observer = new IntersectionObserver((entries) => {
-  entries.forEach(e => { if (e.isIntersecting) { e.target.classList.add('visible'); } });
-}, { threshold: 0.12 });
-document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
+const obs = new IntersectionObserver(entries => {
+  entries.forEach(e => { if(e.isIntersecting) e.target.classList.add('in') });
+}, { threshold: 0.1 });
+document.querySelectorAll('.reveal').forEach(el => obs.observe(el));
 
-// Smooth active nav link tracking (optional enhancement)
-const sections = document.querySelectorAll('section[id]');
+// Nav scroll state
+const nav = document.querySelector('.nav');
+window.addEventListener('scroll', () => {
+  nav.classList.toggle('scrolled', window.scrollY > 60);
+}, { passive: true });
 </script>
 </body>
 </html>
